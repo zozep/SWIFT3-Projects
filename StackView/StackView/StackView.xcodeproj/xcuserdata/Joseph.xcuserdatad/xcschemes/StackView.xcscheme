@@ -14,7 +14,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "7C4FEF171DD97FEF0092B83A"
+               BlueprintIdentifier = "7C4FEF351DD980870092B83A"
                BuildableName = "StackView.app"
                BlueprintName = "StackView"
                ReferencedContainer = "container:StackView.xcodeproj">
@@ -32,7 +32,7 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "7C4FEF171DD97FEF0092B83A"
+            BlueprintIdentifier = "7C4FEF351DD980870092B83A"
             BuildableName = "StackView.app"
             BlueprintName = "StackView"
             ReferencedContainer = "container:StackView.xcodeproj">
@@ -55,7 +55,7 @@
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "7C4FEF171DD97FEF0092B83A"
+            BlueprintIdentifier = "7C4FEF351DD980870092B83A"
             BuildableName = "StackView.app"
             BlueprintName = "StackView"
             ReferencedContainer = "container:StackView.xcodeproj">
@@ -74,7 +74,7 @@
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "7C4FEF171DD97FEF0092B83A"
+            BlueprintIdentifier = "7C4FEF351DD980870092B83A"
             BuildableName = "StackView.app"
             BlueprintName = "StackView"
             ReferencedContainer = "container:StackView.xcodeproj">
