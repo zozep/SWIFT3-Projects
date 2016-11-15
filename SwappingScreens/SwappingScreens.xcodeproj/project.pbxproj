@@ -8,20 +8,22 @@
 
 /* Begin PBXBuildFile section */
 		7C40510C1DDA67C0006CEB1E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C40510B1DDA67C0006CEB1E /* AppDelegate.swift */; };
-		7C40510E1DDA67C0006CEB1E /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C40510D1DDA67C0006CEB1E /* ViewController.swift */; };
+		7C40510E1DDA67C0006CEB1E /* LoginVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C40510D1DDA67C0006CEB1E /* LoginVC.swift */; };
 		7C4051111DDA67C0006CEB1E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7C40510F1DDA67C0006CEB1E /* Main.storyboard */; };
 		7C4051131DDA67C0006CEB1E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7C4051121DDA67C0006CEB1E /* Assets.xcassets */; };
 		7C4051161DDA67C0006CEB1E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7C4051141DDA67C0006CEB1E /* LaunchScreen.storyboard */; };
+		7C40511E1DDA86C3006CEB1E /* MusicListVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C40511D1DDA86C3006CEB1E /* MusicListVC.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		7C4051081DDA67C0006CEB1E /* SwappingScreens.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SwappingScreens.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7C40510B1DDA67C0006CEB1E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		7C40510D1DDA67C0006CEB1E /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		7C40510D1DDA67C0006CEB1E /* LoginVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginVC.swift; sourceTree = "<group>"; };
 		7C4051101DDA67C0006CEB1E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		7C4051121DDA67C0006CEB1E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		7C4051151DDA67C0006CEB1E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		7C4051171DDA67C0006CEB1E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		7C40511D1DDA86C3006CEB1E /* MusicListVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MusicListVC.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -55,7 +57,8 @@
 			isa = PBXGroup;
 			children = (
 				7C40510B1DDA67C0006CEB1E /* AppDelegate.swift */,
-				7C40510D1DDA67C0006CEB1E /* ViewController.swift */,
+				7C40510D1DDA67C0006CEB1E /* LoginVC.swift */,
+				7C40511D1DDA86C3006CEB1E /* MusicListVC.swift */,
 				7C40510F1DDA67C0006CEB1E /* Main.storyboard */,
 				7C4051121DDA67C0006CEB1E /* Assets.xcassets */,
 				7C4051141DDA67C0006CEB1E /* LaunchScreen.storyboard */,
@@ -96,6 +99,7 @@
 				TargetAttributes = {
 					7C4051071DDA67C0006CEB1E = {
 						CreatedOnToolsVersion = 8.1;
+						DevelopmentTeam = FZ3E4G9DRA;
 						ProvisioningStyle = Automatic;
 					};
 				};
@@ -136,7 +140,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				7C40510E1DDA67C0006CEB1E /* ViewController.swift in Sources */,
+				7C40511E1DDA86C3006CEB1E /* MusicListVC.swift in Sources */,
+				7C40510E1DDA67C0006CEB1E /* LoginVC.swift in Sources */,
 				7C40510C1DDA67C0006CEB1E /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -261,7 +266,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = FZ3E4G9DRA;
 				INFOPLIST_FILE = SwappingScreens/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.joseph.SwappingScreens;
@@ -275,7 +280,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = FZ3E4G9DRA;
 				INFOPLIST_FILE = SwappingScreens/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.joseph.SwappingScreens;
