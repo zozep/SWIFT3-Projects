@@ -12,24 +12,21 @@ import AVFoundation
 var buttonSound: AVAudioPlayer!
 
 
-class ViewController: UIViewController {
+public class ViewController: UIViewController {
+    @IBOutlet var evenNumbersPressed: [UIButton]!
+    @IBOutlet var oddNumbersPressed: [UIButton]!
+    @IBOutlet weak var zeroIsPressed: UIButton!
 
-    override func viewDidLoad() {
+    override public func viewDidLoad() {
         super.viewDidLoad()
-        soundcheck()
     }
     
-    func soundcheck() -> String! {
+
+
+    @IBAction func evenNumberPressed(sender: UIButton) {
         let yeahUpPath = Bundle.main.path(forResource: "yeahUp", ofType: "wav")
         let yeahUpSoundURL = URL(fileURLWithPath: yeahUpPath!)
-        
-        let yeahDownPath = Bundle.main.path(forResource: "yeahDown", ofType: "wav")
-        let yeahDownSoundURL = URL(fileURLWithPath: yeahDownPath!)
-        
-        let yeahPath = Bundle.main.path(forResource: "yeah", ofType: "wav")
-        let yeahSoundURL = URL(fileURLWithPath: yeahPath!)
-
-        if evenNumberPressed(sender: <#T##UIButton#>) {
+        if (evenNumbersPressed != nil) {
             do {
                 try buttonSound = AVAudioPlayer(contentsOf: yeahUpSoundURL)
                 buttonSound.prepareToPlay()
@@ -37,38 +34,38 @@ class ViewController: UIViewController {
                 print(err.debugDescription)
             }
         }
-    
-        
-        do {
-            if oddNumberPressed(sender: UIButton) {
-                try buttonSound = AVAudioPlayer(contentsOf: yeahDownSoundURL)
-                    buttonSound.prepareToPlay()
-                }
-            }catch let err as NSError {
-                    print(err.debugDescription)
-            }
-        
-        
-        do {
-            if zeroPressed(sender: UIButton) {
-                try buttonSound = AVAudioPlayer(contentsOf: yeahSoundURL)
-                buttonSound.prepareToPlay()
-            }
-        }catch let err as NSError {
-            print(err.debugDescription)
-        }
-    }
-
-    
-    @IBAction func evenNumberPressed(sender: UIButton) {
         playSound()
     }
     
     @IBAction func oddNumberPressed(sender: UIButton) {
+        let yeahDownPath = Bundle.main.path(forResource: "yeahDown", ofType: "wav")
+        let yeahDownSoundURL = URL(fileURLWithPath: yeahDownPath!)
+
+        if (oddNumbersPressed != nil) {
+            do {
+                try buttonSound = AVAudioPlayer(contentsOf: yeahDownSoundURL)
+                buttonSound.prepareToPlay()
+            } catch let err as NSError {
+                print(err.debugDescription)
+            }
+        }
+
         playSound()
     }
     
     @IBAction func zeroPressed(sender: UIButton) {
+        let yeahPath = Bundle.main.path(forResource: "yeah", ofType: "wav")
+        let yeahSoundURL = URL(fileURLWithPath: yeahPath!)
+
+        if (zeroIsPressed != nil) {
+            do {
+                try buttonSound = AVAudioPlayer(contentsOf: yeahSoundURL)
+                buttonSound.prepareToPlay()
+            } catch let err as NSError {
+                print(err.debugDescription)
+            }
+        }
+
         playSound()
     }
     
