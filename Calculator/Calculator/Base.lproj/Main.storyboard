@@ -12,7 +12,7 @@
         <!--View Controller-->
         <scene sceneID="6qV-a5-iCf">
             <objects>
-                <viewController id="gPu-A2-sWb" sceneMemberID="viewController">
+                <viewController id="gPu-A2-sWb" customClass="ViewController" customModule="Calculator" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="1cf-Bz-sbo"/>
                         <viewControllerLayoutGuide type="bottom" id="H5B-L9-KO8"/>
@@ -28,12 +28,6 @@
                                 <rect key="frame" x="0.0" y="610" width="375" height="57"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="57" id="Zid-j3-mYM"/>
-                                </constraints>
-                            </imageView>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="counter" translatesAutoresizingMaskIntoConstraints="NO" id="evf-8f-vFf">
-                                <rect key="frame" x="51" y="93.5" width="273" height="79"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="79" id="pjD-kv-Z4G"/>
                                 </constraints>
                             </imageView>
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="backpanel" translatesAutoresizingMaskIntoConstraints="NO" id="Uo0-Pr-OjG">
@@ -56,6 +50,9 @@
                                                     <constraint firstAttribute="width" constant="56" id="rkV-Ae-rg7"/>
                                                 </constraints>
                                                 <state key="normal" image="7"/>
+                                                <connections>
+                                                    <action selector="oddNumberPressed:" destination="gPu-A2-sWb" eventType="touchUpInside" id="PdO-uX-kjo"/>
+                                                </connections>
                                             </button>
                                             <button opaque="NO" tag="8" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GQf-DQ-VsN">
                                                 <rect key="frame" x="74" y="0.0" width="56" height="58"/>
@@ -64,6 +61,9 @@
                                                     <constraint firstAttribute="width" constant="56" id="ag2-03-ryI"/>
                                                 </constraints>
                                                 <state key="normal" image="8"/>
+                                                <connections>
+                                                    <action selector="evenNumberPressed:" destination="gPu-A2-sWb" eventType="touchUpInside" id="siC-Oq-o7z"/>
+                                                </connections>
                                             </button>
                                             <button opaque="NO" tag="9" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BEY-lK-cBf">
                                                 <rect key="frame" x="148" y="0.0" width="56" height="58"/>
@@ -72,6 +72,9 @@
                                                     <constraint firstAttribute="width" constant="56" id="c0g-Cg-VWe"/>
                                                 </constraints>
                                                 <state key="normal" image="9"/>
+                                                <connections>
+                                                    <action selector="oddNumberPressed:" destination="gPu-A2-sWb" eventType="touchUpInside" id="fzA-OV-enZ"/>
+                                                </connections>
                                             </button>
                                         </subviews>
                                     </stackView>
@@ -85,6 +88,9 @@
                                                     <constraint firstAttribute="width" constant="56" id="bxA-sE-Vzq"/>
                                                 </constraints>
                                                 <state key="normal" image="4"/>
+                                                <connections>
+                                                    <action selector="evenNumberPressed:" destination="gPu-A2-sWb" eventType="touchUpInside" id="fH0-cb-Vcp"/>
+                                                </connections>
                                             </button>
                                             <button opaque="NO" tag="5" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="EfV-SC-DKe">
                                                 <rect key="frame" x="74" y="0.0" width="56" height="58"/>
@@ -93,6 +99,9 @@
                                                     <constraint firstAttribute="width" constant="56" id="sLz-Pc-lwr"/>
                                                 </constraints>
                                                 <state key="normal" image="5"/>
+                                                <connections>
+                                                    <action selector="oddNumberPressed:" destination="gPu-A2-sWb" eventType="touchUpInside" id="00r-rq-SFZ"/>
+                                                </connections>
                                             </button>
                                             <button opaque="NO" tag="6" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GjI-KH-YWM">
                                                 <rect key="frame" x="148" y="0.0" width="56" height="58"/>
@@ -101,6 +110,9 @@
                                                     <constraint firstAttribute="width" constant="56" id="xry-yt-eQ2"/>
                                                 </constraints>
                                                 <state key="normal" image="6"/>
+                                                <connections>
+                                                    <action selector="evenNumberPressed:" destination="gPu-A2-sWb" eventType="touchUpInside" id="HYu-jB-8dH"/>
+                                                </connections>
                                             </button>
                                         </subviews>
                                     </stackView>
@@ -114,6 +126,9 @@
                                                     <constraint firstAttribute="width" constant="56" id="B4e-o1-QwA"/>
                                                 </constraints>
                                                 <state key="normal" image="1"/>
+                                                <connections>
+                                                    <action selector="oddNumberPressed:" destination="gPu-A2-sWb" eventType="touchUpInside" id="qF4-zh-tcE"/>
+                                                </connections>
                                             </button>
                                             <button opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8mx-Xi-X7E">
                                                 <rect key="frame" x="74" y="0.0" width="56" height="58"/>
@@ -122,6 +137,9 @@
                                                     <constraint firstAttribute="width" constant="56" id="uJD-sw-Etl"/>
                                                 </constraints>
                                                 <state key="normal" image="2"/>
+                                                <connections>
+                                                    <action selector="evenNumberPressed:" destination="gPu-A2-sWb" eventType="touchUpInside" id="ZjC-T7-10I"/>
+                                                </connections>
                                             </button>
                                             <button opaque="NO" tag="3" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QyH-7E-rIm">
                                                 <rect key="frame" x="148" y="0.0" width="56" height="58"/>
@@ -130,6 +148,9 @@
                                                     <constraint firstAttribute="height" constant="58" id="Stq-Oa-rCE"/>
                                                 </constraints>
                                                 <state key="normal" image="3"/>
+                                                <connections>
+                                                    <action selector="oddNumberPressed:" destination="gPu-A2-sWb" eventType="touchUpInside" id="AVO-X1-pHJ"/>
+                                                </connections>
                                             </button>
                                         </subviews>
                                     </stackView>
@@ -143,6 +164,9 @@
                                                     <constraint firstAttribute="height" constant="58" id="pFq-7y-qIP"/>
                                                 </constraints>
                                                 <state key="normal" image="0"/>
+                                                <connections>
+                                                    <action selector="zeroPressed:" destination="gPu-A2-sWb" eventType="touchUpInside" id="qMN-zs-1qg"/>
+                                                </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2L1-4S-bBG">
                                                 <rect key="frame" x="74" y="0.0" width="56" height="58"/>
@@ -203,6 +227,12 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="counter" translatesAutoresizingMaskIntoConstraints="NO" id="evf-8f-vFf">
+                                <rect key="frame" x="51" y="94" width="273" height="79"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="79" id="pjD-kv-Z4G"/>
+                                </constraints>
+                            </imageView>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>

@@ -13,7 +13,9 @@
 		7C6BC0E21DDBC52A00DDF938 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7C6BC0E11DDBC52A00DDF938 /* Assets.xcassets */; };
 		7C6BC0E51DDBC52A00DDF938 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7C6BC0E31DDBC52A00DDF938 /* LaunchScreen.storyboard */; };
 		7C6BC0ED1DDD656300DDF938 /* CustomFont.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 7C6BC0EC1DDD656300DDF938 /* CustomFont.ttf */; };
-		7CB747981DDD6979001D9506 /* btn.wav in Resources */ = {isa = PBXBuildFile; fileRef = 7CB747971DDD6979001D9506 /* btn.wav */; };
+		7CB7479A1DDD71C4001D9506 /* yeah.wav in Resources */ = {isa = PBXBuildFile; fileRef = 7CB747991DDD71C4001D9506 /* yeah.wav */; };
+		7CB7479D1DDD7549001D9506 /* yeahUp.wav in Resources */ = {isa = PBXBuildFile; fileRef = 7CB7479B1DDD7549001D9506 /* yeahUp.wav */; };
+		7CB7479E1DDD7549001D9506 /* yeahDown.wav in Resources */ = {isa = PBXBuildFile; fileRef = 7CB7479C1DDD7549001D9506 /* yeahDown.wav */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -25,7 +27,9 @@
 		7C6BC0E41DDBC52A00DDF938 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		7C6BC0E61DDBC52A00DDF938 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		7C6BC0EC1DDD656300DDF938 /* CustomFont.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = CustomFont.ttf; sourceTree = "<group>"; };
-		7CB747971DDD6979001D9506 /* btn.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = btn.wav; sourceTree = "<group>"; };
+		7CB747991DDD71C4001D9506 /* yeah.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = yeah.wav; sourceTree = "<group>"; };
+		7CB7479B1DDD7549001D9506 /* yeahUp.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = yeahUp.wav; sourceTree = "<group>"; };
+		7CB7479C1DDD7549001D9506 /* yeahDown.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = yeahDown.wav; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,7 +62,9 @@
 		7C6BC0D91DDBC52A00DDF938 /* Calculator */ = {
 			isa = PBXGroup;
 			children = (
-				7CB747971DDD6979001D9506 /* btn.wav */,
+				7CB7479B1DDD7549001D9506 /* yeahUp.wav */,
+				7CB7479C1DDD7549001D9506 /* yeahDown.wav */,
+				7CB747991DDD71C4001D9506 /* yeah.wav */,
 				7C6BC0EC1DDD656300DDF938 /* CustomFont.ttf */,
 				7C6BC0DA1DDBC52A00DDF938 /* AppDelegate.swift */,
 				7C6BC0DC1DDBC52A00DDF938 /* ViewController.swift */,
@@ -130,10 +136,12 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				7CB747981DDD6979001D9506 /* btn.wav in Resources */,
+				7CB7479A1DDD71C4001D9506 /* yeah.wav in Resources */,
 				7C6BC0ED1DDD656300DDF938 /* CustomFont.ttf in Resources */,
 				7C6BC0E51DDBC52A00DDF938 /* LaunchScreen.storyboard in Resources */,
 				7C6BC0E21DDBC52A00DDF938 /* Assets.xcassets in Resources */,
+				7CB7479E1DDD7549001D9506 /* yeahDown.wav in Resources */,
+				7CB7479D1DDD7549001D9506 /* yeahUp.wav in Resources */,
 				7C6BC0E01DDBC52A00DDF938 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
