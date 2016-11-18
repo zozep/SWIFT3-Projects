@@ -31,8 +31,8 @@ public class ViewController: UIViewController {
 
     //calculte logic
     enum Operation: String {
-        case Divide = "/"
         case Multiply = "*"
+        case Divide = "/"
         case Add = "+"
         case Subtract = "-"
         case Empty = "Empty"
@@ -56,17 +56,28 @@ public class ViewController: UIViewController {
     }
     @IBAction func onClearPressed(Sender: UIButton) {
         runningNumber = ""
-        result = ""
         currentOperation = Operation.Empty
         outputLabel.text = "0"
+        
+        let yeahClearPath = Bundle.main.path(forResource: "yeahClear", ofType: "wav")
+        let yeahClearURL = URL(fileURLWithPath: yeahClearPath!)
+        if (evenNumbersPressed != nil) {
+            do {
+                try buttonSound = AVAudioPlayer(contentsOf: yeahClearURL)
+                buttonSound.prepareToPlay()
+            } catch let err as NSError {
+                print(err.debugDescription)
+            }
+        }
+        playSound()
     }
+    
     @IBAction func numberPressed(sender: UIButton) {
         runningNumber += "\(sender.tag)"
         outputLabel.text = runningNumber
     }
     
     func processOperation(operation: Operation) {
-        
         if leftValueString != "" && currentOperation != Operation.Empty {
             
             //when user selects an operator, then selects another operator without first entering a number
@@ -98,16 +109,6 @@ public class ViewController: UIViewController {
             currentOperation = operation
         }
     }
-
-    
-    
-    
-    
-    
-    
-    
-    
-    
     
     //music play logic
     @IBAction func evenNumberPressed(sender: UIButton) {
