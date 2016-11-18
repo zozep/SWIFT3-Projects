@@ -30,6 +30,12 @@
                                     <constraint firstAttribute="height" constant="57" id="Zid-j3-mYM"/>
                                 </constraints>
                             </imageView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="counter" translatesAutoresizingMaskIntoConstraints="NO" id="evf-8f-vFf">
+                                <rect key="frame" x="51" y="94" width="273" height="79"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="79" id="pjD-kv-Z4G"/>
+                                </constraints>
+                            </imageView>
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="backpanel" translatesAutoresizingMaskIntoConstraints="NO" id="Uo0-Pr-OjG">
                                 <rect key="frame" x="51.5" y="186.5" width="272" height="364"/>
                                 <constraints>
@@ -217,22 +223,16 @@
                                     </stackView>
                                 </subviews>
                             </stackView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dhP-IY-J98">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="12345" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dhP-IY-J98">
                                 <rect key="frame" x="66" y="120" width="243" height="27"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="243" id="HQl-rb-1vb"/>
                                     <constraint firstAttribute="height" constant="27" id="id4-Sg-1I2"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="17"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="counter" translatesAutoresizingMaskIntoConstraints="NO" id="evf-8f-vFf">
-                                <rect key="frame" x="51" y="94" width="273" height="79"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="79" id="pjD-kv-Z4G"/>
-                                </constraints>
-                            </imageView>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>

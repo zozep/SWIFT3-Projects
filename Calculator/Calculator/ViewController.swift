@@ -21,8 +21,9 @@ public class ViewController: UIViewController {
         super.viewDidLoad()
     }
     
-
-
+    
+    
+    //music play related
     @IBAction func evenNumberPressed(sender: UIButton) {
         let yeahUpPath = Bundle.main.path(forResource: "yeahUp", ofType: "wav")
         let yeahUpSoundURL = URL(fileURLWithPath: yeahUpPath!)
@@ -49,7 +50,6 @@ public class ViewController: UIViewController {
                 print(err.debugDescription)
             }
         }
-
         playSound()
     }
     
@@ -65,15 +65,14 @@ public class ViewController: UIViewController {
                 print(err.debugDescription)
             }
         }
-
         playSound()
     }
     
-
     func playSound() {
         if buttonSound.isPlaying {
             buttonSound.stop()
         }
         buttonSound.play()
     }
+    
 }
