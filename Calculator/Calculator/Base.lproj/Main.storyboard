@@ -191,6 +191,9 @@
                                                     <constraint firstAttribute="height" constant="58" id="orP-JW-oL0"/>
                                                 </constraints>
                                                 <state key="normal" image="divide"/>
+                                                <connections>
+                                                    <action selector="onDividePressedWithSender:" destination="gPu-A2-sWb" eventType="touchUpInside" id="dtH-h4-oxV"/>
+                                                </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Dqp-qg-rOI">
                                                 <rect key="frame" x="148" y="0.0" width="56" height="58"/>
@@ -199,6 +202,9 @@
                                                     <constraint firstAttribute="width" constant="56" id="LPZ-hX-XBS"/>
                                                 </constraints>
                                                 <state key="normal" image="multiply"/>
+                                                <connections>
+                                                    <action selector="onMultiplyPressedWithSender:" destination="gPu-A2-sWb" eventType="touchUpInside" id="jIJ-fx-lM0"/>
+                                                </connections>
                                             </button>
                                         </subviews>
                                     </stackView>
@@ -212,6 +218,9 @@
                                                     <constraint firstAttribute="width" constant="56" id="IRk-Q8-hA5"/>
                                                 </constraints>
                                                 <state key="normal" image="subtract"/>
+                                                <connections>
+                                                    <action selector="onSubtractPressedWithSender:" destination="gPu-A2-sWb" eventType="touchUpInside" id="mBe-Mq-uzZ"/>
+                                                </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="j3e-AE-4SV">
                                                 <rect key="frame" x="74" y="0.0" width="56" height="58"/>
@@ -220,6 +229,9 @@
                                                     <constraint firstAttribute="width" constant="56" id="csB-qz-Kjx"/>
                                                 </constraints>
                                                 <state key="normal" image="add"/>
+                                                <connections>
+                                                    <action selector="onAddPressedWithSender:" destination="gPu-A2-sWb" eventType="touchUpInside" id="OHZ-d4-Y0h"/>
+                                                </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ez7-sX-wFz">
                                                 <rect key="frame" x="148" y="0.0" width="56" height="58"/>
@@ -228,6 +240,9 @@
                                                     <constraint firstAttribute="width" constant="56" id="o6Z-hJ-88b"/>
                                                 </constraints>
                                                 <state key="normal" image="equal"/>
+                                                <connections>
+                                                    <action selector="onEqualsPressedWithSender:" destination="gPu-A2-sWb" eventType="touchUpInside" id="u7c-Xx-I13"/>
+                                                </connections>
                                             </button>
                                         </subviews>
                                     </stackView>
