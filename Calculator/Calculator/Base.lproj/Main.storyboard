@@ -57,6 +57,7 @@
                                                 </constraints>
                                                 <state key="normal" image="7"/>
                                                 <connections>
+                                                    <action selector="numberPressedWithSender:" destination="gPu-A2-sWb" eventType="touchUpInside" id="1Xm-8E-rDA"/>
                                                     <action selector="oddNumberPressedWithSender:" destination="gPu-A2-sWb" eventType="touchUpInside" id="jhB-4H-UGn"/>
                                                 </connections>
                                             </button>
@@ -69,6 +70,7 @@
                                                 <state key="normal" image="8"/>
                                                 <connections>
                                                     <action selector="evenNumberPressedWithSender:" destination="gPu-A2-sWb" eventType="touchUpInside" id="Euj-G1-46Y"/>
+                                                    <action selector="numberPressedWithSender:" destination="gPu-A2-sWb" eventType="touchUpInside" id="BvW-br-1PM"/>
                                                 </connections>
                                             </button>
                                             <button opaque="NO" tag="9" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BEY-lK-cBf">
@@ -79,6 +81,7 @@
                                                 </constraints>
                                                 <state key="normal" image="9"/>
                                                 <connections>
+                                                    <action selector="numberPressedWithSender:" destination="gPu-A2-sWb" eventType="touchUpInside" id="4s9-54-h4p"/>
                                                     <action selector="oddNumberPressedWithSender:" destination="gPu-A2-sWb" eventType="touchUpInside" id="TOx-wy-qlL"/>
                                                 </connections>
                                             </button>
@@ -96,6 +99,7 @@
                                                 <state key="normal" image="4"/>
                                                 <connections>
                                                     <action selector="evenNumberPressedWithSender:" destination="gPu-A2-sWb" eventType="touchUpInside" id="BFE-cd-QQb"/>
+                                                    <action selector="numberPressedWithSender:" destination="gPu-A2-sWb" eventType="touchUpInside" id="9fc-OF-KyC"/>
                                                 </connections>
                                             </button>
                                             <button opaque="NO" tag="5" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="EfV-SC-DKe">
@@ -106,6 +110,7 @@
                                                 </constraints>
                                                 <state key="normal" image="5"/>
                                                 <connections>
+                                                    <action selector="numberPressedWithSender:" destination="gPu-A2-sWb" eventType="touchUpInside" id="K3j-Vt-nR2"/>
                                                     <action selector="oddNumberPressedWithSender:" destination="gPu-A2-sWb" eventType="touchUpInside" id="x3q-HB-fde"/>
                                                 </connections>
                                             </button>
@@ -118,6 +123,7 @@
                                                 <state key="normal" image="6"/>
                                                 <connections>
                                                     <action selector="evenNumberPressedWithSender:" destination="gPu-A2-sWb" eventType="touchUpInside" id="Fkx-KG-hOy"/>
+                                                    <action selector="numberPressedWithSender:" destination="gPu-A2-sWb" eventType="touchUpInside" id="LSE-UP-3Zk"/>
                                                 </connections>
                                             </button>
                                         </subviews>
@@ -133,6 +139,7 @@
                                                 </constraints>
                                                 <state key="normal" image="1"/>
                                                 <connections>
+                                                    <action selector="numberPressedWithSender:" destination="gPu-A2-sWb" eventType="touchUpInside" id="II0-T3-9jy"/>
                                                     <action selector="oddNumberPressedWithSender:" destination="gPu-A2-sWb" eventType="touchUpInside" id="8pi-SH-gW4"/>
                                                 </connections>
                                             </button>
@@ -145,6 +152,7 @@
                                                 <state key="normal" image="2"/>
                                                 <connections>
                                                     <action selector="evenNumberPressedWithSender:" destination="gPu-A2-sWb" eventType="touchUpInside" id="02q-cZ-0bb"/>
+                                                    <action selector="numberPressedWithSender:" destination="gPu-A2-sWb" eventType="touchUpInside" id="Ggt-Fo-NGR"/>
                                                 </connections>
                                             </button>
                                             <button opaque="NO" tag="3" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QyH-7E-rIm">
@@ -155,6 +163,7 @@
                                                 </constraints>
                                                 <state key="normal" image="3"/>
                                                 <connections>
+                                                    <action selector="numberPressedWithSender:" destination="gPu-A2-sWb" eventType="touchUpInside" id="7W5-EX-e1q"/>
                                                     <action selector="oddNumberPressedWithSender:" destination="gPu-A2-sWb" eventType="touchUpInside" id="Aaf-qF-Hwp"/>
                                                 </connections>
                                             </button>
@@ -171,6 +180,7 @@
                                                 </constraints>
                                                 <state key="normal" image="0"/>
                                                 <connections>
+                                                    <action selector="numberPressedWithSender:" destination="gPu-A2-sWb" eventType="touchUpInside" id="eUh-Rg-72A"/>
                                                     <action selector="zeroPressedWithSender:" destination="gPu-A2-sWb" eventType="touchUpInside" id="IRq-kM-9cj"/>
                                                 </connections>
                                             </button>
@@ -223,7 +233,7 @@
                                     </stackView>
                                 </subviews>
                             </stackView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="12345" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dhP-IY-J98">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dhP-IY-J98">
                                 <rect key="frame" x="66" y="120" width="243" height="27"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="243" id="HQl-rb-1vb"/>
@@ -255,6 +265,7 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="outputLabel" destination="dhP-IY-J98" id="C1W-JQ-NUc"/>
                         <outlet property="zeroIsPressed" destination="WdP-WV-Mng" id="Gax-Cf-IBX"/>
                         <outletCollection property="oddNumbersPressed" destination="sJG-Yi-f9C" collectionClass="NSMutableArray" id="ODz-Gx-tRd"/>
                         <outletCollection property="evenNumbersPressed" destination="8mx-Xi-X7E" collectionClass="NSMutableArray" id="2BV-BX-4OX"/>

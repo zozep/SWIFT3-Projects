@@ -9,21 +9,39 @@
 import UIKit
 import AVFoundation
 
-var buttonSound: AVAudioPlayer!
-
 
 public class ViewController: UIViewController {
+    var buttonSound: AVAudioPlayer!
+    var runningNumber = ""
+    
     @IBOutlet var evenNumbersPressed: [UIButton]!
     @IBOutlet var oddNumbersPressed: [UIButton]!
     @IBOutlet weak var zeroIsPressed: UIButton!
-
+    @IBOutlet weak var outputLabel: UILabel!
+    
+    
     override public func viewDidLoad() {
         super.viewDidLoad()
     }
     
+    //calculte logic
+    @IBAction func numberPressed(sender: UIButton) {
+        runningNumber += "\(sender.tag)"
+        outputLabel.text = runningNumber
+    }
     
     
-    //music play related
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    //music play logic
     @IBAction func evenNumberPressed(sender: UIButton) {
         let yeahUpPath = Bundle.main.path(forResource: "yeahUp", ofType: "wav")
         let yeahUpSoundURL = URL(fileURLWithPath: yeahUpPath!)
