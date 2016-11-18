@@ -54,7 +54,12 @@ public class ViewController: UIViewController {
     @IBAction func onEqualsPressed(sender: AnyObject) {
         processOperation(operation: currentOperation)
     }
-    
+    @IBAction func onClearPressed(Sender: UIButton) {
+        runningNumber = ""
+        result = ""
+        currentOperation = Operation.Empty
+        outputLabel.text = "0"
+    }
     @IBAction func numberPressed(sender: UIButton) {
         runningNumber += "\(sender.tag)"
         outputLabel.text = runningNumber
@@ -62,7 +67,7 @@ public class ViewController: UIViewController {
     
     func processOperation(operation: Operation) {
         
-        if currentOperation != Operation.Empty {
+        if leftValueString != "" && currentOperation != Operation.Empty {
             
             //when user selects an operator, then selects another operator without first entering a number
             if runningNumber != "" {
