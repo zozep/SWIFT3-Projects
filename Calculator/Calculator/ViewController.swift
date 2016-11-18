@@ -28,6 +28,7 @@ public class ViewController: UIViewController {
         super.viewDidLoad()
     }
     
+
     //calculte logic
     enum Operation: String {
         case Divide = "/"
@@ -43,20 +44,15 @@ public class ViewController: UIViewController {
     }
     @IBAction func onMultiplyPressed (sender: AnyObject) {
         processOperation(operation:.Multiply)
-
     }
     @IBAction func onAddPressed (sender: AnyObject) {
         processOperation(operation:.Add)
-
     }
     @IBAction func onSubtractPressed (sender: AnyObject) {
         processOperation(operation:.Subtract)
-
     }
-    
     @IBAction func onEqualsPressed(sender: AnyObject) {
         processOperation(operation: currentOperation)
-
     }
     
     @IBAction func numberPressed(sender: UIButton) {
@@ -68,25 +64,29 @@ public class ViewController: UIViewController {
         
         if currentOperation != Operation.Empty {
             
-            //checks for when user selects an operator, then selects another operator without first entering a number
+            //when user selects an operator, then selects another operator without first entering a number
             if runningNumber != "" {
                 rightValueString = runningNumber
                 runningNumber = ""
                 
                 if currentOperation == Operation.Multiply {
                     result = "\(Double(leftValueString)! * Double(rightValueString)!)"
-                } else if currentOperation == Operation.Divide {
+                }
+                else if currentOperation == Operation.Divide {
                     result = "\(Double(leftValueString)! / Double(rightValueString)!)"
-                } else if currentOperation == Operation.Add {
+                }
+                else if currentOperation == Operation.Add {
                     result = "\(Double(leftValueString)! + Double(rightValueString)!)"
-                } else if currentOperation == Operation.Subtract {
+                }
+                else if currentOperation == Operation.Subtract {
                     result = "\(Double(leftValueString)! - Double(rightValueString)!)"
                 }
                 leftValueString = result
                 outputLabel.text = result
             }
             currentOperation = operation
-        } else {
+        }
+        else {
             //First time an operator has been pressed
             leftValueString = runningNumber
             runningNumber = ""
