@@ -55,10 +55,6 @@ public class ViewController: UIViewController {
         processOperation(operation: currentOperation)
     }
     @IBAction func onClearPressed(Sender: UIButton) {
-        runningNumber = ""
-        currentOperation = Operation.Empty
-        outputLabel.text = "0"
-        
         let yeahClearPath = Bundle.main.path(forResource: "yeahClear", ofType: "wav")
         let yeahClearURL = URL(fileURLWithPath: yeahClearPath!)
         if (evenNumbersPressed != nil) {
@@ -70,9 +66,18 @@ public class ViewController: UIViewController {
             }
         }
         playSound()
+        runningNumber = ""
+        outputLabel.text = "0"
+        currentOperation = Operation.Empty
+        
     }
     
     @IBAction func numberPressed(sender: UIButton) {
+        if currentOperation == Operation.Empty {
+            if (sender.tag == 0 && runningNumber == "") {
+                return
+            }
+        }
         runningNumber += "\(sender.tag)"
         outputLabel.text = runningNumber
     }
@@ -109,6 +114,8 @@ public class ViewController: UIViewController {
             currentOperation = operation
         }
     }
+    
+    
     
     //music play logic
     @IBAction func evenNumberPressed(sender: UIButton) {
