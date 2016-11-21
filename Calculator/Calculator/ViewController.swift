@@ -17,15 +17,19 @@ public class ViewController: UIViewController {
     var leftValueString = ""
     var rightValueString = ""
     var result = ""
+    var userCurrentlyTypingNum = false
     
     @IBOutlet var evenNumbersPressed: [UIButton]!
     @IBOutlet var oddNumbersPressed: [UIButton]!
     @IBOutlet weak var zeroIsPressed: UIButton!
     @IBOutlet weak var outputLabel: UILabel!
-    
+
     
     override public func viewDidLoad() {
         super.viewDidLoad()
+        runningNumber = ""
+        outputLabel.text = "0"
+        currentOperation = Operation.Empty
     }
     
 
@@ -57,7 +61,7 @@ public class ViewController: UIViewController {
     @IBAction func onClearPressed(Sender: UIButton) {
         let yeahClearPath = Bundle.main.path(forResource: "yeahClear", ofType: "wav")
         let yeahClearURL = URL(fileURLWithPath: yeahClearPath!)
-        if (evenNumbersPressed != nil) {
+        if evenNumbersPressed != nil {
             do {
                 try buttonSound = AVAudioPlayer(contentsOf: yeahClearURL)
                 buttonSound.prepareToPlay()
@@ -69,19 +73,19 @@ public class ViewController: UIViewController {
         runningNumber = ""
         outputLabel.text = "0"
         currentOperation = Operation.Empty
-        
     }
     
     @IBAction func numberPressed(sender: UIButton) {
         if currentOperation == Operation.Empty {
-            if (sender.tag == 0 && runningNumber == "") {
+            if sender.tag == 0 && runningNumber == "" {
                 return
             }
         }
         runningNumber += "\(sender.tag)"
         outputLabel.text = runningNumber
-    }
-    
+
+        }
+
     func processOperation(operation: Operation) {
         if leftValueString != "" && currentOperation != Operation.Empty {
             
@@ -116,12 +120,11 @@ public class ViewController: UIViewController {
     }
     
     
-    
     //music play logic
     @IBAction func evenNumberPressed(sender: UIButton) {
         let yeahUpPath = Bundle.main.path(forResource: "yeahUp", ofType: "wav")
         let yeahUpSoundURL = URL(fileURLWithPath: yeahUpPath!)
-        if (evenNumbersPressed != nil) {
+        if evenNumbersPressed != nil {
             do {
                 try buttonSound = AVAudioPlayer(contentsOf: yeahUpSoundURL)
                 buttonSound.prepareToPlay()
@@ -136,7 +139,7 @@ public class ViewController: UIViewController {
         let yeahDownPath = Bundle.main.path(forResource: "yeahDown", ofType: "wav")
         let yeahDownSoundURL = URL(fileURLWithPath: yeahDownPath!)
 
-        if (oddNumbersPressed != nil) {
+        if oddNumbersPressed != nil {
             do {
                 try buttonSound = AVAudioPlayer(contentsOf: yeahDownSoundURL)
                 buttonSound.prepareToPlay()
@@ -151,7 +154,7 @@ public class ViewController: UIViewController {
         let yeahPath = Bundle.main.path(forResource: "yeah", ofType: "wav")
         let yeahSoundURL = URL(fileURLWithPath: yeahPath!)
 
-        if (zeroIsPressed != nil) {
+        if zeroIsPressed != nil {
             do {
                 try buttonSound = AVAudioPlayer(contentsOf: yeahSoundURL)
                 buttonSound.prepareToPlay()
