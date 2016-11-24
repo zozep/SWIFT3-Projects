@@ -75,7 +75,7 @@
                                 <rect key="frame" x="0.0" y="198" width="375" height="469"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="70" id="8um-KT-UW3">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="PartyCell" rowHeight="70" id="8um-KT-UW3" customClass="PartyCell" customModule="PartyRockMansionTableViews" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="375" height="70"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="8um-KT-UW3" id="mUe-qu-JRB">
@@ -89,7 +89,7 @@
                                                         <constraint firstAttribute="height" constant="53" id="s5C-Az-rIJ"/>
                                                     </constraints>
                                                 </imageView>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="When the sun goes down" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rQR-un-r5h">
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="When the sun goes down" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rQR-un-r5h">
                                                     <rect key="frame" x="70" y="16" width="297" height="37"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="37" id="oL0-Er-Kgl"/>
@@ -104,9 +104,14 @@
                                                 <constraint firstItem="W6X-cZ-Rjl" firstAttribute="centerY" secondItem="mUe-qu-JRB" secondAttribute="centerY" id="3gw-qq-gEU"/>
                                                 <constraint firstItem="rQR-un-r5h" firstAttribute="leading" secondItem="W6X-cZ-Rjl" secondAttribute="trailing" constant="8" id="7ha-H4-eoA"/>
                                                 <constraint firstItem="W6X-cZ-Rjl" firstAttribute="leading" secondItem="mUe-qu-JRB" secondAttribute="leadingMargin" id="QSp-0T-ocG"/>
+                                                <constraint firstItem="rQR-un-r5h" firstAttribute="centerY" secondItem="mUe-qu-JRB" secondAttribute="centerY" id="lup-XB-Jv1"/>
                                                 <constraint firstItem="rQR-un-r5h" firstAttribute="trailing" secondItem="mUe-qu-JRB" secondAttribute="trailingMargin" id="tPm-62-omD"/>
                                             </constraints>
                                         </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="videoPreviewImage" destination="mUe-qu-JRB" id="y20-gX-AY9"/>
+                                            <outlet property="videoTitle" destination="rQR-un-r5h" id="Qp3-4H-0vi"/>
+                                        </connections>
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
