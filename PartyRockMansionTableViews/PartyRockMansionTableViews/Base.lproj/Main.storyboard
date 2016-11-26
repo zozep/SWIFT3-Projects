@@ -79,7 +79,7 @@
                                         <rect key="frame" x="0.0" y="28" width="375" height="70"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="8um-KT-UW3" id="mUe-qu-JRB">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="69"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="69.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="partybanner" translatesAutoresizingMaskIntoConstraints="NO" id="W6X-cZ-Rjl">
@@ -131,6 +131,7 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="tableView" destination="D4U-94-ecZ" id="r8F-W0-vHm"/>
                         <segue destination="qjy-57-WFd" kind="showDetail" identifier="VideoVC" id="5fD-M3-0Sw"/>
                     </connections>
                 </viewController>

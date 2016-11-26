@@ -17,6 +17,12 @@ class MainVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        //hardcoded video url
+        let p1 = PartyRock(imageURL: "https://i.ytimg.com/vi/ev4bY1SkZLg/hqdefault.jpg?custom=true&w=336&h=188&stc=true&jpg444=true&jpgq=90&sp=68&sigh=2eQIiU3s4BGW4Q7oDtui_k5Ketc", videoURL: "<iframe width=\"560\" height=\"315\" src=\"https://www.youtube.com/embed/ev4bY1SkZLg\" frameborder=\"0\" allowfullscreen></iframe>", videoTitle: "Let's Get Ridiculous")
+        
+        partyRocks.append(p1)
+        
         tableView.delegate = self
         tableView.dataSource = self
     }
