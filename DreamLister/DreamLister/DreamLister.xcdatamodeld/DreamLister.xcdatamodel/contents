@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="11542" systemVersion="16B2555" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
     <entity name="Image" representedClassName="Image" syncable="YES" codeGenerationType="class">
-        <attribute name="attribute" optional="YES" syncable="YES"/>
         <attribute name="image" optional="YES" attributeType="Transformable" syncable="YES"/>
     </entity>
     <entity name="Item" representedClassName="Item" syncable="YES" codeGenerationType="class">
@@ -18,7 +17,7 @@
     </entity>
     <elements>
         <element name="Item" positionX="-63" positionY="-18" width="128" height="105"/>
-        <element name="Image" positionX="-54" positionY="18" width="128" height="75"/>
+        <element name="Image" positionX="-54" positionY="18" width="128" height="60"/>
         <element name="Store" positionX="-36" positionY="27" width="128" height="60"/>
         <element name="ItemType" positionX="-18" positionY="36" width="128" height="60"/>
     </elements>
