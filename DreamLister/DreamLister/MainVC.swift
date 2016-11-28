@@ -61,17 +61,20 @@ class MainVC: UIViewController, UITableViewDelegate, UITableViewDataSource, NSFe
     
     func attemptFetch() {
         let fetchRequest: NSFetchRequest<Item> = Item.fetchRequest()
+        
+        //how you want it sorted
         let dateSort = NSSortDescriptor(key: "created", ascending: false)
         fetchRequest.sortDescriptors = [dateSort]
         
         let controller = NSFetchedResultsController(fetchRequest: fetchRequest, managedObjectContext: context, sectionNameKeyPath: nil, cacheName: nil)
         self.controller = controller
         
+        //actual fetch
         do {
             try controller.performFetch()
             
         } catch {
-            let err = error as NSError
+            let error = error as NSError
             print("\(error)")
         }
     }
