@@ -21,16 +21,17 @@ class MainVC: UIViewController, UITableViewDelegate, UITableViewDataSource, NSFe
         super.viewDidLoad()
         tableView.delegate = self
         tableView.dataSource = self
+        attemptFetch()
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "ItemCell", for: indexPath) as! ItemCell
         configureCell(cell: cell, indexPath: indexPath as NSIndexPath)
-        return UITableViewCell()
+        return cell
     }
     
     func configureCell(cell: ItemCell, indexPath: NSIndexPath) {
-        let item = controller.object(at: indexPath as NSIndexPath)
+        let item = controller.object(at: indexPath as IndexPath)
         
         //itemCell customCell class
         cell.configureCell(item: item)
@@ -64,9 +65,11 @@ class MainVC: UIViewController, UITableViewDelegate, UITableViewDataSource, NSFe
         fetchRequest.sortDescriptors = [dateSort]
         
         let controller = NSFetchedResultsController(fetchRequest: fetchRequest, managedObjectContext: context, sectionNameKeyPath: nil, cacheName: nil)
+        self.controller = controller
         
         do {
             try controller.performFetch()
+            
         } catch {
             let err = error as NSError
             print("\(error)")
@@ -93,28 +96,28 @@ class MainVC: UIViewController, UITableViewDelegate, UITableViewDataSource, NSFe
             break
         case.delete:
             if let indexPath = indexPath {
-                tableView.deleteRows(at: <#T##[IndexPath]#>, with: .fade)
+                tableView.deleteRows(at: [indexPath], with: .fade)
             }
             break
         case.update:
             if let indexPath = indexPath {
-                let cell = tableView.cellForRow(at: <#T##IndexPath#>) as! ItemCell
+                let cell = tableView.cellForRow(at: indexPath) as! ItemCell
                 configureCell(cell: cell, indexPath: indexPath as NSIndexPath)
                 
             }
             break
         case.move:
             if let indexPath = indexPath {
-                tableView.deleteRows(at: <#T##[IndexPath]#>, with: .fade)
+                tableView.deleteRows(at: [indexPath], with: .fade)
             }
             if let indexPath = newIndexPath {
-                tableView.insertRows(at: <#T##[IndexPath]#>, with: .fade)
+                tableView.insertRows(at: [indexPath], with: .fade)
             }
             break
         }
             
     }
-    
+
     
     
 }
