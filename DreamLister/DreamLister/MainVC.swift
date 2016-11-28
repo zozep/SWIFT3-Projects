@@ -58,7 +58,38 @@ class MainVC: UIViewController, UITableViewDelegate, UITableViewDataSource, NSFe
         tableView.endUpdates()
     }
     
-    
+    //insertion deletion update
+    func controller(_ controller: NSFetchedResultsController<NSFetchRequestResult>, didChange anObject: Any, at indexPath: IndexPath?, for type: NSFetchedResultsChangeType, newIndexPath: IndexPath?) {
+        switch(type) {
+        //create new item
+        case.insert:
+            if let indexPath = newIndexPath {
+                tableView.insertRows(at: [indexPath], with: .fade)
+            }
+            break
+        case.delete:
+            if let indexPath = indexPath {
+                tableView.deleteRows(at: <#T##[IndexPath]#>, with: .fade)
+            }
+            break
+        case.update:
+            if let indexPath = indexPath {
+                let cell = tableView.cellForRow(at: <#T##IndexPath#>) as! ItemCell
+                //update cell data
+                
+            }
+            break
+        case.move:
+            if let indexPath = indexPath {
+                tableView.deleteRows(at: <#T##[IndexPath]#>, with: .fade)
+            }
+            if let indexPath = newIndexPath {
+                tableView.insertRows(at: <#T##[IndexPath]#>, with: .fade)
+            }
+            break
+        }
+            
+    }
     
     
     
