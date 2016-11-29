@@ -13,9 +13,7 @@ class MainVC: UIViewController, UITableViewDelegate, UITableViewDataSource, NSFe
     
     @IBOutlet weak var segment: UISegmentedControl!
     @IBOutlet weak var tableView: UITableView!
-    
     var controller: NSFetchedResultsController<Item>!
-    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -42,7 +40,6 @@ class MainVC: UIViewController, UITableViewDelegate, UITableViewDataSource, NSFe
             
             let sectionInfo = sections[section]
             return sectionInfo.numberOfObjects
-            
         }
         return 0
     }
@@ -87,7 +84,6 @@ class MainVC: UIViewController, UITableViewDelegate, UITableViewDataSource, NSFe
         tableView.endUpdates()
     }
     
-    
     //CRUD function
     func controller(_ controller: NSFetchedResultsController<NSFetchRequestResult>, didChange anObject: Any, at indexPath: IndexPath?, for type: NSFetchedResultsChangeType, newIndexPath: IndexPath?) {
         switch(type) {
@@ -106,7 +102,6 @@ class MainVC: UIViewController, UITableViewDelegate, UITableViewDataSource, NSFe
             if let indexPath = indexPath {
                 let cell = tableView.cellForRow(at: indexPath) as! ItemCell
                 configureCell(cell: cell, indexPath: indexPath as NSIndexPath)
-                
             }
             break
         case.move:
