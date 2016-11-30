@@ -182,6 +182,9 @@
                                     <constraint firstAttribute="height" constant="92" id="7dc-aB-YR6"/>
                                     <constraint firstAttribute="width" constant="108" id="yws-Sl-jDi"/>
                                 </constraints>
+                                <connections>
+                                    <action selector="addImage:" destination="wEr-k7-RmZ" eventType="touchUpInside" id="Rcl-Xs-rNa"/>
+                                </connections>
                             </button>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Price" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ovt-bD-zss" customClass="CustomTextField">
                                 <rect key="frame" x="132" y="130" width="227" height="42"/>
@@ -281,6 +284,7 @@
                         <outlet property="detailsField" destination="TzZ-RG-FFt" id="NTE-81-ntz"/>
                         <outlet property="priceField" destination="ovt-bD-zss" id="LKm-WB-Bgk"/>
                         <outlet property="storePicker" destination="5cC-oL-EGG" id="lOy-qs-LdM"/>
+                        <outlet property="thumbImage" destination="Dbx-xC-qFG" id="cOm-Hh-e7S"/>
                         <outlet property="titleField" destination="V73-qp-FdK" id="fkO-KR-4gs"/>
                     </connections>
                 </viewController>
@@ -313,6 +317,6 @@
         <image name="tesla" width="800" height="489"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="NsB-ZJ-oBB"/>
+        <segue reference="zbj-zA-zLc"/>
     </inferredMetricsTieBreakers>
 </document>
