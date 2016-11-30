@@ -155,7 +155,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-180" y="-774.06296851574223"/>
+            <point key="canvasLocation" x="-498" y="-760"/>
         </scene>
         <!--Add/Edit-->
         <scene sceneID="17S-tD-R6N">
@@ -272,6 +272,9 @@
                     <navigationItem key="navigationItem" title="Add/Edit" id="haZ-c9-Edv">
                         <barButtonItem key="rightBarButtonItem" systemItem="trash" id="opw-7Z-2jw">
                             <color key="tintColor" red="1" green="0.19685872400000001" blue="0.28439670140000001" alpha="1" colorSpace="calibratedRGB"/>
+                            <connections>
+                                <action selector="deletePressed:" destination="wEr-k7-RmZ" id="YOB-1L-ePb"/>
+                            </connections>
                         </barButtonItem>
                     </navigationItem>
                     <connections>
@@ -283,7 +286,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="MjV-qI-hAu" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="588" y="-774.06296851574223"/>
+            <point key="canvasLocation" x="270" y="-760"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="4LX-LP-eyI">
@@ -302,7 +305,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="8s8-0f-Hud" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-3414" y="-748"/>
+            <point key="canvasLocation" x="-1273" y="-760"/>
         </scene>
     </scenes>
     <resources>
