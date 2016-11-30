@@ -63,7 +63,7 @@ class ItemDetailsVC: UIViewController, UIPickerViewDataSource, UIPickerViewDeleg
     }
     
     func getStores() {
-        let fetchRequest = NSFetchRequest<Store> = Store.fetchRequest()
+        let fetchRequest: NSFetchRequest<Store> = Store.fetchRequest()
         do {
             self.stores = try context.fetch(fetchRequest)
             self.storePicker.reloadAllComponents()
