@@ -16,7 +16,7 @@ class ItemDetailsVC: UIViewController, UIPickerViewDataSource, UIPickerViewDeleg
     @IBOutlet weak var detailsField: CustomTextField!
     
     var stores = [Store]()
-    
+    var itemToEdit: Item?
     
     
     
@@ -31,18 +31,18 @@ class ItemDetailsVC: UIViewController, UIPickerViewDataSource, UIPickerViewDeleg
         
 //        let store = Store(context: context)
 //        store.name = "Best Buy"
-//        
 //        let store2 = Store(context: context)
 //        store2.name = "Target"
-//        
 //        let store3 = Store(context: context)
 //        store3.name = "Costco"
-//        
 //        let store4 = Store(context: context)
 //        store4.name = "Tesla Dealership"
-//        
 //        ad.saveContext()
-          getStores()
+        getStores()
+        
+        if itemToEdit != nil {
+            loadItemData()
+        }
     }
     
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
@@ -91,5 +91,25 @@ class ItemDetailsVC: UIViewController, UIPickerViewDataSource, UIPickerViewDeleg
         _ = navigationController?.popViewController(animated: true)
     }
     
-    
+    func loadItemData() {
+        if let item = itemToEdit {
+            titleField.text = item.title
+            priceField.text = "\(item.price)"
+            detailsField.text = item.details
+            
+            if let store = item.toStore{
+                var index = 0
+                repeat {
+                    let s = stores[index]
+                    if s.name == store.name {
+                        storePicker.selectRow(index, inComponent: 0, animated: false)
+                        break
+                    }
+                    index += 1
+                } while (index < stores.count)
+            }
+        }
+        
+        
+    }
 }
