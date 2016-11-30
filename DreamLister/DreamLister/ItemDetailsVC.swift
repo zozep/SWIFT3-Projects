@@ -8,10 +8,10 @@
 
 import UIKit
 
-class ItemDetailsVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource {
+class ItemDetailsVC: UIViewController, UIPickerViewDataSource, UIPickerViewDelegate  {
 
-    @IBOutlet weak var storePicker: UIPickerview!
-    @IBOutlet weak var titleField: CustomTextfield!
+    @IBOutlet weak var storePicker: UIPickerView!
+    @IBOutlet weak var titleField: CustomTextField!
     @IBOutlet weak var priceField: CustomTextField!
     @IBOutlet weak var detailsField: CustomTextField!
     
@@ -26,7 +26,6 @@ class ItemDetailsVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSou
         if let topItem = self.navigationController?.navigationBar.topItem {
             topItem.backBarButtonItem = UIBarButtonItem(title: "", style: UIBarButtonItemStyle.plain, target: nil, action: nil)
         }
-        
         storePicker.delegate = self
         storePicker.dataSource = self
         

@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		7CAF5D561DEE521E00DAE97E /* CustomTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CAF5D551DEE521E00DAE97E /* CustomTextField.swift */; };
 		7CBA98521DECE8B60078B236 /* Item+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CBA984A1DECE8B60078B236 /* Item+CoreDataClass.swift */; };
 		7CBA98531DECE8B60078B236 /* Item+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CBA984B1DECE8B60078B236 /* Item+CoreDataProperties.swift */; };
 		7CBA98541DECE8B60078B236 /* Store+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CBA984C1DECE8B60078B236 /* Store+CoreDataClass.swift */; };
@@ -27,6 +28,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		7CAF5D551DEE521E00DAE97E /* CustomTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomTextField.swift; sourceTree = "<group>"; };
 		7CBA984A1DECE8B60078B236 /* Item+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Item+CoreDataClass.swift"; path = "../Item+CoreDataClass.swift"; sourceTree = "<group>"; };
 		7CBA984B1DECE8B60078B236 /* Item+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Item+CoreDataProperties.swift"; path = "../Item+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		7CBA984C1DECE8B60078B236 /* Store+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Store+CoreDataClass.swift"; path = "../Store+CoreDataClass.swift"; sourceTree = "<group>"; };
@@ -128,6 +130,7 @@
 			children = (
 				7CE663291DEA8147005C9ACD /* MaterialView.swift */,
 				7CE6632B1DEA83A0005C9ACD /* ItemCell.swift */,
+				7CAF5D551DEE521E00DAE97E /* CustomTextField.swift */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -219,6 +222,7 @@
 				7CE662FA1DEA64F0005C9ACD /* DreamLister.xcdatamodeld in Sources */,
 				7CBA98561DECE8B60078B236 /* Image+CoreDataClass.swift in Sources */,
 				7CBA98571DECE8B60078B236 /* Image+CoreDataProperties.swift in Sources */,
+				7CAF5D561DEE521E00DAE97E /* CustomTextField.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
