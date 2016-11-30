@@ -29,19 +29,20 @@ class ItemDetailsVC: UIViewController, UIPickerViewDataSource, UIPickerViewDeleg
         storePicker.delegate = self
         storePicker.dataSource = self
         
-        let store = Store(context: context)
-        store.name = "Best Buy"
-        
-        let store2 = Store(context: context)
-        store2.name = "Target"
-        
-        let store3 = Store(context: context)
-        store3.name = "Costco"
-        
-        let store4 = Store(context: context)
-        store4.name = "Tesla Dealership"
-        
-        ad.saveContext()
+//        let store = Store(context: context)
+//        store.name = "Best Buy"
+//        
+//        let store2 = Store(context: context)
+//        store2.name = "Target"
+//        
+//        let store3 = Store(context: context)
+//        store3.name = "Costco"
+//        
+//        let store4 = Store(context: context)
+//        store4.name = "Tesla Dealership"
+//        
+//        ad.saveContext()
+//        getStores()
     }
     
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
