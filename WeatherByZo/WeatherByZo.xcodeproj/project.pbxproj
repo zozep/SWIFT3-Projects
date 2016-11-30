@@ -14,6 +14,7 @@
 		7CAF5D6E1DEE963800DAE97E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7CAF5D6C1DEE963800DAE97E /* LaunchScreen.storyboard */; };
 		7CAF5D791DEE963800DAE97E /* WeatherByZoTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CAF5D781DEE963800DAE97E /* WeatherByZoTests.swift */; };
 		7CAF5D841DEE963800DAE97E /* WeatherByZoUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CAF5D831DEE963800DAE97E /* WeatherByZoUITests.swift */; };
+		ADEF8524FB3423243B8FD304 /* Pods_WeatherByZo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8E098D866E7FEA27A4A98ABB /* Pods_WeatherByZo.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -47,6 +48,9 @@
 		7CAF5D7F1DEE963800DAE97E /* WeatherByZoUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = WeatherByZoUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		7CAF5D831DEE963800DAE97E /* WeatherByZoUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherByZoUITests.swift; sourceTree = "<group>"; };
 		7CAF5D851DEE963800DAE97E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		8E098D866E7FEA27A4A98ABB /* Pods_WeatherByZo.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_WeatherByZo.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		D03DF1888B7F8097E1181231 /* Pods-WeatherByZo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WeatherByZo.release.xcconfig"; path = "Pods/Target Support Files/Pods-WeatherByZo/Pods-WeatherByZo.release.xcconfig"; sourceTree = "<group>"; };
+		D4A25B8D59FD63F1CB4A9C3E /* Pods-WeatherByZo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WeatherByZo.debug.xcconfig"; path = "Pods/Target Support Files/Pods-WeatherByZo/Pods-WeatherByZo.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -54,6 +58,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				ADEF8524FB3423243B8FD304 /* Pods_WeatherByZo.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -74,6 +79,23 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		25C395A8BA01E2D2C9133499 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				D4A25B8D59FD63F1CB4A9C3E /* Pods-WeatherByZo.debug.xcconfig */,
+				D03DF1888B7F8097E1181231 /* Pods-WeatherByZo.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		2FCB6BD429CBE9BFBAB9F934 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				8E098D866E7FEA27A4A98ABB /* Pods_WeatherByZo.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		7CAF5D571DEE963800DAE97E = {
 			isa = PBXGroup;
 			children = (
@@ -81,6 +103,8 @@
 				7CAF5D771DEE963800DAE97E /* WeatherByZoTests */,
 				7CAF5D821DEE963800DAE97E /* WeatherByZoUITests */,
 				7CAF5D611DEE963800DAE97E /* Products */,
+				25C395A8BA01E2D2C9133499 /* Pods */,
+				2FCB6BD429CBE9BFBAB9F934 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -132,9 +156,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 7CAF5D881DEE963800DAE97E /* Build configuration list for PBXNativeTarget "WeatherByZo" */;
 			buildPhases = (
+				43501E9F5C8083EBC3FA56B5 /* [CP] Check Pods Manifest.lock */,
 				7CAF5D5C1DEE963800DAE97E /* Sources */,
 				7CAF5D5D1DEE963800DAE97E /* Frameworks */,
 				7CAF5D5E1DEE963800DAE97E /* Resources */,
+				D1ABC599255B667148FC7ADF /* [CP] Embed Pods Frameworks */,
+				EBCB036AEDC68E4387AD1C4E /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -256,6 +283,54 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		43501E9F5C8083EBC3FA56B5 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		D1ABC599255B667148FC7ADF /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-WeatherByZo/Pods-WeatherByZo-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		EBCB036AEDC68E4387AD1C4E /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-WeatherByZo/Pods-WeatherByZo-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		7CAF5D5C1DEE963800DAE97E /* Sources */ = {
@@ -413,6 +488,7 @@
 		};
 		7CAF5D891DEE963800DAE97E /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = D4A25B8D59FD63F1CB4A9C3E /* Pods-WeatherByZo.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = FZ3E4G9DRA;
@@ -427,6 +503,7 @@
 		};
 		7CAF5D8A1DEE963800DAE97E /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = D03DF1888B7F8097E1181231 /* Pods-WeatherByZo.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = FZ3E4G9DRA;
