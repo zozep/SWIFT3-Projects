@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		7C151D2B1DEEBADE0079B2F9 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C151D2A1DEEBADE0079B2F9 /* Constants.swift */; };
 		7CAF5D641DEE963800DAE97E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CAF5D631DEE963800DAE97E /* AppDelegate.swift */; };
 		7CAF5D661DEE963800DAE97E /* WeatherVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CAF5D651DEE963800DAE97E /* WeatherVC.swift */; };
 		7CAF5D691DEE963800DAE97E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7CAF5D671DEE963800DAE97E /* Main.storyboard */; };
@@ -35,6 +36,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		7C151D2A1DEEBADE0079B2F9 /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		7CAF5D601DEE963800DAE97E /* WeatherByZo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WeatherByZo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7CAF5D631DEE963800DAE97E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		7CAF5D651DEE963800DAE97E /* WeatherVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherVC.swift; sourceTree = "<group>"; };
@@ -127,6 +129,7 @@
 				7CAF5D6A1DEE963800DAE97E /* Assets.xcassets */,
 				7CAF5D6C1DEE963800DAE97E /* LaunchScreen.storyboard */,
 				7CAF5D6F1DEE963800DAE97E /* Info.plist */,
+				7C151D2A1DEEBADE0079B2F9 /* Constants.swift */,
 			);
 			path = WeatherByZo;
 			sourceTree = "<group>";
@@ -339,6 +342,7 @@
 			files = (
 				7CAF5D661DEE963800DAE97E /* WeatherVC.swift in Sources */,
 				7CAF5D641DEE963800DAE97E /* AppDelegate.swift in Sources */,
+				7C151D2B1DEEBADE0079B2F9 /* Constants.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
