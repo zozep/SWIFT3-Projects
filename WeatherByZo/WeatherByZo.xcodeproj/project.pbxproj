@@ -8,7 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		7CAF5D641DEE963800DAE97E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CAF5D631DEE963800DAE97E /* AppDelegate.swift */; };
-		7CAF5D661DEE963800DAE97E /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CAF5D651DEE963800DAE97E /* ViewController.swift */; };
+		7CAF5D661DEE963800DAE97E /* WeatherVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CAF5D651DEE963800DAE97E /* WeatherVC.swift */; };
 		7CAF5D691DEE963800DAE97E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7CAF5D671DEE963800DAE97E /* Main.storyboard */; };
 		7CAF5D6B1DEE963800DAE97E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7CAF5D6A1DEE963800DAE97E /* Assets.xcassets */; };
 		7CAF5D6E1DEE963800DAE97E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7CAF5D6C1DEE963800DAE97E /* LaunchScreen.storyboard */; };
@@ -37,7 +37,7 @@
 /* Begin PBXFileReference section */
 		7CAF5D601DEE963800DAE97E /* WeatherByZo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WeatherByZo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7CAF5D631DEE963800DAE97E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		7CAF5D651DEE963800DAE97E /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		7CAF5D651DEE963800DAE97E /* WeatherVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherVC.swift; sourceTree = "<group>"; };
 		7CAF5D681DEE963800DAE97E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		7CAF5D6A1DEE963800DAE97E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		7CAF5D6D1DEE963800DAE97E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -122,7 +122,7 @@
 			isa = PBXGroup;
 			children = (
 				7CAF5D631DEE963800DAE97E /* AppDelegate.swift */,
-				7CAF5D651DEE963800DAE97E /* ViewController.swift */,
+				7CAF5D651DEE963800DAE97E /* WeatherVC.swift */,
 				7CAF5D671DEE963800DAE97E /* Main.storyboard */,
 				7CAF5D6A1DEE963800DAE97E /* Assets.xcassets */,
 				7CAF5D6C1DEE963800DAE97E /* LaunchScreen.storyboard */,
@@ -337,7 +337,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				7CAF5D661DEE963800DAE97E /* ViewController.swift in Sources */,
+				7CAF5D661DEE963800DAE97E /* WeatherVC.swift in Sources */,
 				7CAF5D641DEE963800DAE97E /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -411,6 +411,7 @@
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_SUSPICIOUS_MOVES = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
@@ -461,6 +462,7 @@
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_SUSPICIOUS_MOVES = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
@@ -593,6 +595,7 @@
 				7CAF5D8A1DEE963800DAE97E /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		7CAF5D8B1DEE963800DAE97E /* Build configuration list for PBXNativeTarget "WeatherByZoTests" */ = {
 			isa = XCConfigurationList;
@@ -601,6 +604,7 @@
 				7CAF5D8D1DEE963800DAE97E /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		7CAF5D8E1DEE963800DAE97E /* Build configuration list for PBXNativeTarget "WeatherByZoUITests" */ = {
 			isa = XCConfigurationList;
@@ -609,6 +613,7 @@
 				7CAF5D901DEE963800DAE97E /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
