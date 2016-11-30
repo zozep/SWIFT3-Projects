@@ -13,6 +13,7 @@ class MainVC: UIViewController, UITableViewDelegate, UITableViewDataSource, NSFe
     
     @IBOutlet weak var segment: UISegmentedControl!
     @IBOutlet weak var tableView: UITableView!
+    
     var controller: NSFetchedResultsController<Item>!
     
     override func viewDidLoad() {
@@ -56,7 +57,6 @@ class MainVC: UIViewController, UITableViewDelegate, UITableViewDataSource, NSFe
             }
         }
     }
-    
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if let sections = controller.sections {
