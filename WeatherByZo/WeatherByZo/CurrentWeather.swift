@@ -47,21 +47,17 @@ class CurrentWeather {
     
     func downloadWeatherDetails(completed: @escaping DownloadComplete) {
         //Alamofire download
-        Alamofire.request(CURRENT_WEATHER_URL).response { response in
-        print("REQUEST: \(response.request)")
-        print("RESPONSE: \(response.response)")
-        print("ERROR: \(response.error)")
-            if let data = response.data, let utf8Text = String(data: data, encoding: .utf8) {
-                print("Data: \(utf8Text)")
+        Alamofire.request(CURRENT_WEATHER_URL).validate().responseJSON { response in
+            switch response.result {
+            case .success:
+                print("Validation Successful")
+                if let result = response.result.value {
+                    print("Response in JSON Readable JSON FORMAT: \(result)")
+                }
+            case .failure(let error):
+                print(error)
             }
         }
-        
-//        
-//        request(CURRENT_WEATHER_URL).responseJSON { response in
-//            if let weatherJSON = response.result.value {
-//                print("\(weatherJSON)")
-//            }
-//        }
-        completed()
     }
+    
 }
