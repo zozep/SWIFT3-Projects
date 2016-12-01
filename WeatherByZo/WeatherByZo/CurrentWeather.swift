@@ -51,8 +51,30 @@ class CurrentWeather {
             switch response.result {
             case .success:
                 print("Validation Successful")
-                if let result = response.result.value {
-                    print("Response in JSON Readable JSON FORMAT: \(result)")
+                let result = response.result
+                
+                if let dict = result.value as? Dictionary<String, AnyObject> {
+                    if let name = dict["name"] as? String {
+                        self._cityName = name.capitalized
+                        print(self._cityName)
+                    }
+                    if let weather = dict["weather"] as? [Dictionary<String, AnyObject>] {
+                        //very first part of array dictionary
+                        if let main = weather[0]["main"] as? String {
+                            self._weatherType = main.capitalized
+                            print(self._weatherType)
+
+                        }
+                    }
+                    if let main = dict["main"] as? Dictionary<String, AnyObject> {
+                        if let currentTemperature = main["temp"] as? Double {
+                            //convert temp Kelvin -> F/C
+                            let tempInFarenheitPreDivision = (currentTemperature * (9/5) - 459.67)
+                            let tempInFarenheit = Double(round(10 * tempInFarenheitPreDivision/10))
+                            self._currentTemp = tempInFarenheit
+                            print(self._currentTemp)
+                        }
+                    }
                 }
             case .failure(let error):
                 print(error)
