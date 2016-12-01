@@ -10,10 +10,10 @@ import UIKit
 import Alamofire
 
 class CurrentWeather {
-    var _cityName: String!
-    var _date: String!
-    var _weatherType: String!
-    var _currentTemp: Double!
+    private var _cityName: String!
+    private var _date: String!
+    private var _weatherType: String!
+    private var _currentTemp: Double!
     
     var cityName: String {
         if _cityName == nil {
@@ -25,6 +25,11 @@ class CurrentWeather {
         if _date == nil {
             _date = ""
         }
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateStyle = .long
+        dateFormatter.timeStyle = .none
+        let currentDate = dateFormatter.string(from: Date())
+        self._date = "Today, \(currentDate)"
         return _date
     }
     var weatherType: String {
