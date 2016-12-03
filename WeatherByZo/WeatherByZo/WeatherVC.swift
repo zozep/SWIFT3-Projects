@@ -25,7 +25,7 @@ class WeatherVC: UIViewController, UITableViewDataSource, UITableViewDelegate, C
     var currentWeather: CurrentWeather!
     var forecast: Forecast!
     var forecasts = [Forecast]()
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -46,12 +46,12 @@ class WeatherVC: UIViewController, UITableViewDataSource, UITableViewDelegate, C
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         if CLLocationManager.authorizationStatus() == .authorizedWhenInUse {
             currentLocation = locationManager.location
+            
             if currentLocation != nil {
                 locationManager.stopUpdatingLocation()
             }
             Location.sharedInstance.latitude = currentLocation?.coordinate.latitude
             Location.sharedInstance.longitude = currentLocation?.coordinate.longitude
-            print("Lat: \(currentLocation?.coordinate.latitude), Long:=: \(currentLocation?.coordinate.longitude)")
             currentWeather.downloadWeatherDetails {
                 //Setup the UI to load the downloaded data
                 self.downloadForecastData {
@@ -59,7 +59,8 @@ class WeatherVC: UIViewController, UITableViewDataSource, UITableViewDelegate, C
                     self.tableView.reloadData()
                 }
             }
-        } else {
+        }
+        else {
             locationManager.requestWhenInUseAuthorization()
         }
     }
