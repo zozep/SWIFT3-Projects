@@ -48,7 +48,7 @@ class WeatherVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
                     for obj in list {
                         let forecast = Forecast(weatherDict: obj)
                         self.forecasts.append(forecast)
-                        print(obj)
+                        print("line 51 on weatherVC: \(obj)")
                     }
                 }
             }
