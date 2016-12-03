@@ -50,6 +50,7 @@ class WeatherVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
                         self.forecasts.append(forecast)
                         print("line 51 on weatherVC: \(obj)")
                     }
+                    self.tableView.reloadData()
                 }
             }
             completed()
@@ -61,13 +62,19 @@ class WeatherVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 6
+        //returns the number of cells returned from API
+        return forecasts.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "weatherCell", for: indexPath)
-        
-        return cell
+        if let cell = tableView.dequeueReusableCell(withIdentifier: "weatherCell", for: indexPath) as? WeatherCell {
+        let forecast = forecasts[indexPath.row]
+            cell.configureCell(forecast: forecast)
+            return cell
+        } else {
+            return WeatherCell()
+        }
+    
     }
     
     func updateMainUI() {

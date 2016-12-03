@@ -28,7 +28,6 @@ class Forecast {
             _weatherType = ""
         }
         return _weatherType
-
     }
     
     var highTemp: String {
@@ -36,7 +35,6 @@ class Forecast {
             _highTemp = ""
         }
         return _highTemp
-
     }
     
     var lowTemp: String {
