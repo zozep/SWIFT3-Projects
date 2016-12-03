@@ -20,7 +20,7 @@ class WeatherVC: UIViewController, UITableViewDataSource, UITableViewDelegate, C
     @IBOutlet weak var tableView: UITableView!
     
     let locationManager = CLLocationManager()
-    var cucrrentLocation: CLLocation!
+    var currentLocation: CLLocation!
     
     var currentWeather: CurrentWeather!
     var forecast: Forecast!
@@ -29,32 +29,39 @@ class WeatherVC: UIViewController, UITableViewDataSource, UITableViewDelegate, C
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        locationManager.delegate= self
+        locationManager.delegate = self
+        tableView.delegate = self
+        tableView.dataSource = self
+
         locationManager.desiredAccuracy = kCLLocationAccuracyBest
         locationManager.requestWhenInUseAuthorization()
         locationManager.startMonitoringSignificantLocationChanges()
-            
-        tableView.delegate = self
-        tableView.dataSource = self
-        
+        locationManager.startUpdatingLocation()                        /* request location updates */
+
         currentWeather = CurrentWeather()
-        currentWeather.downloadWeatherDetails {
-            //Setup the UI to load the downloaded data
-            self.downloadForecastData {
-                self.updateMainUI()
-            }
-        }
         
     }
     
-    func locationAuthStatus() {
+    //implementing delegate func for location updates
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         if CLLocationManager.authorizationStatus() == .authorizedWhenInUse {
-            cucrrentLocation = locationManager.location
+            currentLocation = locationManager.location
+            if currentLocation != nil {
+                locationManager.stopUpdatingLocation()
+            }
+            Location.sharedInstance.latitude = currentLocation?.coordinate.latitude
+            Location.sharedInstance.longitude = currentLocation?.coordinate.longitude
+            print("Lat: \(currentLocation?.coordinate.latitude), Long:=: \(currentLocation?.coordinate.longitude)")
+            currentWeather.downloadWeatherDetails {
+                //Setup the UI to load the downloaded data
+                self.downloadForecastData {
+                    self.updateMainUI()
+                    self.tableView.reloadData()
+                }
+            }
         } else {
             locationManager.requestWhenInUseAuthorization()
-            locationAuthStatus()
         }
-        
     }
     
     func downloadForecastData(completed: @escaping DownloadComplete) {
