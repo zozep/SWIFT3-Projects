@@ -8,8 +8,9 @@
 
 import UIKit
 import Alamofire
+import CoreLocation
 
-class WeatherVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
+class WeatherVC: UIViewController, UITableViewDataSource, UITableViewDelegate, CLLocationManagerDelegate {
 
     @IBOutlet weak var dateLabel: UILabel!
     @IBOutlet weak var currentTempLabel: UILabel!
@@ -18,12 +19,21 @@ class WeatherVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
     @IBOutlet weak var currentWeatherTypeLabel: UILabel!
     @IBOutlet weak var tableView: UITableView!
     
+    let locationManager = CLLocationManager()
+    var cucrrentLocation: CLLocation!
+    
     var currentWeather: CurrentWeather!
     var forecast: Forecast!
     var forecasts = [Forecast]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        locationManager.delegate= self
+        locationManager.desiredAccuracy = kCLLocationAccuracyBest
+        locationManager.requestWhenInUseAuthorization()
+        locationManager.startMonitoringSignificantLocationChanges()
+            
         tableView.delegate = self
         tableView.dataSource = self
         
@@ -33,6 +43,16 @@ class WeatherVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
             self.downloadForecastData {
                 self.updateMainUI()
             }
+        }
+        
+    }
+    
+    func locationAuthStatus() {
+        if CLLocationManager.authorizationStatus() == .authorizedWhenInUse {
+            cucrrentLocation = locationManager.location
+        } else {
+            locationManager.requestWhenInUseAuthorization()
+            locationAuthStatus()
         }
         
     }
@@ -87,4 +107,6 @@ class WeatherVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
         currentWeatherImage.image = UIImage(named: currentWeather.weatherType)
         
     }
+    
+    
 }
