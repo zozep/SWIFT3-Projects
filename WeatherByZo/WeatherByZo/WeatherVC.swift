@@ -50,6 +50,8 @@ class WeatherVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
                         self.forecasts.append(forecast)
                         print("line 51 on weatherVC: \(obj)")
                     }
+                    
+                    self.forecasts.remove(at: 0)
                     self.tableView.reloadData()
                 }
             }
