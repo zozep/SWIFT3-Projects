@@ -28,20 +28,19 @@ class WeatherVC: UIViewController, UITableViewDataSource, UITableViewDelegate, C
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
         locationManager.delegate = self
-        tableView.delegate = self
-        tableView.dataSource = self
-
         locationManager.desiredAccuracy = kCLLocationAccuracyBest
         locationManager.requestWhenInUseAuthorization()
         locationManager.startMonitoringSignificantLocationChanges()
         locationManager.startUpdatingLocation()                        /* request location updates */
 
-        currentWeather = CurrentWeather()
+        tableView.delegate = self
+        tableView.dataSource = self
         
+        currentWeather = CurrentWeather()
     }
 
+    
     //implementing delegate func for location updates
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         if CLLocationManager.authorizationStatus() == .authorizedWhenInUse {
@@ -52,60 +51,20 @@ class WeatherVC: UIViewController, UITableViewDataSource, UITableViewDelegate, C
             }
             Location.sharedInstance.latitude = currentLocation?.coordinate.latitude
             Location.sharedInstance.longitude = currentLocation?.coordinate.longitude
-            downloadWeatherDetails {
+            currentWeather.downloadWeatherDetails {
                 //Setup the UI to load the downloaded data
                 self.downloadForecastData() {
-                self.updateMainUI()
+                    self.updateMainUI()
+                    self.tableView.reloadData()
                 }
             }
+
         }
         else {
             locationManager.requestWhenInUseAuthorization()
         }
     }
     
-    //CurrentWeather
-    func downloadWeatherDetails(completed: @escaping DownloadComplete) {
-        //Alamofire download
-        Alamofire.request(CURRENT_WEATHER_URL).validate().responseJSON { response in
-            let resultFromWeatherDetails = response.result
-            
-            switch resultFromWeatherDetails {
-            case .success:
-                print("Validation for downloading weather details Successful")
-                if let dict = resultFromWeatherDetails.value as? Dictionary<String, AnyObject> {
-                    
-                    if let name = dict["name"] as? String {
-                        self.currentWeather._cityName = name.capitalized
-                        //print(self._cityName)
-                    }
-                    
-                    if let weather = dict["weather"] as? [Dictionary<String, AnyObject>] {
-                        //very first part of array dictionary
-                        if let main = weather[0]["main"] as? String {
-                            self.currentWeather._weatherType = main.capitalized
-                            //print(self._weatherType)
-                            
-                        }
-                    }
-                    
-                    if let main = dict["main"] as? Dictionary<String, AnyObject> {
-                        
-                        if let currentTemperature = main["temp"] as? Double {
-                            //convert temp Kelvin -> F/C
-                            let tempInFarenheitPreDivision = (currentTemperature * (9/5) - 459.67)
-                            let tempInFarenheit = Double(round(10 * tempInFarenheitPreDivision/10))
-                            self.currentWeather._currentTemp = tempInFarenheit
-                            //print(self._currentTemp)
-                        }
-                    }
-                }
-            case .failure(let error):
-                print(error)
-            }
-            completed()
-        }
-    }
 
     //Forecast
     func downloadForecastData(completed: @escaping DownloadComplete) {
@@ -125,6 +84,7 @@ class WeatherVC: UIViewController, UITableViewDataSource, UITableViewDelegate, C
                         }
                         self.forecasts.remove(at: 0)
                         self.tableView.reloadData()
+                        return
                     }
                 }
             case .failure(let error):
