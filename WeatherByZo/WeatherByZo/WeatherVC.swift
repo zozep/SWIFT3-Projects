@@ -56,7 +56,6 @@ class WeatherVC: UIViewController, UITableViewDataSource, UITableViewDelegate, C
                 //Setup the UI to load the downloaded data
                 self.downloadForecastData {
                     self.updateMainUI()
-                    self.tableView.reloadData()
                 }
             }
         }
