@@ -28,7 +28,7 @@ class WeatherVC: UIViewController, UITableViewDataSource, UITableViewDelegate, C
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+
         locationManager.delegate = self
         tableView.delegate = self
         tableView.dataSource = self
@@ -41,7 +41,7 @@ class WeatherVC: UIViewController, UITableViewDataSource, UITableViewDelegate, C
         currentWeather = CurrentWeather()
         
     }
-    
+
     //implementing delegate func for location updates
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         if CLLocationManager.authorizationStatus() == .authorizedWhenInUse {
@@ -78,7 +78,6 @@ class WeatherVC: UIViewController, UITableViewDataSource, UITableViewDelegate, C
                         self.forecasts.append(forecast)
                         print("line 51 on weatherVC: \(obj)")
                     }
-                    
                     self.forecasts.remove(at: 0)
                     self.tableView.reloadData()
                 }
@@ -113,8 +112,6 @@ class WeatherVC: UIViewController, UITableViewDataSource, UITableViewDelegate, C
         currentWeatherTypeLabel.text = currentWeather.weatherType
         locationLabel.text = currentWeather.cityName
         currentWeatherImage.image = UIImage(named: currentWeather.weatherType)
-        
     }
-    
-    
 }
+
