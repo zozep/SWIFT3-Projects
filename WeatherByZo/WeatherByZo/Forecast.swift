@@ -63,8 +63,7 @@ class Forecast {
                     let highTempInF = Double(round(10 * tempInFPreDivision/10))
                     self._highTemp = "\(highTempInF)"
             }
-        }
-        //weather
+        }    //weather
         if let weather = weatherDict["weather"] as? [Dictionary<String, AnyObject>] {
             if let main = weather[0]["main"] as? String {
                 self._weatherType = main

@@ -64,36 +64,16 @@ class WeatherVC: UIViewController, UITableViewDataSource, UITableViewDelegate, C
         }
     }
     
-    func downloadForecastData(completed: @escaping DownloadComplete) {
-        //Downloading forecast weather data for TableView
-        let forecastURL = URL(string: FORECAST_URL)!
-        Alamofire.request(forecastURL).responseJSON { response in
-            let result = response.result
-            
-            if let dict = result.value as? Dictionary<String, AnyObject> {
-                if let list = dict["list"] as? [Dictionary<String, AnyObject>] {
-                    for obj in list {
-                        let forecast = Forecast(weatherDict: obj)
-                        self.forecasts.append(forecast)
-                        print("line 51 on weatherVC: \(obj)")
-                    }
-                    self.forecasts.remove(at: 0)
-                    self.tableView.reloadData()
-                }
-            }
-            completed()
-        }
-    }
-    
+    //CurrentWeather
     func downloadWeatherDetails(completed: @escaping DownloadComplete) {
         //Alamofire download
         Alamofire.request(CURRENT_WEATHER_URL).validate().responseJSON { response in
-            switch response.result {
+            let resultFromWeatherDetails = response.result
+            
+            switch resultFromWeatherDetails {
             case .success:
-                print("Validation Successful")
-                let result = response.result
-                
-                if let dict = result.value as? Dictionary<String, AnyObject> {
+                print("Validation for downloading weather details Successful")
+                if let dict = resultFromWeatherDetails.value as? Dictionary<String, AnyObject> {
                     
                     if let name = dict["name"] as? String {
                         self.currentWeather._cityName = name.capitalized
@@ -126,6 +106,34 @@ class WeatherVC: UIViewController, UITableViewDataSource, UITableViewDelegate, C
             completed()
         }
     }
+
+    //Forecast
+    func downloadForecastData(completed: @escaping DownloadComplete) {
+        //Downloading forecast weather data for TableView
+        Alamofire.request(CURRENT_FORECAST_URL).validate().responseJSON { response in
+            let resultFromForecastData = response.result
+            
+            switch resultFromForecastData {
+            case .success:
+                print("Validation for downloading forecast data was Successful")
+                if let dict = resultFromForecastData.value as? Dictionary<String, AnyObject> {
+                    if let list = dict["list"] as? [Dictionary<String, AnyObject>] {
+                        for obj in list {
+                            let forecast = Forecast(weatherDict: obj)
+                            self.forecasts.append(forecast)
+                            print("line 124 on weatherVC: \(obj)")
+                        }
+                        self.forecasts.remove(at: 0)
+                        self.tableView.reloadData()
+                    }
+                }
+            case .failure(let error):
+                print(error)
+            }
+            completed()
+        }
+    }
+    
     
     func numberOfSections(in tableView: UITableView) -> Int {
         return 1
