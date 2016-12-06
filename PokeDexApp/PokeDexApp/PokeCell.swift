@@ -21,6 +21,8 @@ class PokeCell: UICollectionViewCell {
         layer.cornerRadius = 5.0
     }
     
+    
+    //assign name and image to custom poke cell made from mainview controller
     func configureCell(_ pokemon: Pokemon) {
         self.pokemon = pokemon
         nameLabel.text = self.pokemon.name.capitalized

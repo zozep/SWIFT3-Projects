@@ -23,15 +23,24 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
     }
     
     func parsePokemonCSV() {
-        //path to csv
+        //creating a path to pokemon.csv file
         let path = Bundle.main.path(forResource: "pokemon", ofType: "csv")!
         
-        //parse SCV, might throw an error
+        //parse SCV rows, might throw an error
         do {
             let csv = try CSV(contentsOfURL: path)
             let rows = csv.rows
             print(rows)
             
+            //go through each row, get the id & name from the CSV
+            for row in rows {
+                let pokeID = Int(row["id"]!)!
+                let name = row["identifier"]!
+                
+                //create pokemon object, pass that into Pokemon array (made on line 15)
+                let poke = Pokemon(name: name, pokedexID: pokeID)
+                pokemon.append(poke)
+            }
         } catch let err as NSError {
             print(err.debugDescription)
         }
@@ -41,12 +50,10 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         if let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "PokeCell", for: indexPath) as? PokeCell {
             
-            let pokemon = Pokemon(name: "Pokemon", pokedexID: indexPath.row)
+            let poke = pokemon[indexPath.row]
+            cell.configureCell(poke)
+            return cell           /* gets to PokeCell on View */
             
-            cell.configureCell(pokemon)
-            
-            
-            return cell
         } else {
             return UICollectionViewCell()
         }
@@ -59,7 +66,7 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
     
     //sets the number of items in section
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 30
+        return pokemon.count
     }
     
     //nubmer of sections in each collection view
