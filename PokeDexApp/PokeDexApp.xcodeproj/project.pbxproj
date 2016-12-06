@@ -17,6 +17,8 @@
 		7CF6A3F61DF655E60096636C /* csv.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CF6A3F51DF655E50096636C /* csv.swift */; };
 		7CF6A3F81DF671FC0096636C /* pokemon.csv in Resources */ = {isa = PBXBuildFile; fileRef = 7CF6A3F71DF671FC0096636C /* pokemon.csv */; };
 		7CF6A3FA1DF6775E0096636C /* pokemon.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 7CF6A3F91DF6775E0096636C /* pokemon.ttf */; };
+		7CF6A4001DF678FE0096636C /* music.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 7CF6A3FE1DF678FE0096636C /* music.mp3 */; };
+		7CF6A4011DF678FE0096636C /* music.png in Resources */ = {isa = PBXBuildFile; fileRef = 7CF6A3FF1DF678FE0096636C /* music.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -32,6 +34,8 @@
 		7CF6A3F51DF655E50096636C /* csv.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = csv.swift; sourceTree = "<group>"; };
 		7CF6A3F71DF671FC0096636C /* pokemon.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = pokemon.csv; sourceTree = "<group>"; };
 		7CF6A3F91DF6775E0096636C /* pokemon.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = pokemon.ttf; sourceTree = "<group>"; };
+		7CF6A3FE1DF678FE0096636C /* music.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = music.mp3; sourceTree = "<group>"; };
+		7CF6A3FF1DF678FE0096636C /* music.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = music.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -107,6 +111,8 @@
 			children = (
 				7CF6A3F91DF6775E0096636C /* pokemon.ttf */,
 				7CF6A3F71DF671FC0096636C /* pokemon.csv */,
+				7CF6A3FE1DF678FE0096636C /* music.mp3 */,
+				7CF6A3FF1DF678FE0096636C /* music.png */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -181,7 +187,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				7CF6A3FA1DF6775E0096636C /* pokemon.ttf in Resources */,
+				7CF6A4011DF678FE0096636C /* music.png in Resources */,
 				7CDAED3C1DF5152E008E77D4 /* LaunchScreen.storyboard in Resources */,
+				7CF6A4001DF678FE0096636C /* music.mp3 in Resources */,
 				7CDAED391DF5152E008E77D4 /* Assets.xcassets in Resources */,
 				7CF6A3F81DF671FC0096636C /* pokemon.csv in Resources */,
 				7CDAED371DF5152E008E77D4 /* Main.storyboard in Resources */,
