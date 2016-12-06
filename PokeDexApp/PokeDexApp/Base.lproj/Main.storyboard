@@ -17,7 +17,7 @@
         <!--View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="PokeDexApp" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="PokemonDetailsVC" id="BYZ-38-t0r" customClass="ViewController" customModule="PokeDexApp" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
                         <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
@@ -149,11 +149,49 @@
                     <connections>
                         <outlet property="collection" destination="ZCc-Hj-Wkp" id="qXc-61-9Kq"/>
                         <outlet property="searchBar" destination="33f-vR-C5z" id="K6L-di-tQ2"/>
+                        <segue destination="0e6-Of-GiY" kind="show" identifier="PokemonDetailVC" id="tTm-ly-tEb"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="136.80000000000001" y="138.98050974512745"/>
+            <point key="canvasLocation" x="-658" y="133"/>
+        </scene>
+        <!--Pokemon DetailVC-->
+        <scene sceneID="2S0-Jt-BCI">
+            <objects>
+                <viewController id="0e6-Of-GiY" customClass="PokemonDetailVC" customModule="PokeDexApp" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="jRp-a8-P55"/>
+                        <viewControllerLayoutGuide type="bottom" id="1d9-Qf-kqB"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="PzG-9w-N7P">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ovn-oX-eaO">
+                                <rect key="frame" x="112.5" y="319" width="150" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="BJu-ki-fz2"/>
+                                    <constraint firstAttribute="width" constant="150" id="Gmu-qf-wIi"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" red="1" green="0.19685872400000001" blue="0.28439670140000001" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstItem="ovn-oX-eaO" firstAttribute="centerX" secondItem="PzG-9w-N7P" secondAttribute="centerX" id="eEv-UD-RfQ"/>
+                            <constraint firstItem="ovn-oX-eaO" firstAttribute="centerY" secondItem="PzG-9w-N7P" secondAttribute="centerY" id="iI4-SI-6oB"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="nameLabel" destination="ovn-oX-eaO" id="qf0-NR-9Ky"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="cxX-oZ-VhB" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="52" y="132.68365817091455"/>
         </scene>
     </scenes>
     <resources>

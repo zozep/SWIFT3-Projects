@@ -97,6 +97,16 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
     
     //when cell's tapped whatever code i put in here will be executed
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        
+        //segueway
+        var poke: Pokemon!
+        
+        if inSearchMode {
+            poke = filteredPokemon[indexPath.row]
+        } else {
+            poke = pokemon[indexPath.row]
+        }
+        performSegue(withIdentifier: "PokemonDetailVC", sender: poke) /*poke from above*/
     }
     
     
@@ -159,6 +169,18 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
         }
     }
     
+    //prep for segueway, send Any
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "PokemonDetailVC" {
+            if let detailsVC = segue.destination as? PokemonDetailVC {
+                //if poke is the sender, and is of Class Pokemon
+                if let poke = sender as? Pokemon {
+                    //pokemon variable created in detailsVC, set it to main contoller's variable poke
+                    detailsVC.pokemon = poke
+                }
+            }
+        }
+    }
     
 }
 
