@@ -12,13 +12,29 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
     
     @IBOutlet weak var collection: UICollectionView!
     
+    var pokemon = [Pokemon]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         collection.dataSource = self
         collection.delegate = self
+        parsePokemonCSV()
+    }
+    
+    func parsePokemonCSV() {
+        //path to csv
+        let path = Bundle.main.path(forResource: "pokemon", ofType: "csv")!
         
+        //parse SCV, might throw an error
+        do {
+            let csv = try CSV(contentsOfURL: path)
+            let rows = csv.rows
+            print(rows)
+            
+        } catch let err as NSError {
+            print(err.debugDescription)
+        }
     }
     
     //only load however many cells are going to be displayed at time
@@ -27,7 +43,7 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
             
             let pokemon = Pokemon(name: "Pokemon", pokedexID: indexPath.row)
             
-            cell.configureCell(pokemon: pokemon)
+            cell.configureCell(pokemon)
             
             
             return cell
