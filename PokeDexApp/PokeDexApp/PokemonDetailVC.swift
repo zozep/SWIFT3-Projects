@@ -21,10 +21,9 @@ class PokemonDetailVC: UIViewController {
     @IBOutlet weak var pokedexLabel: UILabel!
     @IBOutlet weak var attackLabel: UILabel!
     @IBOutlet weak var heightLabel: UILabel!
+    @IBOutlet weak var evoLabel: UILabel!
     @IBOutlet weak var currentEvoImage: UIImageView!
     @IBOutlet weak var nextEvoImage: UIImageView!
-    
-    @IBOutlet weak var evoLabel: UILabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
