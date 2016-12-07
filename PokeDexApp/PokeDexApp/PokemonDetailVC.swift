@@ -28,9 +28,16 @@ class PokemonDetailVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         nameLabel.text = pokemon.name
-        // Do any additional setup after loading the view.
+        pokemon.downloadPokemonDetails {
+            print("did arrive here")
+            //whatever we write here will only be called after the network call is completed
+            self.updateUI()
+        }
     }
-
+    
+    func updateUI() {
+        
+    }
     @IBAction func backButtonPressed(_ sender: Any) {
         dismiss(animated: true, completion: nil)
     }
