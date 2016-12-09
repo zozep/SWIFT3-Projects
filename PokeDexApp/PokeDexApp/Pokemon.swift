@@ -78,7 +78,6 @@ class Pokemon {
         return _description
     }
     
-    
     //Initializer
     init(name: String, pokedexID: Int) {
         self._name = name
@@ -101,7 +100,6 @@ class Pokemon {
                 if let defense = dict["defense"] as? Int {
                     self._defense = "\(defense)"
                 }
-                
                 if let types = dict["types"] as? [Dictionary<String, String>] , types.count > 0 {
                     if let name = types[0]["name"] {
                         self._type = name.capitalized
@@ -111,13 +109,31 @@ class Pokemon {
                         for x in 1..<types.count {
                             if let name = types[x]["name"] {
                                 self._type! += "/\(name.capitalized)"
-                                
                             }
                         }
                     }
                     print(self._type)
                 } else {
                     self._type = ""
+                }
+                
+                //description requires separate call link
+                if let descArr = dict["descriptions"] as? [Dictionary<String, String>] , descArr.count > 0 {
+                    if let url = descArr[1]["resource_uri"] {
+                        let DESC_URL = "\(URL_BASE)\(url)"
+                        
+                        Alamofire.request(DESC_URL).responseJSON(completionHandler: { (response) in
+                            if let descDict = response.result.value as? Dictionary<String, AnyObject> {
+                                if let description = descDict["description"] as? String {
+                                    let newDescription = description.replacingOccurrences(of: "POKMON", with: "Pokemon")
+                                    self._description = newDescription
+                                }
+                            }
+                             completed()
+                        })
+                    } else {
+                        self._description = ""
+                    }
                 }
             }
             completed()
