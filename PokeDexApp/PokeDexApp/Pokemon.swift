@@ -98,14 +98,26 @@ class Pokemon {
                 if let attack = dict["attack"] as? Int {
                     self._attack = "\(attack)"
                 }
-                if let defense = dict["defense"] as? String {
+                if let defense = dict["defense"] as? Int {
                     self._defense = "\(defense)"
                 }
-                if let type = dict["type"] as? String {
-                    self._type = type
-                }
-                if let description = dict["description"] as? String {
-                    self._description = description
+                
+                if let types = dict["types"] as? [Dictionary<String, String>] , types.count > 0 {
+                    if let name = types[0]["name"] {
+                        self._type = name.capitalized
+                    }
+                    //if poskemon has more than 1 type
+                    if types.count > 1 {
+                        for x in 1..<types.count {
+                            if let name = types[x]["name"] {
+                                self._type! += "/\(name.capitalized)"
+                                
+                            }
+                        }
+                    }
+                    print(self._type)
+                } else {
+                    self._type = ""
                 }
             }
             completed()
