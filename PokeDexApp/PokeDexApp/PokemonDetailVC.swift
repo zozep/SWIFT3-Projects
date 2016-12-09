@@ -9,10 +9,9 @@
 import UIKit
 
 class PokemonDetailVC: UIViewController {
-    @IBOutlet weak var nameLabel: UILabel!
     //variable for pokemonlist (whether filtered or not) to be sent into
     var pokemon: Pokemon!
-    
+    @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var mainImage: UIImageView!
     @IBOutlet weak var typeLabel: UILabel!
     @IBOutlet weak var descriptionLabel: UILabel!
@@ -38,16 +37,27 @@ class PokemonDetailVC: UIViewController {
     }
     
     func updateUI() {
+        descriptionLabel.text = pokemon.description
+        typeLabel.text = pokemon.type
+        pokedexLabel.text = "\(pokemon.pokedexID)"
         attackLabel.text = pokemon.attack
         defenseLabel.text = pokemon.defense
         heightLabel.text = pokemon.height
         weightLabel.text = pokemon.weight
-        evoLabel.text = pokemon.nextEvolutionText
-        typeLabel.text = pokemon.type
-        pokedexLabel.text = "\(pokemon.pokedexID)"
-        descriptionLabel.text = pokemon.description
+
+        if pokemon.nextEvolutionID == "" {
+            evoLabel.text = "No Evolutions"
+            nextEvoImage.isHidden = true
+            
+        } else {
+            nextEvoImage.isHidden = false
+            nextEvoImage.image = UIImage(named: pokemon.nextEvolutionID)
+            let nextEvoStr = "Next Evolution: \(pokemon.nextEvolutionName) - LVL \(pokemon.nextEvolutionLV)"
+            evoLabel.text = nextEvoStr
+        }
     }
-    @IBAction func backButtonPressed(_ sender: Any) {
+    
+    @IBAction func backButtonPressed(_ sender: UIButton) {
         dismiss(animated: true, completion: nil)
     }
 
