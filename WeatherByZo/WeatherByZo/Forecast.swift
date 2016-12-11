@@ -11,10 +11,10 @@ import Alamofire
 
 class Forecast {
     
-    private var _date: String!
-    private var _weatherType: String!
-    private var _highTemp: String!
-    private var _lowTemp: String!
+    var _date: String!
+    var _weatherType: String!
+    var _highTemp: String!
+    var _lowTemp: String!
     
     var date: String {
         if _date == nil {
