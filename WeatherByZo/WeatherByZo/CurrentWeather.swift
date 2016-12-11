@@ -68,7 +68,8 @@ class CurrentWeather {
                     
                     if let main = dict["main"] as? Dictionary<String, AnyObject> {
                         if let currentTemperature = main["temp"] as? Double {
-                            self._currentTemp = "\(currentTemperature)°"
+                            let roundedCurrentTemp = round(10.0 * currentTemperature) / 10.0
+                            self._currentTemp = "\(roundedCurrentTemp)°"
                         }
                     }
                     print("Succesfully downloaded Weather detail")
