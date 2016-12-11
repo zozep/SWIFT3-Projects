@@ -85,7 +85,7 @@ class WeatherVC: UIViewController, UITableViewDataSource, UITableViewDelegate, C
     //MARK: Forecast Data
     func downloadForecastData(completed: @escaping DownloadComplete) {
         //Downloading forecast weather data for TableView
-        Alamofire.request(CURRENT_FORECAST_URL).validate().responseJSON { response in
+        Alamofire.request(CURRENT_FORECAST_URL_F).validate().responseJSON { response in
             let resultFromForecastData = response.result
             
             switch resultFromForecastData {
