@@ -54,7 +54,7 @@ class Forecast {
                 //convert temp Kelvin -> F/C
                 let tempInFPreDivision = (minTemp * (9/5) - 459.67)
                 let lowTempInF = Double(round(10 * tempInFPreDivision/10))
-                self._lowTemp = "\(lowTempInF)"
+                self._lowTemp = "\(lowTempInF)°"
             }
             
             //highTemp
@@ -62,7 +62,7 @@ class Forecast {
                     //convert temp Kelvin -> F/C
                     let tempInFPreDivision = (maxTemp * (9/5) - 459.67)
                     let highTempInF = Double(round(10 * tempInFPreDivision/10))
-                    self._highTemp = "\(highTempInF)"
+                    self._highTemp = "\(highTempInF)°"
             }
         }
         //weatherType
