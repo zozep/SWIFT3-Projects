@@ -64,9 +64,35 @@ class WeatherVC: UIViewController, UITableViewDataSource, UITableViewDelegate, C
     }
     
     
-    //TODO: if auth not given, take the user to auth page
+    /* MARK: Authorization & Location check
+    TODO: check for locationservices enabled()
+    */
     func locationAuthStatus() {
-        if CLLocationManager.authorizationStatus() == .authorizedWhenInUse {
+        let CLAuthStatus = CLLocationManager.authorizationStatus()
+    
+        switch CLAuthStatus {
+            
+        case .restricted, .denied, .notDetermined:
+                let alertController = UIAlertController(title: "Authorization needed", message: "Your current location is needed to show you accurate weather information.", preferredStyle: UIAlertControllerStyle.alert)
+                
+                let cancelAction = UIAlertAction(title: "Cancel", style: UIAlertActionStyle.destructive) { (result : UIAlertAction) -> Void in
+                    print("User pressed cancel")
+                    //maybe throw in a 404 page
+
+                }
+                
+                let okAction = UIAlertAction(title: "OK", style: UIAlertActionStyle.default) { (result : UIAlertAction) -> Void in
+                    print("User pressed okay")
+                    //need to show app settings
+                    
+                }
+                
+                alertController.addAction(cancelAction)
+                alertController.addAction(okAction)
+                self.present(alertController, animated: true, completion: nil)
+            break
+            
+        case .authorizedWhenInUse, .authorizedAlways:
             currentLocation = locationManager.location
             Location.sharedInstance.latitude = currentLocation.coordinate.latitude
             Location.sharedInstance.longitude = currentLocation.coordinate.longitude
@@ -75,9 +101,7 @@ class WeatherVC: UIViewController, UITableViewDataSource, UITableViewDelegate, C
                     self.updateMainUI()
                 }
             }
-        } else {
-            locationManager.requestWhenInUseAuthorization()
-            locationAuthStatus()
+            break
         }
     }
     
