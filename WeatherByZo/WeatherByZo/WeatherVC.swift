@@ -43,16 +43,14 @@ class WeatherVC: UIViewController, UITableViewDataSource, UITableViewDelegate, C
         locationManager.requestWhenInUseAuthorization()
         locationManager.delegate = self
         locationManager.desiredAccuracy = kCLLocationAccuracyBest
-        locationManager.requestLocation()
 
         tableView.delegate = self
         tableView.dataSource = self
         tableView.rowHeight = UITableViewAutomaticDimension
         tableView.estimatedRowHeight = 100.0
         
-        DispatchQueue.main.async(execute: {
-            self.checkLocationServices()
-        })
+        self.checkLocationServices()
+
     }
     
     //MARK: Boilerplate code for tableView
@@ -82,24 +80,23 @@ class WeatherVC: UIViewController, UITableViewDataSource, UITableViewDelegate, C
     func checkLocationServices() {
         
         if CLLocationManager.locationServicesEnabled() == false {
+            if shouldIAllow == false {
             let alertCtrl = UIAlertController(title: "Location Services needed", message: "Turn Location Services 'ON' in \n \n Settings -> Privacy -> Location Services", preferredStyle: UIAlertControllerStyle.alert)
             
             alertCtrl.addAction(UIAlertAction(title: "Settings", style: .default, handler: { (alertCtrl) in
                 UIApplication.shared.open(URL(string:"prefs:root=Privacy")! as URL)
             }))
             show(alertCtrl, sender: self)
+            }
 
-        }
-        
-        locationManager.requestWhenInUseAuthorization()
+        } else {
+            locationManager.requestWhenInUseAuthorization()
             let CLAuthStatus = CLLocationManager.authorizationStatus()
+        
             switch CLAuthStatus {
             
             case .restricted, .denied, .notDetermined:
-                locationStatus = "Restricted/denied/not determined access to location"
-
                 let alertController = UIAlertController(title: "Authorization needed", message: "Your authorization is needed to show you accurate weather information.", preferredStyle: .alert)
-                
                 
                 let okAction = UIAlertAction(title: "Settings", style: UIAlertActionStyle.default, handler: { (alertController) in
                     UIApplication.shared.open(URL(string: "prefs:root=LOCATION_SERVICES")! as URL)
@@ -108,7 +105,7 @@ class WeatherVC: UIViewController, UITableViewDataSource, UITableViewDelegate, C
                 })
                 
                 alertController.addAction(okAction)
-                self.present(alertController, animated: true, completion: nil)
+                present(alertController, animated: true, completion: nil)
                 break
                 
             case .authorizedWhenInUse, .authorizedAlways:
@@ -117,20 +114,13 @@ class WeatherVC: UIViewController, UITableViewDataSource, UITableViewDelegate, C
                 currentLocation = locationManager.location
                 Location.sharedInstance.latitude = currentLocation.coordinate.latitude
                 Location.sharedInstance.longitude = currentLocation.coordinate.longitude
+                
                 shouldIAllow = true
             
-            default:
-                locationStatus = "Did not allow access to location"
-                shouldIAllow = false
+            }
         }
-    
+        
     }
-
-//
-//    func locationManager(manager: CLLocationManager, didFailWithError error: Error) {
-//        print("Error finding location: \(error.localizedDescription)")
-//    }
-
     //MARK: Forecast Data
     
     func updateMainUI() {
