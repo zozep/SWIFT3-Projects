@@ -69,39 +69,35 @@ class WeatherVC: UIViewController, UITableViewDataSource, UITableViewDelegate, C
     */
     func locationAuthStatus() {
         let CLAuthStatus = CLLocationManager.authorizationStatus()
-    
-        switch CLAuthStatus {
-            
-        case .restricted, .denied, .notDetermined:
-                let alertController = UIAlertController(title: "Authorization needed", message: "Your current location is needed to show you accurate weather information.", preferredStyle: UIAlertControllerStyle.alert)
+        
+        if CLLocationManager.locationServicesEnabled() {
+            switch CLAuthStatus {
                 
-                let cancelAction = UIAlertAction(title: "Cancel", style: UIAlertActionStyle.destructive) { (result : UIAlertAction) -> Void in
-                    print("User pressed cancel")
-                    //maybe throw in a 404 page
+            case .restricted, .denied, .notDetermined:
+                    let alertController = UIAlertController(title: "Authorization needed", message: "Your current location is needed to show you accurate weather information.", preferredStyle: UIAlertControllerStyle.alert)
 
-                }
-                
-                let okAction = UIAlertAction(title: "OK", style: UIAlertActionStyle.default) { (result : UIAlertAction) -> Void in
-                    print("User pressed okay")
-                    //need to show app settings
                     
-                }
+                    let okAction = UIAlertAction(title: "Settings", style: UIAlertActionStyle.default) { (result : UIAlertAction) -> Void in
+                        print("User pressed okay")
+                        //need to show app settings
+                        
+                    }
+                    
+                    alertController.addAction(okAction)
+                    self.present(alertController, animated: true, completion: nil)
+                break
                 
-                alertController.addAction(cancelAction)
-                alertController.addAction(okAction)
-                self.present(alertController, animated: true, completion: nil)
-            break
-            
-        case .authorizedWhenInUse, .authorizedAlways:
-            currentLocation = locationManager.location
-            Location.sharedInstance.latitude = currentLocation.coordinate.latitude
-            Location.sharedInstance.longitude = currentLocation.coordinate.longitude
-            currentWeather.downloadWeatherDetails {
-                self.downloadForecastData {
-                    self.updateMainUI()
+            case .authorizedWhenInUse, .authorizedAlways:
+                currentLocation = locationManager.location
+                Location.sharedInstance.latitude = currentLocation.coordinate.latitude
+                Location.sharedInstance.longitude = currentLocation.coordinate.longitude
+                currentWeather.downloadWeatherDetails {
+                    self.downloadForecastData {
+                        self.updateMainUI()
+                    }
                 }
+                break
             }
-            break
         }
     }
     
