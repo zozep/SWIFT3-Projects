@@ -18,24 +18,27 @@ class WeatherVC: UIViewController, UITableViewDataSource, UITableViewDelegate, C
     @IBOutlet weak var currentWeatherImage: UIImageView!
     @IBOutlet weak var currentWeatherTypeLabel: UILabel!
     @IBOutlet weak var tableView: UITableView!
-    
+    var currentWeather: CurrentWeather!
+
     let locationManager = CLLocationManager()
-    currentWeather = CurrentWeather()
+    var shouldIAllow: Bool = false
 
     var locationStatus : NSString = "Location Not Started"
     var currentLocation: CLLocation!
     
-    var currentWeather: CurrentWeather!
     var forecast: Forecast!
     var forecasts = [Forecast]()
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        currentWeather = CurrentWeather()
+
         
     }
     
     override func viewDidAppear(_ animated: Bool) {
+        
         super.viewDidAppear(animated)
         locationManager.requestWhenInUseAuthorization()
         locationManager.delegate = self
@@ -74,124 +77,62 @@ class WeatherVC: UIViewController, UITableViewDataSource, UITableViewDelegate, C
     
     
     //MARK: Authorization & Location check
+
     
     func checkLocationServices() {
+        
         if CLLocationManager.locationServicesEnabled() == false {
-            showLocationAlert()
-            locationManager.requestWhenInUseAuthorization()
-        }
-        else {
+            let alertCtrl = UIAlertController(title: "Location Services needed", message: "Turn Location Services 'ON' in \n \n Settings -> Privacy -> Location Services", preferredStyle: UIAlertControllerStyle.alert)
             
+            alertCtrl.addAction(UIAlertAction(title: "Settings", style: .default, handler: { (alertCtrl) in
+                UIApplication.shared.open(URL(string:"prefs:root=Privacy")! as URL)
+            }))
+            show(alertCtrl, sender: self)
+
+        }
+        
+        locationManager.requestWhenInUseAuthorization()
             let CLAuthStatus = CLLocationManager.authorizationStatus()
             switch CLAuthStatus {
             
             case .restricted, .denied, .notDetermined:
                 locationStatus = "Restricted/denied/not determined access to location"
 
-                let alertController = UIAlertController(title: "Authorization needed", message: "Your current location is needed to show you accurate weather information.", preferredStyle: .alert)
+                let alertController = UIAlertController(title: "Authorization needed", message: "Your authorization is needed to show you accurate weather information.", preferredStyle: .alert)
                 
-                let cancelAction = UIAlertAction(title: "Cancel", style: UIAlertActionStyle.cancel) { (result : UIAlertAction) -> Void in
-                    print("User pressed cancel")
-                    //maybe throw in a 404 page
-                    
-
-                }
                 
-                let okAction = UIAlertAction(title: "OK", style: UIAlertActionStyle.default) { (result : UIAlertAction) -> Void in
-                    print("User pressed okay")
-                    //need to show app settings
-                    
-                }
+                let okAction = UIAlertAction(title: "Settings", style: UIAlertActionStyle.default, handler: { (alertController) in
+                    UIApplication.shared.open(URL(string: "prefs:root=LOCATION_SERVICES")! as URL)
+                    self.locationStatus = "allowed access to location"
+                    self.checkLocationServices()
+                })
                 
-                alertController.addAction(cancelAction)
                 alertController.addAction(okAction)
                 self.present(alertController, animated: true, completion: nil)
                 break
                 
             case .authorizedWhenInUse, .authorizedAlways:
+                locationStatus = "Access to location granted"
+
                 currentLocation = locationManager.location
                 Location.sharedInstance.latitude = currentLocation.coordinate.latitude
                 Location.sharedInstance.longitude = currentLocation.coordinate.longitude
-                currentWeather.downloadWeatherDetails {
-                    self.downloadForecastData {
-                        self.updateMainUI()
-                    }
-                }
-                break
+                shouldIAllow = true
             
             default:
-                locationStatus = "Allowed access to location"
-                shouldIAllow = true
-            }
+                locationStatus = "Did not allow access to location"
+                shouldIAllow = false
         }
-        }
-    }
-
-    func showLocationAlert() {
-        let alertCtrl = UIAlertController(title: "Location Services needed", message: "Turn Location Services 'ON' in \n \n Settings -> Privacy -> Location Services", preferredStyle: UIAlertControllerStyle.alert)
-        
-        alertCtrl.addAction(UIAlertAction(title: "Settings", style: .default, handler: { (alertCtrl) in
-            UIApplication.shared.open(URL(string:UIApplicationOpenSettingsURLString)!) "prefs:root=LOCATION_SERVICES")! as URL)
-            self.showRefreshAlert()
-        }))
-        show(showAlertCtrl, sender: self)
-    }
-
-
-    func showRefeshAlert() {
-        let alert = UIAlertController(title: "Refresh Location", message: "Please check your Location Service Settings", preferredStyle: .alert)
-        alert.addAction(UIAlertAction(title: "Okay", style: UIAlertControllerStyle.default, handler: { (alert) in
-            self.checkLocationServices()
-        }))
-        showViewController(alert, sender: self)
-    }
-
-    private func locationManager(manager: CLLocationManager, didChangeAuthorizationStatus status: CLAuthorizationStatus) {
-        var shouldIAllow = false
-        
-
-        
-        NotificationCenter.default.post(name: NSNotification.Name(rawValue: "LabelHasbeenUpdated"), object: nil)
-        if (shouldIAllow == true) {
-            NSLog("Location set to allowed")
-            locationManager.startUpdatingLocation()
-        } else {
-            NSLog("Denied access: \(locationStatus)")
-        }
-    }
     
-    func locationManager(manager: CLLocationManager, didFailWithError error: NSError) {
-        print("Error finding location: \(error.localizedDescription)")
     }
+
+//
+//    func locationManager(manager: CLLocationManager, didFailWithError error: Error) {
+//        print("Error finding location: \(error.localizedDescription)")
+//    }
 
     //MARK: Forecast Data
-    func downloadForecastData(completed: @escaping DownloadComplete) {
-        //Downloading forecast weather data for TableView
-        Alamofire.request(CURRENT_FORECAST_URL_F).validate().responseJSON { response in
-            let resultFromForecastData = response.result
-            
-            switch resultFromForecastData {
-            
-            case .success:
-                print("Validation for downloading forecast data was Successful")
-                if let dict = resultFromForecastData.value as? Dictionary<String, AnyObject> {
-                    if let list = dict["list"] as? [Dictionary<String, AnyObject>] {
-                        for obj in list {
-                            let forecast = Forecast(weatherDict: obj)
-                            self.forecasts.append(forecast)
-                        }
-                        self.forecasts.remove(at: 0)
-                        self.tableView.reloadData()
-                    }
-                    print("Successfully downloaded Forecast Data")
-                }
-            case .failure(let error):
-                print(error)
-            }
-            completed()
-        }
-    }
-
+    
     func updateMainUI() {
         dateLabel.text = currentWeather.date
         currentTempLabel.text = "\(currentWeather.currentTemp)"
@@ -200,3 +141,4 @@ class WeatherVC: UIViewController, UITableViewDataSource, UITableViewDelegate, C
         currentWeatherImage.image = UIImage(named: currentWeather.weatherType)
     }
 }
+

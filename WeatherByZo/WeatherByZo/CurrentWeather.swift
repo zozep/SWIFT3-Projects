@@ -50,7 +50,7 @@ class CurrentWeather {
         //Alamofire download
         Alamofire.request(CURRENT_WEATHER_URL_F).validate().responseJSON { response in
             let resultFromWeatherDetails = response.result
-        
+            
             switch resultFromWeatherDetails {
             case .success:
                 print("Validation for downloading weather details Successful")
@@ -58,11 +58,11 @@ class CurrentWeather {
                     if let name = dict["name"] as? String {
                         self._cityName = name.capitalized
                     }
-            
+                    
                     if let weather = dict["weather"] as? [Dictionary<String, AnyObject>] {
                         //very first part of array dictionary
                         if let main = weather[0]["main"] as? String {
-                            self._weatherType = main.capitalized
+                           self._weatherType = main.capitalized
                         }
                     }
                     
