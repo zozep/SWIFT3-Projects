@@ -21,25 +21,20 @@ class WeatherVC: UIViewController, UITableViewDataSource, UITableViewDelegate, C
     var currentWeather: CurrentWeather!
 
     let locationManager = CLLocationManager()
-    var shouldIAllow: Bool = false
-
-    var locationStatus : NSString = "Location Not Started"
     var currentLocation: CLLocation!
-    
+    var locationStatus : NSString = "Not Started"       // String updated based on location/privacy settings of User
+
     var forecast: Forecast!
     var forecasts = [Forecast]()
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        currentWeather = CurrentWeather()
-
-        
     }
     
     override func viewDidAppear(_ animated: Bool) {
-        
         super.viewDidAppear(animated)
+        currentWeather = CurrentWeather()
         locationManager.requestWhenInUseAuthorization()
         locationManager.delegate = self
         locationManager.desiredAccuracy = kCLLocationAccuracyBest
@@ -49,7 +44,9 @@ class WeatherVC: UIViewController, UITableViewDataSource, UITableViewDelegate, C
         tableView.rowHeight = UITableViewAutomaticDimension
         tableView.estimatedRowHeight = 100.0
         
-        self.checkLocationServices()
+        DispatchQueue.main.async(execute: {
+            self.checkLocationServices()
+        })
 
     }
     
@@ -75,52 +72,87 @@ class WeatherVC: UIViewController, UITableViewDataSource, UITableViewDelegate, C
     
     
     //MARK: Authorization & Location check
-
-    
     func checkLocationServices() {
         
         if CLLocationManager.locationServicesEnabled() == false {
-            if shouldIAllow == false {
-            let alertCtrl = UIAlertController(title: "Location Services needed", message: "Turn Location Services 'ON' in \n \n Settings -> Privacy -> Location Services", preferredStyle: UIAlertControllerStyle.alert)
-            
-            alertCtrl.addAction(UIAlertAction(title: "Settings", style: .default, handler: { (alertCtrl) in
-                UIApplication.shared.open(URL(string:"prefs:root=Privacy")! as URL)
-            }))
-            show(alertCtrl, sender: self)
-            }
-
+            showLocationAlert()
         } else {
-            locationManager.requestWhenInUseAuthorization()
-            let CLAuthStatus = CLLocationManager.authorizationStatus()
+            currentLocation = locationManager.location
+            Location.sharedInstance.latitude = currentLocation.coordinate.latitude
+            Location.sharedInstance.longitude = currentLocation.coordinate.longitude
+        }
+    }
+    
+    func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
+        var shouldIAllow = false
+        let CLAuthStatus = CLLocationManager.authorizationStatus()
         
-            switch CLAuthStatus {
-            
-            case .restricted, .denied, .notDetermined:
-                let alertController = UIAlertController(title: "Authorization needed", message: "Your authorization is needed to show you accurate weather information.", preferredStyle: .alert)
-                
-                let okAction = UIAlertAction(title: "Settings", style: UIAlertActionStyle.default, handler: { (alertController) in
-                    UIApplication.shared.open(URL(string: "prefs:root=LOCATION_SERVICES")! as URL)
-                    self.locationStatus = "allowed access to location"
-                    self.checkLocationServices()
-                })
-                
-                alertController.addAction(okAction)
-                present(alertController, animated: true, completion: nil)
-                break
-                
-            case .authorizedWhenInUse, .authorizedAlways:
-                locationStatus = "Access to location granted"
+        switch CLAuthStatus {
+        case .restricted:
+            locationStatus = "Access to location restricted"
+            showLocationServicesEnabledAlert()
+        case .denied:
+            locationStatus = "Access to location denied"
+            showLocationServicesEnabledAlert()
+        case .notDetermined:
+            locationStatus = "Access to location not determined"
+            showLocationServicesEnabledAlert()
+        default:
+            locationStatus = "Access to location granted"
+            shouldIAllow = true
+        }
+    
+        NotificationCenter.default.post(name: NSNotification.Name(rawValue: "LabelHasbeenUpdated"), object: nil)
+        if (shouldIAllow == true) {
+            NSLog("Location set to allowed")
+            locationManager.startUpdatingLocation()
+        } else {
+            NSLog("Denied access: \(locationStatus)")
+        }
+    }
+    
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        if CLLocationManager.locationServicesEnabled() == false {
+            showLocationAlert()
+        } else {
+            currentLocation = locationManager.location
+            Location.sharedInstance.latitude = currentLocation.coordinate.latitude
+            Location.sharedInstance.longitude = currentLocation.coordinate.longitude
+        }
+      
+    }
+        
+    func showLocationAlert() {
+        let alertCtrl = UIAlertController(title: "Location Services needed", message: "Turn Location Services 'ON' in \n \n Settings -> Privacy -> Location Services", preferredStyle: .alert)
+        
+        alertCtrl.addAction(UIAlertAction(title: "Settings", style: .default, handler: { (alertCtrl) in
+            UIApplication.shared.open(NSURL(string:"prefs:root=LOCATION_SERVICES")! as URL)
+        }))
+        show(alertCtrl, sender: self)
 
-                currentLocation = locationManager.location
-                Location.sharedInstance.latitude = currentLocation.coordinate.latitude
-                Location.sharedInstance.longitude = currentLocation.coordinate.longitude
-                
-                shouldIAllow = true
+    }
+    
+    func showLocationServicesEnabledAlert() {
+        let alertController = UIAlertController (title: "Enable Location Settings to use WeatherByZo", message: "Your location is need", preferredStyle: .alert)
+        
+        let settingsAction = UIAlertAction(title: "Settings", style: .default) { (_) -> Void in
+            guard let settingsUrl = URL(string: UIApplicationOpenSettingsURLString) else {
+                return
+            }
             
+            if UIApplication.shared.canOpenURL(settingsUrl) {
+                UIApplication.shared.open(settingsUrl, completionHandler: { (success) in
+                    print("Settings opened: \(success)") // Prints true
+                })
             }
         }
         
+        alertController.addAction(settingsAction)
+        let cancelAction = UIAlertAction(title: "Cancel", style: .default, handler: nil)
+        alertController.addAction(cancelAction)
+        present(alertController, animated: true, completion: nil)
     }
+    
     //MARK: Forecast Data
     
     func updateMainUI() {
