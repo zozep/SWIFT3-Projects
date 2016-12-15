@@ -72,78 +72,44 @@ class WeatherVC: UIViewController, UITableViewDataSource, UITableViewDelegate, C
     }
     
     
-    //MARK: Authorization & Location check
-    
-    
-    //Checks to see if user provided location access, then prints to log for auth types
-    func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
+
+    /* MARK: Authorization & Location check */
+    func locationAuthStatus() {
         if CLLocationManager.locationServicesEnabled() == true {
-
-            var shouldIAllow = false
             let CLAuthStatus = CLLocationManager.authorizationStatus()
-            
-            switch CLAuthStatus {
-            case .restricted:
-                locationStatus = "Access to location restricted"
-                locationManager.requestWhenInUseAuthorization()
-
-            case .denied:
-                locationStatus = "Access to location denied"
-                locationManager.requestWhenInUseAuthorization()
-
-            case .notDetermined:
-                locationStatus = "Access to location not determined"
-                locationManager.requestWhenInUseAuthorization()
-
-       
-            default:
-                locationStatus = "Access to location granted"
-                shouldIAllow = true
-                
-            }
-                
-            NotificationCenter.default.post(name: NSNotification.Name(rawValue: "LabelHasbeenUpdated"), object: nil)
-            if (shouldIAllow == true) {
-                NSLog("Location set to allowed")
-                locationManager.startUpdatingLocation()
-            } else {
-                NSLog("Denied access: \(locationStatus)")
-            }
+                switch CLAuthStatus {
+                    
+                case .restricted, .denied, .notDetermined:
+                    break
+                    
+                case .authorizedWhenInUse, .authorizedAlways:
+                    currentLocation = locationManager.location
+                    Location.sharedInstance.latitude = currentLocation.coordinate.latitude
+                    Location.sharedInstance.longitude = currentLocation.coordinate.longitude
+                    currentWeather.downloadWeatherDetails {
+                        self.downloadForecastData {
+                            self.updateMainUI()
+                        }
+                    }
+                    break
+                }
         } else {
             showLocationServicesEnabledAlert()
         }
     }
     
-
-    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        locationManager.stopUpdatingLocation()
-        currentLocation = locationManager.location
-        Location.sharedInstance.latitude = currentLocation.coordinate.latitude
-        Location.sharedInstance.longitude = currentLocation.coordinate.longitude
-        currentWeather.downloadWeatherDetails {
-            print("download complete")
-        }
-    }
     
-    
-    
-    func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
-        locationManager.stopUpdatingLocation()
-        print("Error finding location: \(error.localizedDescription)")
-    }
-    
-    
-    //Mark: Custom Alerts
+    //Mark: Custom Alert
     func showLocationServicesEnabledAlert() {
-        let alertController = UIAlertController (title: "Title", message: "Go to Settings?", preferredStyle: .alert)
+        let alertController = UIAlertController (title: "Please enable Location Services, and allow location access", message: "Settings -> Privacy -> Location Serivices", preferredStyle: .alert)
         
-        let settingsAction = UIAlertAction(title: "Settings", style: .default) { (_) -> Void in
-            guard let settingsUrl = URL(string: UIApplicationOpenSettingsURLString) else {
+        let settingsAction = UIAlertAction(title: "Okay", style: .default) { (_) -> Void in
+            guard let okURL = URL(string: UIApplicationOpenSettingsURLString) else {
                 return
             }
             
-            if UIApplication.shared.canOpenURL(settingsUrl) {
-                UIApplication.shared.open(settingsUrl, completionHandler: { (success) in
+            if UIApplication.shared.canOpenURL(okURL) {
+                UIApplication.shared.open(okURL, completionHandler: { (success) in
                     print("Settings opened: \(success)") // Prints true
                 })
             }
@@ -151,7 +117,8 @@ class WeatherVC: UIViewController, UITableViewDataSource, UITableViewDelegate, C
         alertController.addAction(settingsAction)
         present(alertController, animated: true, completion: nil)
     }
-        
+    
+    
     //MARK: UI UPDATE
     func updateMainUI() {
         dateLabel.text = currentWeather.date
