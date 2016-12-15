@@ -11,7 +11,8 @@ import Alamofire
 import CoreLocation
 
 class WeatherVC: UIViewController, UITableViewDataSource, UITableViewDelegate, CLLocationManagerDelegate {
-
+    
+    //MARK: variables and constants
     @IBOutlet weak var dateLabel: UILabel!
     @IBOutlet weak var currentTempLabel: UILabel!
     @IBOutlet weak var locationLabel: UILabel!
@@ -19,31 +20,38 @@ class WeatherVC: UIViewController, UITableViewDataSource, UITableViewDelegate, C
     @IBOutlet weak var currentWeatherTypeLabel: UILabel!
     @IBOutlet weak var tableView: UITableView!
     
+    var currentWeather: CurrentWeather!
+
     let locationManager = CLLocationManager()
     var currentLocation: CLLocation!
-    
-    var currentWeather: CurrentWeather!
+    var locationStatus : NSString = "Not Started"
+
     var forecast: Forecast!
     var forecasts = [Forecast]()
-
+    
+    
+    
+    //MARK: ViewDidLoad & ViewDidAppear
     override func viewDidLoad() {
         super.viewDidLoad()
-        locationManager.desiredAccuracy = kCLLocationAccuracyBest
-        locationManager.requestWhenInUseAuthorization()
-        locationManager.startMonitoringSignificantLocationChanges()
-        
-        tableView.delegate = self
-        tableView.dataSource = self
-
-        currentWeather = CurrentWeather()
     }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        locationAuthStatus()
+        currentWeather = CurrentWeather()
+        
+        locationManager.delegate = self
+        locationManager.desiredAccuracy = kCLLocationAccuracyBest
+        
+        tableView.delegate = self
+        tableView.dataSource = self
+        tableView.rowHeight = UITableViewAutomaticDimension
+        tableView.estimatedRowHeight = 100.0
+
+
     }
     
-    //MARK: boilerplate code
+    //MARK: Boilerplate code for tableView
     func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
@@ -64,12 +72,11 @@ class WeatherVC: UIViewController, UITableViewDataSource, UITableViewDelegate, C
     }
     
     
+
     /* MARK: Authorization & Location check */
     func locationAuthStatus() {
         if CLLocationManager.locationServicesEnabled() == true {
             let CLAuthStatus = CLLocationManager.authorizationStatus()
-            
-            if CLLocationManager.locationServicesEnabled() {
                 switch CLAuthStatus {
                     
                 case .restricted, .denied, .notDetermined:
@@ -86,11 +93,11 @@ class WeatherVC: UIViewController, UITableViewDataSource, UITableViewDelegate, C
                     }
                     break
                 }
-            }
         } else {
             showLocationServicesEnabledAlert()
         }
     }
+    
     
     //Mark: Custom Alert
     func showLocationServicesEnabledAlert() {
@@ -109,38 +116,10 @@ class WeatherVC: UIViewController, UITableViewDataSource, UITableViewDelegate, C
         }
         alertController.addAction(settingsAction)
         present(alertController, animated: true, completion: nil)
-
     }
     
     
-    //MARK: Forecast Data
-    func downloadForecastData(completed: @escaping DownloadComplete) {
-        //Downloading forecast weather data for TableView
-        Alamofire.request(CURRENT_FORECAST_URL_F).validate().responseJSON { response in
-            let resultFromForecastData = response.result
-            
-            switch resultFromForecastData {
-            
-            case .success:
-                print("Validation for downloading forecast data was Successful")
-                if let dict = resultFromForecastData.value as? Dictionary<String, AnyObject> {
-                    if let list = dict["list"] as? [Dictionary<String, AnyObject>] {
-                        for obj in list {
-                            let forecast = Forecast(weatherDict: obj)
-                            self.forecasts.append(forecast)
-                        }
-                        self.forecasts.remove(at: 0)
-                        self.tableView.reloadData()
-                    }
-                    print("Successfully downloaded Forecast Data")
-                }
-            case .failure(let error):
-                print(error)
-            }
-            completed()
-        }
-    }
-
+    //MARK: UI UPDATE
     func updateMainUI() {
         dateLabel.text = currentWeather.date
         currentTempLabel.text = "\(currentWeather.currentTemp)"
@@ -149,3 +128,4 @@ class WeatherVC: UIViewController, UITableViewDataSource, UITableViewDelegate, C
         currentWeatherImage.image = UIImage(named: currentWeather.weatherType)
     }
 }
+
