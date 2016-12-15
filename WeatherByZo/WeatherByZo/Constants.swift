@@ -9,10 +9,10 @@
 import Foundation
 
 
-let API_KEY = "2d6d755c69dd06037b5c93acf91777ba"
+let API_KEY = "6a2b5edafbed2ab3e911c384d25a8e78"
 
 typealias DownloadComplete = () -> ()
 
-let CURRENT_WEATHER_URL_F = "http://api.openweathermap.org/data/2.5/weather?lat=\(Location.sharedInstance.latitude!)&lon=\(Location.sharedInstance.longitude!)&units=imperial&appid=2d6d755c69dd06037b5c93acf91777ba"
+let CURRENT_WEATHER_URL_F = "http://api.openweathermap.org/data/2.5/weather?lat=\(Location.sharedInstance.latitude!)&lon=\(Location.sharedInstance.longitude!)&units=imperial&appid=6a2b5edafbed2ab3e911c384d25a8e78"
 
-let CURRENT_FORECAST_URL_F = "http://api.openweathermap.org/data/2.5/forecast/daily?lat=\(Location.sharedInstance.latitude!)&lon=\(Location.sharedInstance.longitude!)&units=imperial&cnt=10&mode=json&appid=2d6d755c69dd06037b5c93acf91777ba"
+let CURRENT_FORECAST_URL_F = "http://api.openweathermap.org/data/2.5/forecast/daily?lat=\(Location.sharedInstance.latitude!)&lon=\(Location.sharedInstance.longitude!)&units=imperial&cnt=10&mode=json&appid=6a2b5edafbed2ab3e911c384d25a8e78"
