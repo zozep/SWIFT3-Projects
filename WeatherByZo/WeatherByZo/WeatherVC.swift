@@ -64,41 +64,52 @@ class WeatherVC: UIViewController, UITableViewDataSource, UITableViewDelegate, C
     }
     
     
-    /* MARK: Authorization & Location check
-    TODO: check for locationservices enabled()
-    */
+    /* MARK: Authorization & Location check */
     func locationAuthStatus() {
-        let CLAuthStatus = CLLocationManager.authorizationStatus()
-        
-        if CLLocationManager.locationServicesEnabled() {
-            switch CLAuthStatus {
-                
-            case .restricted, .denied, .notDetermined:
-                    let alertController = UIAlertController(title: "Authorization needed", message: "Your current location is needed to show you accurate weather information.", preferredStyle: UIAlertControllerStyle.alert)
-
+        if CLLocationManager.locationServicesEnabled() == true {
+            let CLAuthStatus = CLLocationManager.authorizationStatus()
+            
+            if CLLocationManager.locationServicesEnabled() {
+                switch CLAuthStatus {
                     
-                    let okAction = UIAlertAction(title: "Settings", style: UIAlertActionStyle.default) { (result : UIAlertAction) -> Void in
-                        print("User pressed okay")
-                        //need to show app settings
-                        
-                    }
+                case .restricted, .denied, .notDetermined:
+                    break
                     
-                    alertController.addAction(okAction)
-                    self.present(alertController, animated: true, completion: nil)
-                break
-                
-            case .authorizedWhenInUse, .authorizedAlways:
-                currentLocation = locationManager.location
-                Location.sharedInstance.latitude = currentLocation.coordinate.latitude
-                Location.sharedInstance.longitude = currentLocation.coordinate.longitude
-                currentWeather.downloadWeatherDetails {
-                    self.downloadForecastData {
-                        self.updateMainUI()
+                case .authorizedWhenInUse, .authorizedAlways:
+                    currentLocation = locationManager.location
+                    Location.sharedInstance.latitude = currentLocation.coordinate.latitude
+                    Location.sharedInstance.longitude = currentLocation.coordinate.longitude
+                    currentWeather.downloadWeatherDetails {
+                        self.downloadForecastData {
+                            self.updateMainUI()
+                        }
                     }
+                    break
                 }
-                break
+            }
+        } else {
+            showLocationServicesEnabledAlert()
+        }
+    }
+    
+    //Mark: Custom Alert
+    func showLocationServicesEnabledAlert() {
+        let alertController = UIAlertController (title: "Please enable Location Services, and allow location access", message: "Settings -> Privacy -> Location Serivices", preferredStyle: .alert)
+        
+        let settingsAction = UIAlertAction(title: "Okay", style: .default) { (_) -> Void in
+            guard let okURL = URL(string: UIApplicationOpenSettingsURLString) else {
+                return
+            }
+            
+            if UIApplication.shared.canOpenURL(okURL) {
+                UIApplication.shared.open(okURL, completionHandler: { (success) in
+                    print("Settings opened: \(success)") // Prints true
+                })
             }
         }
+        alertController.addAction(settingsAction)
+        present(alertController, animated: true, completion: nil)
+
     }
     
     
