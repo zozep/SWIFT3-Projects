@@ -127,10 +127,16 @@ class WeatherVC: UIViewController, UITableViewDataSource, UITableViewDelegate, C
             currentWeather.downloadWeatherDetails {
                 print("download complete")
             }
-      
         }
     }
     
+    func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
+        print("Error finding location: \(error.localizedDescription)")
+    }
+
+    
+    
+    //Mark: Custom Alerts depending on authorization
     func showLocationAlert() {
         let alertCtrl = UIAlertController(title: "Location Services needed", message: "Turn Location Services 'ON' in \n \n Settings -> Privacy -> Location Services", preferredStyle: .alert)
         
@@ -161,6 +167,7 @@ class WeatherVC: UIViewController, UITableViewDataSource, UITableViewDelegate, C
         alertController.addAction(cancelAction)
         present(alertController, animated: true, completion: nil)
     }
+    
     
     //MARK: Forecast Data
     
