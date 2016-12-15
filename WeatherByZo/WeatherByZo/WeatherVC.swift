@@ -18,11 +18,12 @@ class WeatherVC: UIViewController, UITableViewDataSource, UITableViewDelegate, C
     @IBOutlet weak var currentWeatherImage: UIImageView!
     @IBOutlet weak var currentWeatherTypeLabel: UILabel!
     @IBOutlet weak var tableView: UITableView!
+    
     var currentWeather: CurrentWeather!
 
     let locationManager = CLLocationManager()
     var currentLocation: CLLocation!
-    var locationStatus : NSString = "Not Started"       // String updated based on location/privacy settings of User
+    var locationStatus : NSString = "Not Started"
 
     var forecast: Forecast!
     var forecasts = [Forecast]()
@@ -35,10 +36,12 @@ class WeatherVC: UIViewController, UITableViewDataSource, UITableViewDelegate, C
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         currentWeather = CurrentWeather()
+        
         locationManager.requestWhenInUseAuthorization()
         locationManager.delegate = self
         locationManager.desiredAccuracy = kCLLocationAccuracyBest
-
+        locationManager.requestLocation()
+        
         tableView.delegate = self
         tableView.dataSource = self
         tableView.rowHeight = UITableViewAutomaticDimension
@@ -76,6 +79,7 @@ class WeatherVC: UIViewController, UITableViewDataSource, UITableViewDelegate, C
         
         if CLLocationManager.locationServicesEnabled() == false {
             showLocationAlert()
+            
         } else {
             currentLocation = locationManager.location
             Location.sharedInstance.latitude = currentLocation.coordinate.latitude
@@ -94,9 +98,11 @@ class WeatherVC: UIViewController, UITableViewDataSource, UITableViewDelegate, C
         case .denied:
             locationStatus = "Access to location denied"
             showLocationServicesEnabledAlert()
+
         case .notDetermined:
             locationStatus = "Access to location not determined"
             showLocationServicesEnabledAlert()
+
         default:
             locationStatus = "Access to location granted"
             shouldIAllow = true
@@ -118,10 +124,13 @@ class WeatherVC: UIViewController, UITableViewDataSource, UITableViewDelegate, C
             currentLocation = locationManager.location
             Location.sharedInstance.latitude = currentLocation.coordinate.latitude
             Location.sharedInstance.longitude = currentLocation.coordinate.longitude
-        }
+            currentWeather.downloadWeatherDetails {
+                print("download complete")
+            }
       
+        }
     }
-        
+    
     func showLocationAlert() {
         let alertCtrl = UIAlertController(title: "Location Services needed", message: "Turn Location Services 'ON' in \n \n Settings -> Privacy -> Location Services", preferredStyle: .alert)
         
