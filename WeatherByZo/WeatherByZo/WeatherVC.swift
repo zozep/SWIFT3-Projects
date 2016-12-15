@@ -11,7 +11,8 @@ import Alamofire
 import CoreLocation
 
 class WeatherVC: UIViewController, UITableViewDataSource, UITableViewDelegate, CLLocationManagerDelegate {
-
+    
+    //MARK: variables and constants
     @IBOutlet weak var dateLabel: UILabel!
     @IBOutlet weak var currentTempLabel: UILabel!
     @IBOutlet weak var locationLabel: UILabel!
@@ -29,6 +30,8 @@ class WeatherVC: UIViewController, UITableViewDataSource, UITableViewDelegate, C
     var forecasts = [Forecast]()
     
     
+    
+    //MARK: ViewDidLoad & ViewDidAppear
     override func viewDidLoad() {
         super.viewDidLoad()
     }
@@ -128,33 +131,9 @@ class WeatherVC: UIViewController, UITableViewDataSource, UITableViewDelegate, C
         locationManager.stopUpdatingLocation()
         print("Error finding location: \(error.localizedDescription)")
     }
-
-
     
     
-    //Mark: Custom Alerts depending on authorization
-    func privacyAuthCheck() {
-        let alertController = UIAlertController (title: "Title", message: "Go to Settings?", preferredStyle: .alert)
-        
-        let settingsAction = UIAlertAction(title: "Settings", style: .default) { (_) -> Void in
-            guard let settingsUrl = URL(string: UIApplicationOpenSettingsURLString) else {
-                return
-            }
-            
-            if UIApplication.shared.canOpenURL(settingsUrl) {
-                UIApplication.shared.open(settingsUrl, completionHandler: { (success) in
-                    print("Settings opened: \(success)") // Prints true
-                })
-            }
-        }
-        alertController.addAction(settingsAction)
-        let cancelAction = UIAlertAction(title: "Cancel", style: .default, handler: nil)
-        alertController.addAction(cancelAction)
-        
-        present(alertController, animated: true, completion: nil)
-    }
-
-
+    //Mark: Custom Alerts
     func showLocationServicesEnabledAlert() {
         let alertController = UIAlertController (title: "Title", message: "Go to Settings?", preferredStyle: .alert)
         
@@ -170,9 +149,6 @@ class WeatherVC: UIViewController, UITableViewDataSource, UITableViewDelegate, C
             }
         }
         alertController.addAction(settingsAction)
-        let cancelAction = UIAlertAction(title: "Cancel", style: .default, handler: nil)
-        alertController.addAction(cancelAction)
-        
         present(alertController, animated: true, completion: nil)
     }
         
