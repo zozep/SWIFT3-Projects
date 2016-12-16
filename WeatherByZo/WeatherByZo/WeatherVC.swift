@@ -12,6 +12,7 @@ import CoreLocation
 
 class WeatherVC: UIViewController, UITableViewDataSource, UITableViewDelegate, CLLocationManagerDelegate {
     
+    //MARK: variables and constants
     @IBOutlet weak var dateLabel: UILabel!
     @IBOutlet weak var currentTempLabel: UILabel!
     @IBOutlet weak var locationLabel: UILabel!
@@ -19,29 +20,25 @@ class WeatherVC: UIViewController, UITableViewDataSource, UITableViewDelegate, C
     @IBOutlet weak var currentWeatherTypeLabel: UILabel!
     @IBOutlet weak var tableView: UITableView!
     
+    var currentWeather: CurrentWeather!
     let locationManager = CLLocationManager()
     var currentLocation: CLLocation!
     
-    var currentWeather: CurrentWeather!
     var forecast: Forecast!
     var forecasts = [Forecast]()
     
-    
     override func viewDidLoad() {
         super.viewDidLoad()
-        locationManager.desiredAccuracy = kCLLocationAccuracyBest
-        locationManager.requestWhenInUseAuthorization()
-        locationManager.startMonitoringSignificantLocationChanges()
-        
         tableView.delegate = self
         tableView.dataSource = self
-        
         currentWeather = CurrentWeather()
+        
     }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         locationAuthStatus()
+        
     }
     
     
@@ -66,11 +63,19 @@ class WeatherVC: UIViewController, UITableViewDataSource, UITableViewDelegate, C
     }
     
     
+    
     /* MARK: Authorization & Location check */
+    
     func locationAuthStatus() {
+        if !CLLocationManager.locationServicesEnabled() {
+            locationManager.requestWhenInUseAuthorization()
+        }
         if CLLocationManager.locationServicesEnabled() == true {
+            locationManager.requestWhenInUseAuthorization()
+            
             let CLAuthStatus = CLLocationManager.authorizationStatus()
             switch CLAuthStatus {
+                
             case .restricted, .denied, .notDetermined:
                 showAuthAlert()
                 break
@@ -88,56 +93,17 @@ class WeatherVC: UIViewController, UITableViewDataSource, UITableViewDelegate, C
             }
         } else {
             locationManager.stopMonitoringSignificantLocationChanges()
-            showLocationServicesEnabledAlert()
         }
     }
     
     
-    //Mark: Custom Alert
-    func showLocationServicesEnabledAlert() {
-        let alertController = UIAlertController (title: "Please enable Location Services", message: "Settings -> Privacy -> Location Serivices", preferredStyle: .alert)
-        
-        let settingsAction = UIAlertAction(title: "Okay", style: .default) { (_) -> Void in
-            guard let okURL = URL(string: UIApplicationOpenSettingsURLString) else {
-                return
-            }
-            
-            if UIApplication.shared.canOpenURL(okURL) {
-                UIApplication.shared.open(okURL, completionHandler: { (success) in
-                    print("Settings opened: \(success)") // Prints true
-                })
-            }
-        }
-        alertController.addAction(settingsAction)
-        present(alertController, animated: true, completion: nil)
-    }
-    
-    func showAuthAlert() {
-        let authAlertController = UIAlertController (title: "Please give set the location access to 'While in use' or 'Always'", message: "Your location is needed to give you correct weather data", preferredStyle: .alert)
-        
-        let okayAction = UIAlertAction(title: "Okay", style: .default) { (_) -> Void in
-            guard let okURL = URL(string: UIApplicationOpenSettingsURLString) else {
-                return
-            }
-            
-            if UIApplication.shared.canOpenURL(okURL) {
-                UIApplication.shared.open(okURL, completionHandler: { (success) in
-                    print("Settings opened: \(success)") // Prints true
-                })
-            }
-        }
-        authAlertController.addAction(okayAction)
-        present(authAlertController, animated: true, completion: nil)
-    }
-    
-    
-    //MARK: Forecast Data
     func downloadForecastData(completed: @escaping DownloadComplete) {
         //Downloading forecast weather data for TableView
         Alamofire.request(CURRENT_FORECAST_URL_F).validate().responseJSON { response in
             let resultFromForecastData = response.result
             
             switch resultFromForecastData {
+                
             case .success:
                 print("Validation for downloading forecast data was Successful")
                 if let dict = resultFromForecastData.value as? Dictionary<String, AnyObject> {
@@ -148,6 +114,7 @@ class WeatherVC: UIViewController, UITableViewDataSource, UITableViewDelegate, C
                         }
                         self.forecasts.remove(at: 0)
                         self.tableView.reloadData()
+                        
                     }
                     print("Successfully downloaded Forecast Data")
                 }
@@ -158,6 +125,27 @@ class WeatherVC: UIViewController, UITableViewDataSource, UITableViewDelegate, C
         }
     }
     
+    //Mark: Custom Alert
+    func showAuthAlert() {
+        let authAlertController = UIAlertController (title: "1. Please turn Location Services ON \n 2. Allow location access to 'While Using the App' or 'Alawys'", message: "Settings -> Privacy -> Location Serivices", preferredStyle: .alert)
+        
+        let settingsAction = UIAlertAction(title: "Okay", style: .default) { (_) -> Void in
+            guard let okURL = URL(string: UIApplicationOpenSettingsURLString) else {
+                return
+            }
+            if UIApplication.shared.canOpenURL(okURL) {
+                UIApplication.shared.open(okURL, completionHandler: { (success) in
+                    print("Settings opened: \(success)")
+                })
+            }
+        }
+        authAlertController.addAction(settingsAction)
+        present(authAlertController, animated: true, completion: nil)
+    }
+    
+    
+    
+    //MARK: UI UPDATE
     func updateMainUI() {
         dateLabel.text = currentWeather.date
         currentTempLabel.text = "\(currentWeather.currentTemp)"
@@ -166,3 +154,4 @@ class WeatherVC: UIViewController, UITableViewDataSource, UITableViewDelegate, C
         currentWeatherImage.image = UIImage(named: currentWeather.weatherType)
     }
 }
+
