@@ -75,33 +75,6 @@ class Forecast {
             self._date = unixConvertedDate.dayOfTheWeek()
         }
     }
-    
-    func downloadForecastData(completed: @escaping DownloadComplete) {
-        //Downloading forecast weather data for TableView
-        Alamofire.request(CURRENT_FORECAST_URL_F).validate().responseJSON { response in
-            let resultFromForecastData = response.result
-            
-            switch resultFromForecastData {
-                
-            case .success:
-                print("Validation for downloading forecast data was Successful")
-                if let dict = resultFromForecastData.value as? Dictionary<String, AnyObject> {
-                    if let list = dict["list"] as? [Dictionary<String, AnyObject>] {
-                        for obj in list {
-                            let forecast = Forecast(weatherDict: obj)
-                            self.forecasts.append(forecast)
-                        }
-                       self.forecasts.remove(at: 0)
-                    }
-                    print("Successfully downloaded Forecast Data")
-                }
-            case .failure(let error):
-                print(error)
-            }
-            completed()
-        }
-    }
-
 }
 
 extension Date {
