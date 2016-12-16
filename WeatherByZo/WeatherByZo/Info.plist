@@ -24,8 +24,6 @@
 	<dict>
 		<key>NSAllowsArbitraryLoads</key>
 		<true/>
-		<key>NSAllowsArbitraryLoadsInWebContent</key>
-		<false/>
 	</dict>
 	<key>NSLocationAlwaysUsageDescription</key>
 	<string>Requires your current location to function</string>
