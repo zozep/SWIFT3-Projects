@@ -23,10 +23,10 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="m1a-ly-Cdm">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="332"/>
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="417"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="4fN-xy-mTN">
-                                        <rect key="frame" x="8" y="30" width="359" height="272"/>
+                                        <rect key="frame" x="8" y="30" width="359" height="357"/>
                                         <subviews>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="ooY-Fp-cJT">
                                                 <rect key="frame" x="0.0" y="0.0" width="359" height="130"/>
@@ -70,20 +70,25 @@
                                                 </constraints>
                                             </stackView>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="RJi-Zf-vBQ">
-                                                <rect key="frame" x="0.0" y="130" width="359" height="142"/>
+                                                <rect key="frame" x="0.0" y="130" width="359" height="227"/>
                                                 <subviews>
                                                     <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="0zy-AP-hnF">
-                                                        <rect key="frame" x="0.0" y="0.0" width="359" height="71"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="359" height="113.5"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="height" constant="113.5" id="nuP-5W-aXF"/>
+                                                        </constraints>
                                                     </imageView>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text=" " textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="36" translatesAutoresizingMaskIntoConstraints="NO" id="mhz-fx-Wbf">
-                                                        <rect key="frame" x="0.0" y="71" width="359" height="71"/>
+                                                        <rect key="frame" x="0.0" y="113.5" width="359" height="113.5"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="height" constant="113.5" id="yOQ-Oo-PNo"/>
+                                                        </constraints>
                                                         <fontDescription key="fontDescription" name="AvenirNext-Bold" family="Avenir Next" pointSize="45"/>
                                                         <color key="textColor" red="0.97691888969999996" green="1" blue="0.99625176569999996" alpha="1" colorSpace="calibratedRGB"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                 </subviews>
                                                 <constraints>
-                                                    <constraint firstItem="0zy-AP-hnF" firstAttribute="height" secondItem="mhz-fx-Wbf" secondAttribute="height" id="EWm-C7-cyz"/>
                                                     <constraint firstItem="mhz-fx-Wbf" firstAttribute="top" secondItem="0zy-AP-hnF" secondAttribute="bottom" id="Lfe-SG-jel"/>
                                                 </constraints>
                                             </stackView>
@@ -110,10 +115,10 @@
                                 </constraints>
                             </view>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="80" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="oXk-5a-ehP">
-                                <rect key="frame" x="0.0" y="332" width="375" height="335"/>
+                                <rect key="frame" x="0.0" y="417" width="375" height="250"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" relation="lessThanOrEqual" constant="335" id="vg3-0R-Ytg"/>
+                                    <constraint firstAttribute="height" constant="250" id="vg3-0R-Ytg"/>
                                 </constraints>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="weatherCell" rowHeight="80" id="U3Y-g9-KHY" customClass="WeatherCell" customModule="WeatherByZo" customModuleProvider="target">
