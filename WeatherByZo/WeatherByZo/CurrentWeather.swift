@@ -77,6 +77,7 @@ class CurrentWeather {
             case .failure(let error):
                 print(error)
             }
+            print("completed downloadweatherdetails")
             completed()
         }
     }
