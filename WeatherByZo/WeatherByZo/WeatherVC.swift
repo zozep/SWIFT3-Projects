@@ -22,10 +22,7 @@ class WeatherVC: UIViewController, UITableViewDataSource, UITableViewDelegate, C
     
     var currentWeather: CurrentWeather!
     let locationManager = CLLocationManager()
-    var currentLocation: CLLocation!
-    
     var forecast: Forecast!
-    var forecasts = [Forecast]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -33,18 +30,19 @@ class WeatherVC: UIViewController, UITableViewDataSource, UITableViewDelegate, C
         tableView.delegate = self
         tableView.dataSource = self
         
+    }
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        forecast = Forecast()
+
         locationManager.desiredAccuracy = kCLLocationAccuracyBest
         locationManager.requestWhenInUseAuthorization()
-        locationManager.startMonitoringSignificantLocationChanges()
+        //locationManager.startMonitoringSignificantLocationChanges()
         locationManager.startUpdatingLocation()
         
         currentWeather = CurrentWeather()
     }
-    
-//    override func viewDidAppear(_ animated: Bool) {
-//        super.viewDidAppear(animated)
-//        
-//    }
+
     
     
     //MARK: Boilerplate code for tableView
@@ -54,12 +52,12 @@ class WeatherVC: UIViewController, UITableViewDataSource, UITableViewDelegate, C
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         //returns the number of cells returned from API
-        return forecasts.count
+        return Forecast.forecasts.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if let cell = tableView.dequeueReusableCell(withIdentifier: "weatherCell", for: indexPath) as? WeatherCell {
-            let forecast = forecasts[indexPath.row]
+            let forecast = Forecast.forecasts[indexPath.row]
             cell.configureCell(forecast: forecast)
             return cell
         } else {
@@ -102,22 +100,24 @@ class WeatherVC: UIViewController, UITableViewDataSource, UITableViewDelegate, C
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         if CLLocationManager.authorizationStatus() == .authorizedWhenInUse {
+           let currentLocation: CLLocation!
+
             currentLocation = locationManager.location
-            
             if currentLocation != nil {
                 locationManager.stopUpdatingLocation()
-                Location.sharedInstance.latitude = currentLocation.coordinate.latitude
-                Location.sharedInstance.longitude = currentLocation.coordinate.longitude
-                print("Lat :=: \(currentLocation.coordinate.latitude), Long :=: \(currentLocation.coordinate.longitude)")
-                currentWeather.downloadWeatherDetails {
-                    forecast.downloadForecastData {
-                        self.updateMainUI()
-                        self.tableView.reloadData()
-                    }
+            }
+            Location.sharedInstance.latitude = currentLocation.coordinate.latitude
+            Location.sharedInstance.longitude = currentLocation.coordinate.longitude
+            print("Lat :=: \(currentLocation.coordinate.latitude), Long :=: \(currentLocation.coordinate.longitude)")
+            currentWeather.downloadWeatherDetails {
+                self.forecast.downloadForecastData {
+                    self.updateMainUI()
+                    self.tableView.reloadData()
                 }
             }
-        } else {
-            locationManager.requestWhenInUseAuthorization()
+//
+//        } else {
+//            locationManager.requestWhenInUseAuthorization()
         }
     }
     

@@ -45,10 +45,10 @@ class Forecast {
     }
     
     var forecast: Forecast!
-    var forecasts = [Forecast]()
+    static var forecasts = [Forecast]()
     
     
-    init (weatherDict: Dictionary<String, AnyObject>) {
+    func parseData(from weatherDict: Dictionary<String, AnyObject>) {
         //temp
         if let temp = weatherDict["temp"] as? Dictionary<String, AnyObject> {
             //lowTemp
@@ -89,13 +89,18 @@ class Forecast {
                 if let dict = resultFromForecastData.value as? Dictionary<String, AnyObject> {
                     if let list = dict["list"] as? [Dictionary<String, AnyObject>] {
                         for obj in list {
-                            let forecast = Forecast(weatherDict: obj)
-                            self.forecasts.append(forecast)
+                            let forecast = Forecast()
+                            forecast.parseData(from: obj)
+                            Forecast.forecasts.append(forecast)
                         }
-                        self.forecasts.remove(at: 0)
+                        //We do not need the information for today, so we will ignore it
+                        Forecast.forecasts.remove(at: 0)
+                        break
                     }
                     print("Successfully downloaded Forecast Data")
                 }
+                break
+
             case .failure(let error):
                 print(error)
             }
