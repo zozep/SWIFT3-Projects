@@ -52,6 +52,7 @@ class CurrentWeather {
             let resultFromWeatherDetails = response.result
             
             switch resultFromWeatherDetails {
+                
             case .success:
                 print("Validation for downloading weather details Successful")
                 if let dict = resultFromWeatherDetails.value as? Dictionary<String, AnyObject> {

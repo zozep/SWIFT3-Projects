@@ -23,26 +23,28 @@ class WeatherVC: UIViewController, UITableViewDataSource, UITableViewDelegate, C
     var currentWeather: CurrentWeather!
     let locationManager = CLLocationManager()
     var forecast: Forecast!
-    
+    var currentLocation: CLLocation!
+
     override func viewDidLoad() {
         super.viewDidLoad()
-        locationManager.delegate = self
         tableView.delegate = self
         tableView.dataSource = self
-        
+        locationManager.requestWhenInUseAuthorization()
+
     }
+
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        forecast = Forecast()
-
-        locationManager.desiredAccuracy = kCLLocationAccuracyBest
-        locationManager.requestWhenInUseAuthorization()
-        //locationManager.startMonitoringSignificantLocationChanges()
-        locationManager.startUpdatingLocation()
         
+        forecast = Forecast()
         currentWeather = CurrentWeather()
-    }
+        
+        locationManager.delegate = self
+        locationManager.desiredAccuracy = kCLLocationAccuracyBest
+        locationManager.requestLocation()
+        
 
+    }
     
     
     //MARK: Boilerplate code for tableView
@@ -100,24 +102,28 @@ class WeatherVC: UIViewController, UITableViewDataSource, UITableViewDelegate, C
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         if CLLocationManager.authorizationStatus() == .authorizedWhenInUse {
-           let currentLocation: CLLocation!
 
             currentLocation = locationManager.location
             if currentLocation != nil {
                 locationManager.stopUpdatingLocation()
+                
             }
-            Location.sharedInstance.latitude = currentLocation.coordinate.latitude
-            Location.sharedInstance.longitude = currentLocation.coordinate.longitude
-            print("Lat :=: \(currentLocation.coordinate.latitude), Long :=: \(currentLocation.coordinate.longitude)")
+            
+            Location.sharedInstance.latitude = currentLocation?.coordinate.latitude
+            Location.sharedInstance.longitude = currentLocation?.coordinate.longitude
+            
+            print("Lat :=: \(currentLocation?.coordinate.latitude), Long :=: \(currentLocation?.coordinate.longitude)")
+            
             currentWeather.downloadWeatherDetails {
                 self.forecast.downloadForecastData {
+                    print("finished downloading forecast data")
                     self.updateMainUI()
                     self.tableView.reloadData()
                 }
             }
-//
-//        } else {
-//            locationManager.requestWhenInUseAuthorization()
+
+        } else {
+            locationManager.requestWhenInUseAuthorization()
         }
     }
     
@@ -127,8 +133,8 @@ class WeatherVC: UIViewController, UITableViewDataSource, UITableViewDelegate, C
 
     
 //    func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
-////        let CLAuthStatus = CLLocationManager.authorizationStatus()
-//        switch(status) {
+//        let CLAuthStatus = CLLocationManager.authorizationStatus()
+//        switch(CLAuthStatus) {
 //        case .restricted, .denied:
 //            print("No access: either denied", status.rawValue)
 //            locationManager.stopUpdatingLocation()
