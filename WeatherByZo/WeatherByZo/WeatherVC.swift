@@ -29,6 +29,8 @@ class WeatherVC: UIViewController, UITableViewDataSource, UITableViewDelegate, C
         locationManager.delegate = self
         tableView.delegate = self
         tableView.dataSource = self
+        locationManager.startUpdatingLocation()
+
         
     }
     override func viewDidAppear(_ animated: Bool) {
@@ -37,8 +39,7 @@ class WeatherVC: UIViewController, UITableViewDataSource, UITableViewDelegate, C
 
         locationManager.desiredAccuracy = kCLLocationAccuracyBest
         locationManager.requestWhenInUseAuthorization()
-        //locationManager.startMonitoringSignificantLocationChanges()
-        locationManager.startUpdatingLocation()
+        locationManager.startMonitoringSignificantLocationChanges()
         
         currentWeather = CurrentWeather()
     }
@@ -105,17 +106,13 @@ class WeatherVC: UIViewController, UITableViewDataSource, UITableViewDelegate, C
             currentLocation = locationManager.location
             if currentLocation != nil {
                 locationManager.stopUpdatingLocation()
+                locationManager.stopMonitoringSignificantLocationChanges()
             }
-            Location.sharedInstance.latitude = currentLocation.coordinate.latitude
-            Location.sharedInstance.longitude = currentLocation.coordinate.longitude
+            Location.sharedInstance.latitude = currentLocation.coordinate.latitude as Double
+            Location.sharedInstance.longitude = currentLocation.coordinate.longitude as Double
             print("Lat :=: \(currentLocation.coordinate.latitude), Long :=: \(currentLocation.coordinate.longitude)")
-            currentWeather.downloadWeatherDetails {
-                self.forecast.downloadForecastData {
-                    self.updateMainUI()
-                    self.tableView.reloadData()
-                }
-            }
-//
+            
+
 //        } else {
 //            locationManager.requestWhenInUseAuthorization()
         }
