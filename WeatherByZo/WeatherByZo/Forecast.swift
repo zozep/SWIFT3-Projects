@@ -95,7 +95,6 @@ class Forecast {
                         }
                         //We do not need the information for today, so we will ignore it
                         Forecast.forecasts.remove(at: 0)
-                        return
                     }
                     print("Successfully downloaded Forecast Data")
                 }
