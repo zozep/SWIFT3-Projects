@@ -42,7 +42,6 @@ class WeatherVC: UIViewController, UITableViewDataSource, UITableViewDelegate, C
         forecast = Forecast()
         currentWeather = CurrentWeather()
         
-//        locationManager.delegate = self
         DispatchQueue.main.async {
             self.locationManager.requestLocation()
         }
