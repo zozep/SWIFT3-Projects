@@ -10,6 +10,7 @@ import UIKit
 import Alamofire
 
 class Forecast {
+    let weatherVC = WeatherVC()
     
     var _date: String!
     var _weatherType: String!
@@ -86,23 +87,24 @@ class Forecast {
                 
             case .success:
                 print("Validation on Forecast Data: Success")
-                let dict = resultFromForecastData.value as! Dictionary<String, AnyObject>
-                let dictLists = dict["list"] as! [Dictionary<String, AnyObject>]
-                    for dictList in dictLists {
+                let forecastDataDict = resultFromForecastData.value as! Dictionary<String, AnyObject>
+                let forecastDataDictLists = forecastDataDict["list"] as! [Dictionary<String, AnyObject>]
+                    for dictList in forecastDataDictLists {
                         let forecast = Forecast()
                         forecast.parseData(from: dictList)
                         Forecast.forecasts.append(forecast)
                     }
-                    //We do not need the information for today, so we will ignore it
+                    //We do not need the information for today displayed again
+                    print("about to remove 1st table")
                     Forecast.forecasts.remove(at: 0)
-                    print("Forecast Data download: Success")
+                    print("Forecast API data bound: Complete")
                 break
                     
             case .failure(let error):
                 print(error)
             }
             completed()
-            print("completed() on Forecast Data ran \n")
+            print("DownloadForecastData: Complete \n")
         }
     }
 }

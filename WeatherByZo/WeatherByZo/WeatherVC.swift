@@ -24,15 +24,16 @@ class WeatherVC: UIViewController, UITableViewDataSource, UITableViewDelegate, C
     var currentWeather: CurrentWeather!
     var forecast: Forecast!
     var currentLocation: CLLocation!
-
+    var canContinue = false
+    var count = 0
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         locationManager.delegate = self
         locationManager.desiredAccuracy = kCLLocationAccuracyBest
         locationManager.requestWhenInUseAuthorization()
-        locationManager.startMonitoringSignificantLocationChanges()
-        
+
         tableView.delegate = self
         tableView.dataSource = self
         forecast = Forecast()
@@ -64,9 +65,17 @@ class WeatherVC: UIViewController, UITableViewDataSource, UITableViewDelegate, C
         if let currentLocation = locations.last {
             Location.sharedInstance.latitude = currentLocation.coordinate.latitude
             Location.sharedInstance.longitude = currentLocation.coordinate.longitude
-            print("Lat :=: \(currentLocation.coordinate.latitude),Long :=: \(currentLocation.coordinate.longitude)")
+            print("Lat:= \(currentLocation.coordinate.latitude),Long: \(currentLocation.coordinate.longitude)")
+            canContinue = true
+            self.count += 1
+        }
+        if (canContinue == true) && (self.count <= 1) {
             self.currentWeather.downloadWeatherDetails {
+                self.locationManager.stopMonitoringSignificantLocationChanges()
+                self.locationManager.stopUpdatingLocation()
+
                 self.forecast.downloadForecastData {
+                    
                     print("finished downloading forecast data")
                     self.updateMainUI()
                     self.tableView.reloadData()
@@ -76,6 +85,8 @@ class WeatherVC: UIViewController, UITableViewDataSource, UITableViewDelegate, C
     }
     
     func locationManager(_ manager: CLLocationManager, didFailWithError: Error) {
+        locationManager.stopMonitoringSignificantLocationChanges()
+        locationManager.stopUpdatingLocation()
         let err = didFailWithError.localizedDescription
         print(err)
     }
@@ -84,6 +95,7 @@ class WeatherVC: UIViewController, UITableViewDataSource, UITableViewDelegate, C
         switch status {
         case .notDetermined:
             locationManager.requestWhenInUseAuthorization()
+            break
         case .authorizedWhenInUse:
             locationManager.requestLocation()
             break
@@ -102,6 +114,7 @@ class WeatherVC: UIViewController, UITableViewDataSource, UITableViewDelegate, C
         currentTempLabel.text = "\(currentWeather.currentTemp)"
         currentWeatherTypeLabel.text = currentWeather.weatherType
         locationLabel.text = currentWeather.cityName
+        Forecast.forecasts.remove(at: 0)
         currentWeatherImage.image = UIImage(named: currentWeather.weatherType)
     }
 }

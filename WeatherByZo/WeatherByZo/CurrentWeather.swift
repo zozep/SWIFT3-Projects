@@ -10,8 +10,9 @@ import UIKit
 import Alamofire
 
 class CurrentWeather {
-    let currentWeather = CurrentWeather()
-    let currentLocation = CLLocation()
+    let weatherVC = WeatherVC()
+    let currentLocation = Location()
+    
     var _cityName: String!
     var _date: String!
     var _weatherType: String!
@@ -49,40 +50,43 @@ class CurrentWeather {
     //CurrentWeather
     func downloadWeatherDetails(completed: @escaping DownloadComplete) {
         print("Now entering downloadWeatherDetails()")
-        
+        var ShouldContinue: Int = 1
         //Alamofire download
-        Alamofire.request(CURRENT_WEATHER_URL_F).validate().responseJSON { response in
-            let resultFromWeatherDetails = response.result
+        if ShouldContinue == 1 {
             
-            switch resultFromWeatherDetails {
+            Alamofire.request(CURRENT_WEATHER_URL_F).validate().responseJSON { response in
+                let resultFromWeatherDetails = response.result
                 
-            case .success:
-                if currentWeather.currentLocation != nil {
-                    break
-                } else {
-                    print("Validation on Weather Details data: Success")
-                    let dict = resultFromWeatherDetails.value as! Dictionary<String, AnyObject>
-                    let name = dict["name"] as! String
-                    self._cityName = name.capitalized
+                switch resultFromWeatherDetails {
+                    
+                case .success:
+                    if (self.weatherVC.currentLocation != nil) && (self.weatherVC.count > 1) {
+                        break
+                    } else {
+                        print("Validation on Weather Details data: Success")
+                        let weatherDetailDict = resultFromWeatherDetails.value as! Dictionary<String, AnyObject>
+                        let name = weatherDetailDict["name"] as! String
+                        self._cityName = name.capitalized
                         
-                    
-                    let weather = dict["weather"] as! [Dictionary<String, AnyObject>]
-                    //very first part of array dictionary
-                    let mainWeatherType = weather[0]["main"] as! String
-                    self._weatherType = mainWeatherType.capitalized
-                    
-                    let currentTempWrittenAsMaininAPI = dict["main"] as! Dictionary<String, AnyObject>
-                    let currentTemperature = currentTempWrittenAsMaininAPI["temp"] as! Double
-                    
-                    let roundedCurrentTemp = round(10.0 * currentTemperature) / 10.0
-                    self._currentTemp = "\(roundedCurrentTemp)°"
-                    print("weatherDeatails API data bound: Complete")
+                        let weather = weatherDetailDict["weather"] as! [Dictionary<String, AnyObject>]
+                        //very first part of array dictionary
+                        let mainWeatherType = weather[0]["main"] as! String
+                        self._weatherType = mainWeatherType.capitalized
+                        
+                        let currentTempWrittenAsMaininAPI = weatherDetailDict["main"] as! Dictionary<String, AnyObject>
+                        let currentTemperature = currentTempWrittenAsMaininAPI["temp"] as! Double
+                        
+                        let roundedCurrentTemp = round(10.0 * currentTemperature) / 10.0
+                        self._currentTemp = "\(roundedCurrentTemp)°"
+                        print("WeatherDeatails API data bound: Complete")
+                        break
+                    }
+                case .failure(let error):
+                    print(error)
                 }
-            case .failure(let error):
-                print(error)
+                completed()
+                print("Downloadweatherdetails: Complete \n")
             }
-            completed()
-            print("Downloadweatherdetails: Complete \n")
         }
     }
 
