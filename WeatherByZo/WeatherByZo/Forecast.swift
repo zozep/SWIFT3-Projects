@@ -78,33 +78,31 @@ class Forecast {
     
     func downloadForecastData(completed: @escaping DownloadComplete) {
         //Downloading forecast weather data for TableView
-        print("entering downloadForecastdata")
+        print("Now entering DownloadForecastdata()")
         Alamofire.request(CURRENT_FORECAST_URL_F).validate().responseJSON { response in
             let resultFromForecastData = response.result
             
             switch resultFromForecastData {
                 
             case .success:
-                print("Validation for downloading forecast data was Successful")
-                if let dict = resultFromForecastData.value as? Dictionary<String, AnyObject> {
-                    if let list = dict["list"] as? [Dictionary<String, AnyObject>] {
-                        for obj in list {
-                            let forecast = Forecast()
-                            forecast.parseData(from: obj)
-                            Forecast.forecasts.append(forecast)
-                        }
-                        //We do not need the information for today, so we will ignore it
-                        Forecast.forecasts.remove(at: 0)
+                print("Validation on Forecast Data: Success")
+                let dict = resultFromForecastData.value as! Dictionary<String, AnyObject>
+                let dictLists = dict["list"] as! [Dictionary<String, AnyObject>]
+                    for dictList in dictLists {
+                        let forecast = Forecast()
+                        forecast.parseData(from: dictList)
+                        Forecast.forecasts.append(forecast)
                     }
-                    print("Successfully downloaded Forecast Data")
-                }
+                    //We do not need the information for today, so we will ignore it
+                    Forecast.forecasts.remove(at: 0)
+                    print("Forecast Data download: Success")
                 break
-
+                    
             case .failure(let error):
                 print(error)
             }
-            print("completed() ran")
             completed()
+            print("completed() on Forecast Data ran \n")
         }
     }
 }

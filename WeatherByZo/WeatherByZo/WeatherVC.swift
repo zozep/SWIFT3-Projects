@@ -20,31 +20,23 @@ class WeatherVC: UIViewController, UITableViewDataSource, UITableViewDelegate, C
     @IBOutlet weak var currentWeatherTypeLabel: UILabel!
     @IBOutlet weak var tableView: UITableView!
     
-    var currentWeather: CurrentWeather!
     let locationManager = CLLocationManager()
+    var currentWeather: CurrentWeather!
     var forecast: Forecast!
     var currentLocation: CLLocation!
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        locationManager.delegate = self
+        locationManager.desiredAccuracy = kCLLocationAccuracyBest
+        locationManager.requestWhenInUseAuthorization()
+        locationManager.startMonitoringSignificantLocationChanges()
+        
         tableView.delegate = self
         tableView.dataSource = self
-        locationManager.delegate = self
-
-        locationManager.requestWhenInUseAuthorization()
-        locationManager.desiredAccuracy = kCLLocationAccuracyBest
-        locationManager.startMonitoringSignificantLocationChanges()
-    }
-
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-        
         forecast = Forecast()
         currentWeather = CurrentWeather()
-        
-        DispatchQueue.main.async {
-            self.locationManager.requestLocation()
-        }
     }
     
     
@@ -69,35 +61,40 @@ class WeatherVC: UIViewController, UITableViewDataSource, UITableViewDelegate, C
     }
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        if CLLocationManager.authorizationStatus() == .authorizedWhenInUse {
-            currentLocation = locationManager.location
-            
-            if currentLocation != nil {
-                locationManager.stopMonitoringSignificantLocationChanges()
-            }
-            Location.sharedInstance.latitude = currentLocation?.coordinate.latitude
-            Location.sharedInstance.longitude = currentLocation?.coordinate.longitude
-            
-            print("Lat :=: \(currentLocation?.coordinate.latitude), Long :=: \(currentLocation?.coordinate.longitude)")
-            
-            currentWeather.downloadWeatherDetails {
+        if let currentLocation = locations.last {
+            Location.sharedInstance.latitude = currentLocation.coordinate.latitude
+            Location.sharedInstance.longitude = currentLocation.coordinate.longitude
+            print("Lat :=: \(currentLocation.coordinate.latitude),Long :=: \(currentLocation.coordinate.longitude)")
+            self.currentWeather.downloadWeatherDetails {
                 self.forecast.downloadForecastData {
                     print("finished downloading forecast data")
                     self.updateMainUI()
                     self.tableView.reloadData()
                 }
             }
-
-        } else {
-            locationManager.stopMonitoringSignificantLocationChanges()
-            locationManager.requestWhenInUseAuthorization()
         }
     }
     
     func locationManager(_ manager: CLLocationManager, didFailWithError: Error) {
-        print(didFailWithError.localizedDescription)
+        let err = didFailWithError.localizedDescription
+        print(err)
     }
-
+    
+    func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
+        switch status {
+        case .notDetermined:
+            locationManager.requestWhenInUseAuthorization()
+        case .authorizedWhenInUse:
+            locationManager.requestLocation()
+            break
+        default:
+            print("Default: ", status.rawValue)
+        }
+    }
+    
+    func locationManager(_ manager: CLLocationManager, monitoringDidFailFor region: CLRegion?, withError error: Error) {
+        print("ERROR: ", error.localizedDescription)
+    }
     
     //MARK: UI UPDATE
     func updateMainUI() {

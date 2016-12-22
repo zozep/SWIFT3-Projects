@@ -10,6 +10,8 @@ import UIKit
 import Alamofire
 
 class CurrentWeather {
+    let currentWeather = CurrentWeather()
+    let currentLocation = CLLocation()
     var _cityName: String!
     var _date: String!
     var _weatherType: String!
@@ -46,6 +48,7 @@ class CurrentWeather {
     
     //CurrentWeather
     func downloadWeatherDetails(completed: @escaping DownloadComplete) {
+        print("Now entering downloadWeatherDetails()")
         
         //Alamofire download
         Alamofire.request(CURRENT_WEATHER_URL_F).validate().responseJSON { response in
@@ -54,32 +57,32 @@ class CurrentWeather {
             switch resultFromWeatherDetails {
                 
             case .success:
-                print("Validation for downloading weather details Successful")
-                if let dict = resultFromWeatherDetails.value as? Dictionary<String, AnyObject> {
-                    if let name = dict["name"] as? String {
-                        self._cityName = name.capitalized
-                    }
+                if currentWeather.currentLocation != nil {
+                    break
+                } else {
+                    print("Validation on Weather Details data: Success")
+                    let dict = resultFromWeatherDetails.value as! Dictionary<String, AnyObject>
+                    let name = dict["name"] as! String
+                    self._cityName = name.capitalized
+                        
                     
-                    if let weather = dict["weather"] as? [Dictionary<String, AnyObject>] {
-                        //very first part of array dictionary
-                        if let main = weather[0]["main"] as? String {
-                           self._weatherType = main.capitalized
-                        }
-                    }
+                    let weather = dict["weather"] as! [Dictionary<String, AnyObject>]
+                    //very first part of array dictionary
+                    let mainWeatherType = weather[0]["main"] as! String
+                    self._weatherType = mainWeatherType.capitalized
                     
-                    if let main = dict["main"] as? Dictionary<String, AnyObject> {
-                        if let currentTemperature = main["temp"] as? Double {
-                            let roundedCurrentTemp = round(10.0 * currentTemperature) / 10.0
-                            self._currentTemp = "\(roundedCurrentTemp)°"
-                        }
-                    }
-                    print("Succesfully downloaded Weather detail")
+                    let currentTempWrittenAsMaininAPI = dict["main"] as! Dictionary<String, AnyObject>
+                    let currentTemperature = currentTempWrittenAsMaininAPI["temp"] as! Double
+                    
+                    let roundedCurrentTemp = round(10.0 * currentTemperature) / 10.0
+                    self._currentTemp = "\(roundedCurrentTemp)°"
+                    print("weatherDeatails API data bound: Complete")
                 }
             case .failure(let error):
                 print(error)
             }
-            print("completed downloadweatherdetails")
             completed()
+            print("Downloadweatherdetails: Complete \n")
         }
     }
 
