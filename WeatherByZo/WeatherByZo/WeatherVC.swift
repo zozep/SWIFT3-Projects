@@ -29,7 +29,6 @@ class WeatherVC: UIViewController, UITableViewDataSource, UITableViewDelegate, C
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         locationManager.delegate = self
         locationManager.desiredAccuracy = kCLLocationAccuracyBest
         locationManager.requestWhenInUseAuthorization()
@@ -40,6 +39,25 @@ class WeatherVC: UIViewController, UITableViewDataSource, UITableViewDelegate, C
         currentWeather = CurrentWeather()
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        addSpinner()
+    }
+    
+    func addSpinner() {
+        let pending = UIAlertController(title: nil, message: "Grabbing Weather Forecast, Please Wait", preferredStyle: .alert)
+        
+        pending.view.tintColor = UIColor.black
+        let loadingIndicator: UIActivityIndicatorView = UIActivityIndicatorView(frame: pending.view.bounds) as UIActivityIndicatorView
+        loadingIndicator.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+        loadingIndicator.isUserInteractionEnabled = false
+        loadingIndicator.hidesWhenStopped = true
+        loadingIndicator.activityIndicatorViewStyle = UIActivityIndicatorViewStyle.gray
+        //loadingIndicator.startAnimating();
+        
+        pending.view.addSubview(loadingIndicator)
+        present(pending, animated: true, completion: nil)
+    }
     
     //MARK: Boilerplate code for tableView
     func numberOfSections(in tableView: UITableView) -> Int {
@@ -112,6 +130,10 @@ class WeatherVC: UIViewController, UITableViewDataSource, UITableViewDelegate, C
         locationLabel.text = currentWeather.cityName
         Forecast.forecasts.remove(at: 0)
         currentWeatherImage.image = UIImage(named: currentWeather.weatherType)
+        dismiss(animated: false, completion: nil)
+
     }
+    
+    
 }
 
