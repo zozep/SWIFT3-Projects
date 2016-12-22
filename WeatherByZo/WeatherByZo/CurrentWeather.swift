@@ -51,6 +51,7 @@ class CurrentWeather {
     func downloadWeatherDetails(completed: @escaping DownloadComplete) {
         print("Now entering downloadWeatherDetails()")
         var ShouldContinue: Int = 1
+        
         //Alamofire download
         if ShouldContinue == 1 {
             
@@ -84,9 +85,13 @@ class CurrentWeather {
                 case .failure(let error):
                     print(error)
                 }
+                ShouldContinue += 1
                 completed()
                 print("Downloadweatherdetails: Complete \n")
             }
+        } else {
+            print("locaion more than once...")
+            return
         }
     }
 

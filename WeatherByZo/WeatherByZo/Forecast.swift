@@ -78,33 +78,38 @@ class Forecast {
     }
     
     func downloadForecastData(completed: @escaping DownloadComplete) {
-        //Downloading forecast weather data for TableView
-        print("Now entering DownloadForecastdata()")
-        Alamofire.request(CURRENT_FORECAST_URL_F).validate().responseJSON { response in
-            let resultFromForecastData = response.result
-            
-            switch resultFromForecastData {
+        var shouldContinue: Int = 1
+        if shouldContinue == 1 {
+            //Downloading forecast weather data for TableView
+            print("Now entering DownloadForecastdata()")
+            Alamofire.request(CURRENT_FORECAST_URL_F).validate().responseJSON { response in
+                let resultFromForecastData = response.result
                 
-            case .success:
-                print("Validation on Forecast Data: Success")
-                let forecastDataDict = resultFromForecastData.value as! Dictionary<String, AnyObject>
-                let forecastDataDictLists = forecastDataDict["list"] as! [Dictionary<String, AnyObject>]
-                    for dictList in forecastDataDictLists {
-                        let forecast = Forecast()
-                        forecast.parseData(from: dictList)
-                        Forecast.forecasts.append(forecast)
-                    }
-                    //We do not need the information for today displayed again
-                    print("about to remove 1st table")
-                    Forecast.forecasts.remove(at: 0)
-                    print("Forecast API data bound: Complete")
-                break
+                switch resultFromForecastData {
                     
-            case .failure(let error):
-                print(error)
+                case .success:
+                    print("Validation on Forecast Data: Success")
+                    let forecastDataDict = resultFromForecastData.value as! Dictionary<String, AnyObject>
+                    let forecastDataDictLists = forecastDataDict["list"] as! [Dictionary<String, AnyObject>]
+                        for dictList in forecastDataDictLists {
+                            let forecast = Forecast()
+                            forecast.parseData(from: dictList)
+                            Forecast.forecasts.append(forecast)
+                        }
+                        //Forecast.forecasts.remove(at: 0)
+                        print("Forecast API data bound: Complete")
+                    break
+                        
+                case .failure(let error):
+                    print(error)
+                }
+                shouldContinue += 1
+                completed()
+                print("DownloadForecastData: Complete \n")
             }
-            completed()
-            print("DownloadForecastData: Complete \n")
+        } else {
+            print("waiting......")
+            return
         }
     }
 }

@@ -66,17 +66,13 @@ class WeatherVC: UIViewController, UITableViewDataSource, UITableViewDelegate, C
             Location.sharedInstance.latitude = currentLocation.coordinate.latitude
             Location.sharedInstance.longitude = currentLocation.coordinate.longitude
             print("Lat:= \(currentLocation.coordinate.latitude),Long: \(currentLocation.coordinate.longitude)")
-            canContinue = true
-            self.count += 1
         }
+        self.locationManager.stopUpdatingLocation()
+        canContinue = true
+        self.count += 1
         if (canContinue == true) && (self.count <= 1) {
             self.currentWeather.downloadWeatherDetails {
-                self.locationManager.stopMonitoringSignificantLocationChanges()
-                self.locationManager.stopUpdatingLocation()
-
                 self.forecast.downloadForecastData {
-                    
-                    print("finished downloading forecast data")
                     self.updateMainUI()
                     self.tableView.reloadData()
                 }
