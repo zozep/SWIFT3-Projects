@@ -20,21 +20,34 @@ class WeatherVC: UIViewController, UITableViewDataSource, UITableViewDelegate, C
     @IBOutlet weak var currentWeatherTypeLabel: UILabel!
     @IBOutlet weak var tableView: UITableView!
     
-    var currentWeather: CurrentWeather!
     let locationManager = CLLocationManager()
+    var currentWeather: CurrentWeather!
     var forecast: Forecast!
+    var currentLocation: CLLocation!
+    var canContinue = false
+    var count = 0
     
     override func viewDidLoad() {
         super.viewDidLoad()
         locationManager.delegate = self
+        locationManager.desiredAccuracy = kCLLocationAccuracyBest
+        locationManager.requestWhenInUseAuthorization()
+
         tableView.delegate = self
         tableView.dataSource = self
+<<<<<<< HEAD
         locationManager.startUpdatingLocation()
 
         
+=======
+        forecast = Forecast()
+        currentWeather = CurrentWeather()
+>>>>>>> d14d2ab4f269142767131a12fd1b6d5ae7923bfb
     }
+    
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
+<<<<<<< HEAD
         forecast = Forecast()
 
         locationManager.desiredAccuracy = kCLLocationAccuracyBest
@@ -42,9 +55,25 @@ class WeatherVC: UIViewController, UITableViewDataSource, UITableViewDelegate, C
         locationManager.startMonitoringSignificantLocationChanges()
         
         currentWeather = CurrentWeather()
+=======
+        addSpinner()
+>>>>>>> d14d2ab4f269142767131a12fd1b6d5ae7923bfb
     }
-
     
+    func addSpinner() {
+        let pending = UIAlertController(title: nil, message: "Grabbing Weather Forecast, Please Wait", preferredStyle: .alert)
+        
+        pending.view.tintColor = UIColor.black
+        let loadingIndicator: UIActivityIndicatorView = UIActivityIndicatorView(frame: pending.view.bounds) as UIActivityIndicatorView
+        loadingIndicator.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+        loadingIndicator.isUserInteractionEnabled = false
+        loadingIndicator.hidesWhenStopped = true
+        loadingIndicator.activityIndicatorViewStyle = UIActivityIndicatorViewStyle.gray
+        //loadingIndicator.startAnimating();
+        
+        pending.view.addSubview(loadingIndicator)
+        present(pending, animated: true, completion: nil)
+    }
     
     //MARK: Boilerplate code for tableView
     func numberOfSections(in tableView: UITableView) -> Int {
@@ -66,40 +95,8 @@ class WeatherVC: UIViewController, UITableViewDataSource, UITableViewDelegate, C
         }
     }
     
-    
-    
-    /* MARK: Authorization & Location check */
-    
-//    func locationAuthStatus() {
-//        
-//        if CLLocationManager.locationServicesEnabled() && locationManager.{
-//            locationManager.requestWhenInUseAuthorization()
-//        }
-//            let CLAuthStatus = CLLocationManager.authorizationStatus()
-//            
-//            switch CLAuthStatus {
-//                
-//            case .notDetermined:
-//                print("No access: notDetermined")
-//                locationManager.requestWhenInUseAuthorization()
-//                break
-//                
-//            case .restricted, .denied:
-//                print("No access given")
-//                locationManager.stopMonitoringSignificantLocationChanges()
-//                break
-//                
-//            case .authorizedWhenInUse, .authorizedAlways:
-//                locationManager.startMonitoringSignificantLocationChanges()
-//                print("access when in use or authorized always")
-//                
-//        } else {
-//        locationManager.stopUpdatingLocation()
-//        showAuthAlert()
-//
-//    }
-    
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+<<<<<<< HEAD
         if CLLocationManager.authorizationStatus() == .authorizedWhenInUse {
            let currentLocation: CLLocation!
 
@@ -115,94 +112,49 @@ class WeatherVC: UIViewController, UITableViewDataSource, UITableViewDelegate, C
 
 //        } else {
 //            locationManager.requestWhenInUseAuthorization()
+=======
+        if let currentLocation = locations.last {
+            Location.sharedInstance.latitude = currentLocation.coordinate.latitude
+            Location.sharedInstance.longitude = currentLocation.coordinate.longitude
+            print("Lat:= \(currentLocation.coordinate.latitude),Long: \(currentLocation.coordinate.longitude)")
+        }
+        self.locationManager.stopUpdatingLocation()
+        canContinue = true
+        self.count += 1
+        if (canContinue == true) && (self.count <= 1) {
+            self.currentWeather.downloadWeatherDetails {
+                self.forecast.downloadForecastData {
+                    self.updateMainUI()
+                    self.tableView.reloadData()
+                }
+            }
+>>>>>>> d14d2ab4f269142767131a12fd1b6d5ae7923bfb
         }
     }
     
     func locationManager(_ manager: CLLocationManager, didFailWithError: Error) {
-        print(didFailWithError.localizedDescription)
+        locationManager.stopMonitoringSignificantLocationChanges()
+        locationManager.stopUpdatingLocation()
+        let err = didFailWithError.localizedDescription
+        print(err)
     }
-
     
-//    func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
-////        let CLAuthStatus = CLLocationManager.authorizationStatus()
-//        switch(status) {
-//        case .restricted, .denied:
-//            print("No access: either denied", status.rawValue)
-//            locationManager.stopUpdatingLocation()
-//            break
-//            
-//        case .authorizedWhenInUse, .authorizedAlways:
-//            print("access when in use or authorized always")
-//            locationManager.requestLocation()
-//            break
-//        case .notDetermined:
-//            print("Not determined")
-//            locationManager.requestWhenInUseAuthorization()
-//        }
-//    }
-//
-//        print("about to fail")
-//        Location.sharedInstance.latitude = currentLocation.coordinate.latitude
-//        Location.sharedInstance.longitude = currentLocation.coordinate.longitude
-//        print("lat & long can be found")
-//        
-//        currentWeather.downloadWeatherDetails {
-//            print("entering downloadweatherdetails")
-//            self.downloadForecastData {
-//                self.updateMainUI()
-//                print("finished updateUI")
-//            }
-//        }
-
-
-//    }
-//
-//    //Mark: Custom Alert
-//    func showAuthAlert() {
-//        let authAlertController = UIAlertController (title: "1. Please turn Location Services ON", message: "Settings -> Privacy -> Location Serivices", preferredStyle: .alert)
-//        let settingsAction = UIAlertAction(title: "Okay", style: .default) { (_) -> Void in
-//            guard let okURL = URL(string: UIApplicationOpenSettingsURLString) else {
-//                return
-//            }
-//            if UIApplication.shared.canOpenURL(okURL) {
-//                UIApplication.shared.open(okURL, completionHandler: { (success) in
-//                    print("Settings opened from AuthAlert(): \(success)")
-//                    
-//                })
-//                //self.locationAuthStatus()
-//            }
-//        }
-//        authAlertController.addAction(settingsAction)
-//        present(authAlertController, animated: true, completion: nil)
-//    }
-//    
-//    
-//    func downloadForecastData(completed: @escaping DownloadComplete) {
-//        //Downloading forecast weather data for TableView
-//        Alamofire.request(CURRENT_FORECAST_URL_F).validate().responseJSON { response in
-//            let resultFromForecastData = response.result
-//            
-//            switch resultFromForecastData {
-//                
-//            case .success:
-//                print("Validation for downloading forecast data was Successful")
-//                if let dict = resultFromForecastData.value as? Dictionary<String, AnyObject> {
-//                    if let list = dict["list"] as? [Dictionary<String, AnyObject>] {
-//                        for obj in list {
-//                            let forecast = Forecast(weatherDict: obj)
-//                            self.forecasts.append(forecast)
-//                        }
-//                        self.forecasts.remove(at: 0)
-//                        self.tableView.reloadData()
-//                    }
-//                    print("Successfully downloaded Forecast Data")
-//                }
-//            case .failure(let error):
-//                print(error)
-//            }
-//            completed()
-//        }
-//    }
+    func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
+        switch status {
+        case .notDetermined:
+            locationManager.requestWhenInUseAuthorization()
+            break
+        case .authorizedWhenInUse:
+            locationManager.requestLocation()
+            break
+        default:
+            print("Default: ", status.rawValue)
+        }
+    }
+    
+    func locationManager(_ manager: CLLocationManager, monitoringDidFailFor region: CLRegion?, withError error: Error) {
+        print("ERROR: ", error.localizedDescription)
+    }
     
     //MARK: UI UPDATE
     func updateMainUI() {
@@ -210,7 +162,12 @@ class WeatherVC: UIViewController, UITableViewDataSource, UITableViewDelegate, C
         currentTempLabel.text = "\(currentWeather.currentTemp)"
         currentWeatherTypeLabel.text = currentWeather.weatherType
         locationLabel.text = currentWeather.cityName
+        Forecast.forecasts.remove(at: 0)
         currentWeatherImage.image = UIImage(named: currentWeather.weatherType)
+        dismiss(animated: false, completion: nil)
+
     }
+    
+    
 }
 

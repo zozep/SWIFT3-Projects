@@ -10,6 +10,7 @@ import UIKit
 import Alamofire
 
 class Forecast {
+    let weatherVC = WeatherVC()
     
     var _date: String!
     var _weatherType: String!
@@ -77,35 +78,37 @@ class Forecast {
     }
     
     func downloadForecastData(completed: @escaping DownloadComplete) {
-        //Downloading forecast weather data for TableView
-        print("entering downloadForecastdata")
-        Alamofire.request(CURRENT_FORECAST_URL_F).validate().responseJSON { response in
-            let resultFromForecastData = response.result
-            
-            switch resultFromForecastData {
+        var shouldContinue: Int = 1
+        if shouldContinue == 1 {
+            //Downloading forecast weather data for TableView
+            print("Now entering DownloadForecastdata()")
+            Alamofire.request(CURRENT_FORECAST_URL_F).validate().responseJSON { response in
+                let resultFromForecastData = response.result
                 
-            case .success:
-                print("Validation for downloading forecast data was Successful")
-                if let dict = resultFromForecastData.value as? Dictionary<String, AnyObject> {
-                    if let list = dict["list"] as? [Dictionary<String, AnyObject>] {
-                        for obj in list {
+                switch resultFromForecastData {
+                    
+                case .success:
+                    print("Validation on Forecast Data: Success")
+                    let forecastDataDict = resultFromForecastData.value as! Dictionary<String, AnyObject>
+                    let forecastDataDictLists = forecastDataDict["list"] as! [Dictionary<String, AnyObject>]
+                        for dictList in forecastDataDictLists {
                             let forecast = Forecast()
-                            forecast.parseData(from: obj)
-                            Forecast.forecasts.append(forecast)
+                            forecast.parseData(from: dictList)
                         }
-                        //We do not need the information for today, so we will ignore it
-                        Forecast.forecasts.remove(at: 0)
-                        break
-                    }
-                    print("Successfully downloaded Forecast Data")
+                        //Forecast.forecasts.remove(at: 0)
+                        print("Forecast API data bound: Complete")
+                    break
+                        
+                case .failure(let error):
+                    print(error)
                 }
-                break
-
-            case .failure(let error):
-                print(error)
+                shouldContinue += 1
+                completed()
+                print("DownloadForecastData: Complete \n")
             }
-            print("completed() ran")
-            completed()
+        } else {
+            print("waiting......")
+            return
         }
     }
 }

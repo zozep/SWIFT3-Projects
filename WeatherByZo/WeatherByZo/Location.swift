@@ -11,7 +11,7 @@ import CoreLocation
 
 class Location {
     static var sharedInstance = Location()
-    private init() {}
+    init() {}
     
     var latitude: Double!
     var longitude: Double!
