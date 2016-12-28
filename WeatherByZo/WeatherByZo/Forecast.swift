@@ -94,7 +94,6 @@ class Forecast {
                         for dictList in forecastDataDictLists {
                             let forecast = Forecast()
                             forecast.parseData(from: dictList)
-                            Forecast.forecasts.append(forecast)
                         }
                         //Forecast.forecasts.remove(at: 0)
                         print("Forecast API data bound: Complete")
