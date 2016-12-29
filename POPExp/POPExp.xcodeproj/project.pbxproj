@@ -12,6 +12,8 @@
 		7CCD22C21E149043007FD48F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7CCD22C11E149043007FD48F /* Assets.xcassets */; };
 		7CCD22C51E149043007FD48F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7CCD22C31E149043007FD48F /* LaunchScreen.storyboard */; };
 		7CCD22D31E149283007FD48F /* MainVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CCD22D21E149283007FD48F /* MainVC.swift */; };
+		7CCD22D51E1493BB007FD48F /* DropShadow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CCD22D41E1493BB007FD48F /* DropShadow.swift */; };
+		7CCD22D71E1496E1007FD48F /* HeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CCD22D61E1496E1007FD48F /* HeaderView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -22,6 +24,8 @@
 		7CCD22C41E149043007FD48F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		7CCD22C61E149043007FD48F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		7CCD22D21E149283007FD48F /* MainVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainVC.swift; sourceTree = "<group>"; };
+		7CCD22D41E1493BB007FD48F /* DropShadow.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DropShadow.swift; sourceTree = "<group>"; };
+		7CCD22D61E1496E1007FD48F /* HeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HeaderView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -69,6 +73,7 @@
 			children = (
 				7CCD22C31E149043007FD48F /* LaunchScreen.storyboard */,
 				7CCD22BE1E149043007FD48F /* Main.storyboard */,
+				7CCD22D61E1496E1007FD48F /* HeaderView.swift */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -92,6 +97,7 @@
 		7CCD22CF1E1491FA007FD48F /* Protocols */ = {
 			isa = PBXGroup;
 			children = (
+				7CCD22D41E1493BB007FD48F /* DropShadow.swift */,
 			);
 			name = Protocols;
 			sourceTree = "<group>";
@@ -186,7 +192,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				7CCD22BB1E149043007FD48F /* AppDelegate.swift in Sources */,
+				7CCD22D51E1493BB007FD48F /* DropShadow.swift in Sources */,
 				7CCD22D31E149283007FD48F /* MainVC.swift in Sources */,
+				7CCD22D71E1496E1007FD48F /* HeaderView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

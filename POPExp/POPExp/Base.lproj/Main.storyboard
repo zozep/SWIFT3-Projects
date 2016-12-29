@@ -20,11 +20,43 @@
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hbe-9o-Scl" customClass="HeaderView" customModule="POPExp" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="126"/>
+                                <subviews>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Taco-POP" translatesAutoresizingMaskIntoConstraints="NO" id="blO-UV-YEu">
+                                        <rect key="frame" x="67" y="28" width="240" height="70"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="240" id="L85-AR-koE"/>
+                                            <constraint firstAttribute="height" constant="70" id="p0b-QH-T5F"/>
+                                        </constraints>
+                                    </imageView>
+                                </subviews>
+                                <color key="backgroundColor" red="0.086274509799999996" green="0.62745098040000002" blue="0.52156862749999999" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstItem="blO-UV-YEu" firstAttribute="centerY" secondItem="hbe-9o-Scl" secondAttribute="centerY" id="OYk-PC-Zwx"/>
+                                    <constraint firstItem="blO-UV-YEu" firstAttribute="centerX" secondItem="hbe-9o-Scl" secondAttribute="centerX" id="tjQ-bv-gHl"/>
+                                    <constraint firstAttribute="height" constant="126" id="yNV-7i-dNy"/>
+                                </constraints>
+                            </view>
+                        </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="hbe-9o-Scl" secondAttribute="trailing" id="OFg-IQ-UMb"/>
+                            <constraint firstItem="hbe-9o-Scl" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="T6Y-uS-sem"/>
+                            <constraint firstItem="hbe-9o-Scl" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="WJr-tc-NQ6"/>
+                        </constraints>
                     </view>
+                    <connections>
+                        <outlet property="headerView" destination="hbe-9o-Scl" id="zXt-f0-m9A"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
+            <point key="canvasLocation" x="136.80000000000001" y="138.98050974512745"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="Taco-POP" width="490" height="100"/>
+    </resources>
 </document>
