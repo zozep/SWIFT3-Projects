@@ -41,8 +41,8 @@
                                 </constraints>
                             </view>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="fbM-fI-Hof">
-                                <rect key="frame" x="16" y="134" width="343" height="525"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <rect key="frame" x="16" y="146" width="343" height="513"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="uZW-ur-szq">
                                     <size key="itemSize" width="50" height="50"/>
                                     <size key="headerReferenceSize" width="0.0" height="0.0"/>
@@ -60,7 +60,7 @@
                             <constraint firstItem="hbe-9o-Scl" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="T6Y-uS-sem"/>
                             <constraint firstItem="hbe-9o-Scl" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="WJr-tc-NQ6"/>
                             <constraint firstItem="fbM-fI-Hof" firstAttribute="trailing" secondItem="8bC-Xf-vdC" secondAttribute="trailingMargin" id="Zd5-89-zZ0"/>
-                            <constraint firstItem="fbM-fI-Hof" firstAttribute="top" secondItem="hbe-9o-Scl" secondAttribute="bottom" constant="8" id="ucO-aC-Vsb"/>
+                            <constraint firstItem="fbM-fI-Hof" firstAttribute="top" secondItem="hbe-9o-Scl" secondAttribute="bottom" constant="20" id="ucO-aC-Vsb"/>
                         </constraints>
                     </view>
                     <connections>

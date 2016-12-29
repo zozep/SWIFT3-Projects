@@ -10,7 +10,6 @@ import UIKit
 
 protocol ReusableView: class {}
 
-
 //constrains to UIView
 extension ReusableView where Self: UIView {
     static var reuseIdentifier: String {
