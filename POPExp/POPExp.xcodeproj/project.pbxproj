@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		7C13A8B51E158E4C00B91093 /* DataService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C13A8B41E158E4C00B91093 /* DataService.swift */; };
 		7CCD22BB1E149043007FD48F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CCD22BA1E149043007FD48F /* AppDelegate.swift */; };
 		7CCD22C01E149043007FD48F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7CCD22BE1E149043007FD48F /* Main.storyboard */; };
 		7CCD22C21E149043007FD48F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7CCD22C11E149043007FD48F /* Assets.xcassets */; };
@@ -18,6 +19,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		7C13A8B41E158E4C00B91093 /* DataService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataService.swift; sourceTree = "<group>"; };
 		7CCD22B71E149043007FD48F /* POPExp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = POPExp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7CCD22BA1E149043007FD48F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		7CCD22BF1E149043007FD48F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -84,6 +86,7 @@
 			isa = PBXGroup;
 			children = (
 				7CCD22D81E149866007FD48F /* Taco.swift */,
+				7C13A8B41E158E4C00B91093 /* DataService.swift */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -197,6 +200,7 @@
 				7CCD22BB1E149043007FD48F /* AppDelegate.swift in Sources */,
 				7CCD22D51E1493BB007FD48F /* DropShadow.swift in Sources */,
 				7CCD22D31E149283007FD48F /* MainVC.swift in Sources */,
+				7C13A8B51E158E4C00B91093 /* DataService.swift in Sources */,
 				7CCD22D91E149866007FD48F /* Taco.swift in Sources */,
 				7CCD22D71E1496E1007FD48F /* HeaderView.swift in Sources */,
 			);
@@ -362,6 +366,7 @@
 				7CCD22CB1E149043007FD48F /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
