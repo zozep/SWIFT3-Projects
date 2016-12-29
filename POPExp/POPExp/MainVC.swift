@@ -23,8 +23,9 @@ class MainVC: UIViewController, DataServiceDelegate {
         
         collectionView.delegate = self
         collectionView.dataSource = self
-        let nib = UINib(nibName: "TacoCell", bundle: nil)
-        collectionView.register(nib, forCellWithReuseIdentifier: "TacoCell")
+        collectionView.register(TacoCell.self)
+//        let nib = UINib(nibName: "TacoCell", bundle: nil)
+//        collectionView.register(nib, forCellWithReuseIdentifier: "TacoCell")
     }
     
     func tacoDataLoaded() {
