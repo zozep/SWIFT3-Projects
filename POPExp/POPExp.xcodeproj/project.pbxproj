@@ -10,6 +10,9 @@
 		7C13A8B51E158E4C00B91093 /* DataService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C13A8B41E158E4C00B91093 /* DataService.swift */; };
 		7C13A8B81E1590E900B91093 /* TacoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C13A8B61E1590E900B91093 /* TacoCell.swift */; };
 		7C13A8B91E1590E900B91093 /* TacoCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7C13A8B71E1590E900B91093 /* TacoCell.xib */; };
+		7C13A8BB1E15963400B91093 /* ReusableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C13A8BA1E15963400B91093 /* ReusableView.swift */; };
+		7C13A8BD1E1596A000B91093 /* NibLoadableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C13A8BC1E1596A000B91093 /* NibLoadableView.swift */; };
+		7C13A8BF1E15970B00B91093 /* UICollectionView+EXT.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C13A8BE1E15970B00B91093 /* UICollectionView+EXT.swift */; };
 		7CCD22BB1E149043007FD48F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CCD22BA1E149043007FD48F /* AppDelegate.swift */; };
 		7CCD22C01E149043007FD48F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7CCD22BE1E149043007FD48F /* Main.storyboard */; };
 		7CCD22C21E149043007FD48F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7CCD22C11E149043007FD48F /* Assets.xcassets */; };
@@ -24,6 +27,9 @@
 		7C13A8B41E158E4C00B91093 /* DataService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataService.swift; sourceTree = "<group>"; };
 		7C13A8B61E1590E900B91093 /* TacoCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TacoCell.swift; sourceTree = "<group>"; };
 		7C13A8B71E1590E900B91093 /* TacoCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TacoCell.xib; sourceTree = "<group>"; };
+		7C13A8BA1E15963400B91093 /* ReusableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReusableView.swift; sourceTree = "<group>"; };
+		7C13A8BC1E1596A000B91093 /* NibLoadableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NibLoadableView.swift; sourceTree = "<group>"; };
+		7C13A8BE1E15970B00B91093 /* UICollectionView+EXT.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UICollectionView+EXT.swift"; sourceTree = "<group>"; };
 		7CCD22B71E149043007FD48F /* POPExp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = POPExp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7CCD22BA1E149043007FD48F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		7CCD22BF1E149043007FD48F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -110,6 +116,8 @@
 			isa = PBXGroup;
 			children = (
 				7CCD22D41E1493BB007FD48F /* DropShadow.swift */,
+				7C13A8BA1E15963400B91093 /* ReusableView.swift */,
+				7C13A8BC1E1596A000B91093 /* NibLoadableView.swift */,
 			);
 			name = Protocols;
 			sourceTree = "<group>";
@@ -117,6 +125,7 @@
 		7CCD22D01E1491FE007FD48F /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
+				7C13A8BE1E15970B00B91093 /* UICollectionView+EXT.swift */,
 			);
 			name = Extensions;
 			sourceTree = "<group>";
@@ -207,7 +216,10 @@
 				7C13A8B81E1590E900B91093 /* TacoCell.swift in Sources */,
 				7CCD22BB1E149043007FD48F /* AppDelegate.swift in Sources */,
 				7CCD22D51E1493BB007FD48F /* DropShadow.swift in Sources */,
+				7C13A8BD1E1596A000B91093 /* NibLoadableView.swift in Sources */,
+				7C13A8BB1E15963400B91093 /* ReusableView.swift in Sources */,
 				7CCD22D31E149283007FD48F /* MainVC.swift in Sources */,
+				7C13A8BF1E15970B00B91093 /* UICollectionView+EXT.swift in Sources */,
 				7C13A8B51E158E4C00B91093 /* DataService.swift in Sources */,
 				7CCD22D91E149866007FD48F /* Taco.swift in Sources */,
 				7CCD22D71E1496E1007FD48F /* HeaderView.swift in Sources */,

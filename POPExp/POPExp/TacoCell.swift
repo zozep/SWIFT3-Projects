@@ -21,9 +21,9 @@ class TacoCell: UICollectionViewCell {
         tacoLabel.text = taco.productName
     }
     
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        // Initialization code
-    }
+//    override func awakeFromNib() {
+//        super.awakeFromNib()
+//        // Initialization code
+//    }
 
 }
