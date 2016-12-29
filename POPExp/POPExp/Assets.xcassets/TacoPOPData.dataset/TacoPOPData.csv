@@ -1,0 +1,17 @@
+id,productName,shellId,proteinId,condimentsId
+1,LoadedFlourChickenTaco,1,2,1
+2,LoadedCornChickenTaco,2,2,1
+3,PlainFlourChickenTaco,1,2,2
+4,PlainCornChickenTaco,2,2,2
+5,LoadedFlourBeefTaco,1,1,1
+6,LoadedCornBeefTaco,2,1,1
+7,PlainFlourBeefTaco,1,1,2
+8,PlainCornBeefTaco,2,1,2
+9,LoadedFlourBrisketTaco,1,3,1
+10,LoadedCornBrisketTaco,2,3,1
+11,PlainFlourBrisketTaco,1,3,2
+12,PlainCornBrisketTaco,2,3,2
+13,LoadedFlourFishTaco,1,4,1
+13,LoadedCornFishTaco,2,4,1
+14,PlainFlourFishTaco,1,4,2
+15,PlainCornFishTaco,2,4,2
