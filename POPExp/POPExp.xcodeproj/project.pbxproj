@@ -8,20 +8,20 @@
 
 /* Begin PBXBuildFile section */
 		7CCD22BB1E149043007FD48F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CCD22BA1E149043007FD48F /* AppDelegate.swift */; };
-		7CCD22BD1E149043007FD48F /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CCD22BC1E149043007FD48F /* ViewController.swift */; };
 		7CCD22C01E149043007FD48F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7CCD22BE1E149043007FD48F /* Main.storyboard */; };
 		7CCD22C21E149043007FD48F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7CCD22C11E149043007FD48F /* Assets.xcassets */; };
 		7CCD22C51E149043007FD48F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7CCD22C31E149043007FD48F /* LaunchScreen.storyboard */; };
+		7CCD22D31E149283007FD48F /* MainVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CCD22D21E149283007FD48F /* MainVC.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		7CCD22B71E149043007FD48F /* POPExp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = POPExp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7CCD22BA1E149043007FD48F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		7CCD22BC1E149043007FD48F /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		7CCD22BF1E149043007FD48F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		7CCD22C11E149043007FD48F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		7CCD22C41E149043007FD48F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		7CCD22C61E149043007FD48F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		7CCD22D21E149283007FD48F /* MainVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainVC.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -54,14 +54,62 @@
 		7CCD22B91E149043007FD48F /* POPExp */ = {
 			isa = PBXGroup;
 			children = (
-				7CCD22BA1E149043007FD48F /* AppDelegate.swift */,
-				7CCD22BC1E149043007FD48F /* ViewController.swift */,
-				7CCD22BE1E149043007FD48F /* Main.storyboard */,
-				7CCD22C11E149043007FD48F /* Assets.xcassets */,
-				7CCD22C31E149043007FD48F /* LaunchScreen.storyboard */,
-				7CCD22C61E149043007FD48F /* Info.plist */,
+				7CCD22D01E1491FE007FD48F /* Extensions */,
+				7CCD22CF1E1491FA007FD48F /* Protocols */,
+				7CCD22CD1E1491E9007FD48F /* Model */,
+				7CCD22CC1E1491E4007FD48F /* View */,
+				7CCD22D11E149214007FD48F /* Controller */,
+				7CCD22CE1E1491EF007FD48F /* Resources */,
 			);
 			path = POPExp;
+			sourceTree = "<group>";
+		};
+		7CCD22CC1E1491E4007FD48F /* View */ = {
+			isa = PBXGroup;
+			children = (
+				7CCD22C31E149043007FD48F /* LaunchScreen.storyboard */,
+				7CCD22BE1E149043007FD48F /* Main.storyboard */,
+			);
+			name = View;
+			sourceTree = "<group>";
+		};
+		7CCD22CD1E1491E9007FD48F /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Model;
+			sourceTree = "<group>";
+		};
+		7CCD22CE1E1491EF007FD48F /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				7CCD22C11E149043007FD48F /* Assets.xcassets */,
+				7CCD22C61E149043007FD48F /* Info.plist */,
+			);
+			name = Resources;
+			sourceTree = "<group>";
+		};
+		7CCD22CF1E1491FA007FD48F /* Protocols */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Protocols;
+			sourceTree = "<group>";
+		};
+		7CCD22D01E1491FE007FD48F /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Extensions;
+			sourceTree = "<group>";
+		};
+		7CCD22D11E149214007FD48F /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				7CCD22BA1E149043007FD48F /* AppDelegate.swift */,
+				7CCD22D21E149283007FD48F /* MainVC.swift */,
+			);
+			name = Controller;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -137,8 +185,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				7CCD22BD1E149043007FD48F /* ViewController.swift in Sources */,
 				7CCD22BB1E149043007FD48F /* AppDelegate.swift in Sources */,
+				7CCD22D31E149283007FD48F /* MainVC.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
