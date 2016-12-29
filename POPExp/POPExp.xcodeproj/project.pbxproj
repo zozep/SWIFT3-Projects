@@ -13,6 +13,7 @@
 		7C13A8BB1E15963400B91093 /* ReusableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C13A8BA1E15963400B91093 /* ReusableView.swift */; };
 		7C13A8BD1E1596A000B91093 /* NibLoadableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C13A8BC1E1596A000B91093 /* NibLoadableView.swift */; };
 		7C13A8BF1E15970B00B91093 /* UICollectionView+EXT.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C13A8BE1E15970B00B91093 /* UICollectionView+EXT.swift */; };
+		7C13A8C11E15C22400B91093 /* MutableCollection+EXT.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C13A8C01E15C22400B91093 /* MutableCollection+EXT.swift */; };
 		7CCD22BB1E149043007FD48F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CCD22BA1E149043007FD48F /* AppDelegate.swift */; };
 		7CCD22C01E149043007FD48F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7CCD22BE1E149043007FD48F /* Main.storyboard */; };
 		7CCD22C21E149043007FD48F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7CCD22C11E149043007FD48F /* Assets.xcassets */; };
@@ -30,6 +31,7 @@
 		7C13A8BA1E15963400B91093 /* ReusableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReusableView.swift; sourceTree = "<group>"; };
 		7C13A8BC1E1596A000B91093 /* NibLoadableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NibLoadableView.swift; sourceTree = "<group>"; };
 		7C13A8BE1E15970B00B91093 /* UICollectionView+EXT.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UICollectionView+EXT.swift"; sourceTree = "<group>"; };
+		7C13A8C01E15C22400B91093 /* MutableCollection+EXT.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "MutableCollection+EXT.swift"; sourceTree = "<group>"; };
 		7CCD22B71E149043007FD48F /* POPExp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = POPExp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7CCD22BA1E149043007FD48F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		7CCD22BF1E149043007FD48F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -126,6 +128,7 @@
 			isa = PBXGroup;
 			children = (
 				7C13A8BE1E15970B00B91093 /* UICollectionView+EXT.swift */,
+				7C13A8C01E15C22400B91093 /* MutableCollection+EXT.swift */,
 			);
 			name = Extensions;
 			sourceTree = "<group>";
@@ -217,6 +220,7 @@
 				7CCD22BB1E149043007FD48F /* AppDelegate.swift in Sources */,
 				7CCD22D51E1493BB007FD48F /* DropShadow.swift in Sources */,
 				7C13A8BD1E1596A000B91093 /* NibLoadableView.swift in Sources */,
+				7C13A8C11E15C22400B91093 /* MutableCollection+EXT.swift in Sources */,
 				7C13A8BB1E15963400B91093 /* ReusableView.swift in Sources */,
 				7CCD22D31E149283007FD48F /* MainVC.swift in Sources */,
 				7C13A8BF1E15970B00B91093 /* UICollectionView+EXT.swift in Sources */,

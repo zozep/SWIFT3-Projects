@@ -20,6 +20,7 @@ class MainVC: UIViewController, DataServiceDelegate {
         
         ds.delegate = self
         ds.loadTacoData()
+        ds.tacoArray.shuffle()
         
         collectionView.delegate = self
         collectionView.dataSource = self
@@ -30,6 +31,7 @@ class MainVC: UIViewController, DataServiceDelegate {
     
     func tacoDataLoaded() {
         print("data loaded")
+        collectionView.reloadData()
     }
   
 
