@@ -6,6 +6,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -39,12 +40,27 @@
                                     <constraint firstAttribute="height" constant="126" id="yNV-7i-dNy"/>
                                 </constraints>
                             </view>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="fbM-fI-Hof">
+                                <rect key="frame" x="16" y="134" width="343" height="525"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="uZW-ur-szq">
+                                    <size key="itemSize" width="50" height="50"/>
+                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                </collectionViewFlowLayout>
+                                <cells/>
+                            </collectionView>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="fbM-fI-Hof" secondAttribute="bottom" constant="8" id="EWB-0F-vYb"/>
+                            <constraint firstItem="fbM-fI-Hof" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" id="KL9-v6-DuH"/>
                             <constraint firstAttribute="trailing" secondItem="hbe-9o-Scl" secondAttribute="trailing" id="OFg-IQ-UMb"/>
                             <constraint firstItem="hbe-9o-Scl" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="T6Y-uS-sem"/>
                             <constraint firstItem="hbe-9o-Scl" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="WJr-tc-NQ6"/>
+                            <constraint firstItem="fbM-fI-Hof" firstAttribute="trailing" secondItem="8bC-Xf-vdC" secondAttribute="trailingMargin" id="Zd5-89-zZ0"/>
+                            <constraint firstItem="fbM-fI-Hof" firstAttribute="top" secondItem="hbe-9o-Scl" secondAttribute="bottom" constant="8" id="ucO-aC-Vsb"/>
                         </constraints>
                     </view>
                     <connections>
