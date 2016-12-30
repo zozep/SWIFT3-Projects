@@ -11,8 +11,8 @@ import UserNotifications
 import UserNotificationsUI
 
 class NotificationViewController: UIViewController, UNNotificationContentExtension {
-
-    @IBOutlet var label: UILabel?
+    
+    @IBOutlet weak var imageView: UIImageView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -20,7 +20,19 @@ class NotificationViewController: UIViewController, UNNotificationContentExtensi
     }
     
     func didReceive(_ notification: UNNotification) {
-        self.label?.text = notification.request.content.body
+        
+        //taking the first notification out and assignminng new constant attachment to it
+        guard let attachment = notification.request.content.attachments.first else {
+            return
+        }
+        //because notification can operates outside of sandbox (when app is closed)
+        if attachment.url.startAccessingSecurityScopedResource() {
+            
+            let imageDataFromAttachmentURL = try? Data.init(contentsOf: attachment.url)
+            if let imgData = imageDataFromAttachmentURL {
+                imageView.image = UIImage(data: imgData)
+            }
+        }
     }
 
 }
