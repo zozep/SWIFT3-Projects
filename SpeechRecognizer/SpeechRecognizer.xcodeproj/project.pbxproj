@@ -14,6 +14,7 @@
 		7C8B8EBA1E161916009CF5DD /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7C8B8EB81E161916009CF5DD /* LaunchScreen.storyboard */; };
 		7C8B8EC51E161916009CF5DD /* SpeechRecognizerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C8B8EC41E161916009CF5DD /* SpeechRecognizerTests.swift */; };
 		7C8B8ED31E161B31009CF5DD /* CircleButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C8B8ED21E161B31009CF5DD /* CircleButton.swift */; };
+		7C8B8ED51E161FBD009CF5DD /* testSpeech.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 7C8B8ED41E161FBD009CF5DD /* testSpeech.m4a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -38,6 +39,7 @@
 		7C8B8EC41E161916009CF5DD /* SpeechRecognizerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpeechRecognizerTests.swift; sourceTree = "<group>"; };
 		7C8B8EC61E161916009CF5DD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		7C8B8ED21E161B31009CF5DD /* CircleButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CircleButton.swift; sourceTree = "<group>"; };
+		7C8B8ED41E161FBD009CF5DD /* testSpeech.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = testSpeech.m4a; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -79,12 +81,10 @@
 		7C8B8EAE1E161916009CF5DD /* SpeechRecognizer */ = {
 			isa = PBXGroup;
 			children = (
+				7C8B8ED61E161FC0009CF5DD /* Resources */,
 				7C8B8ED01E161B15009CF5DD /* Model */,
 				7C8B8ED11E161B18009CF5DD /* View */,
 				7C8B8ECF1E161B10009CF5DD /* Controller */,
-				7C8B8EAF1E161916009CF5DD /* AppDelegate.swift */,
-				7C8B8EB61E161916009CF5DD /* Assets.xcassets */,
-				7C8B8EBB1E161916009CF5DD /* Info.plist */,
 			);
 			path = SpeechRecognizer;
 			sourceTree = "<group>";
@@ -102,6 +102,7 @@
 			isa = PBXGroup;
 			children = (
 				7C8B8EB11E161916009CF5DD /* ViewController.swift */,
+				7C8B8EAF1E161916009CF5DD /* AppDelegate.swift */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -121,6 +122,16 @@
 				7C8B8ED21E161B31009CF5DD /* CircleButton.swift */,
 			);
 			name = View;
+			sourceTree = "<group>";
+		};
+		7C8B8ED61E161FC0009CF5DD /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				7C8B8ED41E161FBD009CF5DD /* testSpeech.m4a */,
+				7C8B8EB61E161916009CF5DD /* Assets.xcassets */,
+				7C8B8EBB1E161916009CF5DD /* Info.plist */,
+			);
+			name = Resources;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -210,6 +221,7 @@
 			files = (
 				7C8B8EBA1E161916009CF5DD /* LaunchScreen.storyboard in Resources */,
 				7C8B8EB71E161916009CF5DD /* Assets.xcassets in Resources */,
+				7C8B8ED51E161FBD009CF5DD /* testSpeech.m4a in Resources */,
 				7C8B8EB51E161916009CF5DD /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
