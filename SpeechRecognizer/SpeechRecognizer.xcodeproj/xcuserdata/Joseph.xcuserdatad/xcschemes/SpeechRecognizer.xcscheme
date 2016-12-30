@@ -14,10 +14,10 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "7C6BC0D61DDBC52900DDF938"
-               BuildableName = "Calculyeahtor.app"
-               BlueprintName = "Calculyeahtor"
-               ReferencedContainer = "container:Calculyeahtor.xcodeproj">
+               BlueprintIdentifier = "7C8B8EAB1E161916009CF5DD"
+               BuildableName = "SpeechRecognizer.app"
+               BlueprintName = "SpeechRecognizer"
+               ReferencedContainer = "container:SpeechRecognizer.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -28,14 +28,24 @@
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
       shouldUseLaunchSchemeArgsEnv = "YES">
       <Testables>
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "7C8B8EBF1E161916009CF5DD"
+               BuildableName = "SpeechRecognizerTests.xctest"
+               BlueprintName = "SpeechRecognizerTests"
+               ReferencedContainer = "container:SpeechRecognizer.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
       </Testables>
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "7C6BC0D61DDBC52900DDF938"
-            BuildableName = "Calculyeahtor.app"
-            BlueprintName = "Calculyeahtor"
-            ReferencedContainer = "container:Calculyeahtor.xcodeproj">
+            BlueprintIdentifier = "7C8B8EAB1E161916009CF5DD"
+            BuildableName = "SpeechRecognizer.app"
+            BlueprintName = "SpeechRecognizer"
+            ReferencedContainer = "container:SpeechRecognizer.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
       <AdditionalOptions>
@@ -55,19 +65,12 @@
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "7C6BC0D61DDBC52900DDF938"
-            BuildableName = "Calculyeahtor.app"
-            BlueprintName = "Calculyeahtor"
-            ReferencedContainer = "container:Calculyeahtor.xcodeproj">
+            BlueprintIdentifier = "7C8B8EAB1E161916009CF5DD"
+            BuildableName = "SpeechRecognizer.app"
+            BlueprintName = "SpeechRecognizer"
+            ReferencedContainer = "container:SpeechRecognizer.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
-      <EnvironmentVariables>
-         <EnvironmentVariable
-            key = "OS_ACTIVITY_MODE"
-            value = "disable"
-            isEnabled = "YES">
-         </EnvironmentVariable>
-      </EnvironmentVariables>
       <AdditionalOptions>
       </AdditionalOptions>
    </LaunchAction>
@@ -81,10 +84,10 @@
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "7C6BC0D61DDBC52900DDF938"
-            BuildableName = "Calculyeahtor.app"
-            BlueprintName = "Calculyeahtor"
-            ReferencedContainer = "container:Calculyeahtor.xcodeproj">
+            BlueprintIdentifier = "7C8B8EAB1E161916009CF5DD"
+            BuildableName = "SpeechRecognizer.app"
+            BlueprintName = "SpeechRecognizer"
+            ReferencedContainer = "container:SpeechRecognizer.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>
