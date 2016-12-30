@@ -13,6 +13,7 @@
 		7C13A8D81E15D89C00B91093 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7C13A8D71E15D89C00B91093 /* Assets.xcassets */; };
 		7C13A8DB1E15D89C00B91093 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7C13A8D91E15D89C00B91093 /* LaunchScreen.storyboard */; };
 		7C13A8E61E15D89C00B91093 /* NotificationsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C13A8E51E15D89C00B91093 /* NotificationsTests.swift */; };
+		7C13A8F11E15F27400B91093 /* testImg.png in Resources */ = {isa = PBXBuildFile; fileRef = 7C13A8F01E15F27400B91093 /* testImg.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -36,6 +37,7 @@
 		7C13A8E11E15D89C00B91093 /* NotificationsTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = NotificationsTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		7C13A8E51E15D89C00B91093 /* NotificationsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationsTests.swift; sourceTree = "<group>"; };
 		7C13A8E71E15D89C00B91093 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		7C13A8F01E15F27400B91093 /* testImg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = testImg.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -82,6 +84,7 @@
 				7C13A8D41E15D89C00B91093 /* Main.storyboard */,
 				7C13A8D71E15D89C00B91093 /* Assets.xcassets */,
 				7C13A8D91E15D89C00B91093 /* LaunchScreen.storyboard */,
+				7C13A8F01E15F27400B91093 /* testImg.png */,
 				7C13A8DC1E15D89C00B91093 /* Info.plist */,
 			);
 			path = Notifications;
@@ -184,6 +187,7 @@
 				7C13A8DB1E15D89C00B91093 /* LaunchScreen.storyboard in Resources */,
 				7C13A8D81E15D89C00B91093 /* Assets.xcassets in Resources */,
 				7C13A8D61E15D89C00B91093 /* Main.storyboard in Resources */,
+				7C13A8F11E15F27400B91093 /* testImg.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
