@@ -25,6 +25,7 @@ class NotificationViewController: UIViewController, UNNotificationContentExtensi
         guard let attachment = notification.request.content.attachments.first else {
             return
         }
+        
         //because notification can operates outside of sandbox (when app is closed)
         if attachment.url.startAccessingSecurityScopedResource() {
             
@@ -35,4 +36,14 @@ class NotificationViewController: UIViewController, UNNotificationContentExtensi
         }
     }
 
+    func didReceive(_ response: UNNotificationResponse, completionHandler completion: @escaping (UNNotificationContentExtensionResponseOption) -> Void) {
+        
+        //dismiss notification and forward it to that delegate
+        if response.actionIdentifier == "highfive" {
+            completion(.dismissAndForwardAction)
+        } else if response.actionIdentifier == "dismiss" {
+            completion(.dismissAndForwardAction)
+        }
+    }
+    
 }
