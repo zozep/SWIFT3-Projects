@@ -14,7 +14,7 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        //1. request permission
+        //1. REQUEST PERMISSION
         UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .badge, .sound], completionHandler: { (granted, error) in
             
             if granted {
@@ -24,6 +24,7 @@ class ViewController: UIViewController {
             }
         })
     }
+    //2. SCHEDULE NOTIFICATION
 
     @IBAction func notifyButtonTapped(sender: UIButton) {
         scheduleNotification(inSeconds: 3, completion: { success in
@@ -52,6 +53,7 @@ class ViewController: UIViewController {
         //ONLY FOR EXTENSION
         notification.categoryIdentifier = "myNotificationCategory"
         
+        //3. CREATE NOTIFICATION
         notification.title = "New Notification"
         notification.subtitle = "New subtitle"
         notification.body = "The new notification options in iOS 10!!"
