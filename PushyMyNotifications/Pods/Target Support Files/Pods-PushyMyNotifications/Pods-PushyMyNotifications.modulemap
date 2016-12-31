@@ -1,0 +1,6 @@
+framework module Pods_PushyMyNotifications {
+  umbrella header "Pods-PushyMyNotifications-umbrella.h"
+
+  export *
+  module * { export * }
+}
