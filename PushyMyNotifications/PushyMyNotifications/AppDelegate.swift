@@ -27,6 +27,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             application.registerForRemoteNotifications(matching: types)
         }
         FIRApp.configure()
+        
+        
+        //adding self as observer, whenever token is refreshed with pushnotifications, listens for self.tokenRefreshNotifications(). then connects to the firebase server
+        NotificationCenter.default.addObserver(self, selector: #selector(self.tokenRefreshNotification(notification: )), name: NSNotification.Name.firInstanceIDTokenRefresh, object: nil)
         return true
     }
 
@@ -56,8 +60,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
     }
     
+    //for occassinoal refreshing that app has to do and the token that it needs
     func tokenRefreshNotification(notification: NSNotification) {
-        let refreshedToken = FIRInstanceID.instanceID().token()!
+        let refreshedToken = FIRInstanceID.instanceID().token()
         
         print("InstanceID token: \(refreshedToken)")
         connectToFirebaseMsg()
