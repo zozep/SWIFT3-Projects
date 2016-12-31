@@ -6,11 +6,6 @@ target 'PushyMyNotifications' do
   use_frameworks!
 
   # Pods for PushyMyNotifications
-
-  target 'PushyMyNotificationsTests' do
-    inherit! :search_paths
     pod 'Firebase/Core'
     pod 'Firebase/Messaging'
-  end
-
 end

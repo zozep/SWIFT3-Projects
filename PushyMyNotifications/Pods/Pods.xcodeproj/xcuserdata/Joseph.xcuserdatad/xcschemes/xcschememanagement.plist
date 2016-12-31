@@ -14,20 +14,10 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
-		<key>Pods-PushyMyNotificationsTests.xcscheme</key>
-		<dict>
-			<key>isShown</key>
-			<false/>
-		</dict>
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>3582C5148DD0142A2C23A3A4FD8AA805</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>906386220713821D023C2EAD9439D61E</key>
+		<key>48100E2DB23635E713508239D68C7322</key>
 		<dict>
 			<key>primary</key>
 			<true/>

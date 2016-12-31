@@ -14,7 +14,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "906386220713821D023C2EAD9439D61E"
+               BlueprintIdentifier = "48100E2DB23635E713508239D68C7322"
                BuildableName = "Pods_PushyMyNotifications.framework"
                BlueprintName = "Pods-PushyMyNotifications"
                ReferencedContainer = "container:Pods.xcodeproj">
@@ -45,7 +45,7 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "906386220713821D023C2EAD9439D61E"
+            BlueprintIdentifier = "48100E2DB23635E713508239D68C7322"
             BuildableName = "Pods_PushyMyNotifications.framework"
             BlueprintName = "Pods-PushyMyNotifications"
             ReferencedContainer = "container:Pods.xcodeproj">
