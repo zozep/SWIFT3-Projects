@@ -13,7 +13,7 @@ These are apps done with the latest SWIFT 3 syntax.
 ###3. SpeechRecognizer: Transcribes m4a audio file into text on your screen
 * Used: [Speech Framework](https://developer.apple.com/reference/speech), [AVFoundation](https://developer.apple.com/reference/avfoundation)
 
-###4. PusyMyNotifications: Remote customized push notifications experiment
+###4. PushMyNotifications: Remote customized push notifications experiment
 * Used: [UserNotifications Framework](https://developer.apple.com/reference/usernotificationsui), [Firebase cloud Messaging](https://firebase.google.com/docs/cloud-messaging/)
 
 ###5. PokeDexApp: Universal Pokedex with 718 pokemons. Sortable
