@@ -12,7 +12,7 @@ import FirebaseDatabase
 
 class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDelegate {
     @IBOutlet weak var mapView: MKMapView!
-    var gioFire: GeoFire!
+    var geoFire: GeoFire!
     var geoFireRef: FIRDatabaseReference!
     
     let locationManager = CLLocationManager()

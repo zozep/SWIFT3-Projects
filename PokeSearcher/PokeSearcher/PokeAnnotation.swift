@@ -161,3 +161,17 @@ let pokemon = [
     "dragonite",
     "mewtwo",
     "mew"]
+
+class PokeAnnotation: NSObject, MKAnnotation {
+    var coordinate = CLLocationCoordinate2D()
+    var pokemonNumber: Int
+    var pokemonName: String
+    var title: String?
+    
+    init(coordinate: CLLocationCoordinate2D, pokemonNumber: Int) {
+        self.coordinate = coordinate
+        self.pokemonNumber = pokemonNumber
+        self.pokemonName = pokemon[pokemonNumber - 1].capitalized
+        self.title = pokemonName /* comes from annotation protocol */
+    }
+}
