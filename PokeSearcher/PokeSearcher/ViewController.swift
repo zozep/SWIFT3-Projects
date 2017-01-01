@@ -76,8 +76,26 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
         geoFire.setLocation(location, forKey: "\(pokeId)")
     }
     
-    @IBAction func spotRandomPokemon(_ sender: Any) {
+    func showSigntingsOnMap(location: CLLocation) {
+        //geofire documentation
+        let circleQuery = geoFire!.query(at: location, withRadius: 5)
         
+        _ = circleQuery?.observe(GFEventType.keyEntered, with: { (key, location) in
+            //observe whenever it finds a sighting i.e: if 50 pokemon, this gets called 50 times
+            if let key = key, let location = location {
+                
+                //create an annotation using custom annotation, passing in the locaiton of the very specific pokemon, then pass in the pokemonNumber -> gets saved on the map and this will drop the pindrop on the map
+                let annotation = PokeAnnotation(coordinate: location.coordinate, pokemonNumber: Int(key)!)
+                self.mapView.addAnnotation(annotation)
+            }
+        })
+    }
+    
+    @IBAction func spotRandomPokemon(_ sender: Any) {
+        let mvCenterlocation = CLLocation(latitude: mapView.centerCoordinate.latitude, longitude: mapView.centerCoordinate.longitude)
+        let random = arc4random_uniform(151) + 1
+        
+        createSighting(forLocation: mvCenterlocation, withPokemon: Int(random))
     }
 
 }
