@@ -61,22 +61,24 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
             }
         }
     }
-    
-    func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
-        var annotationView: MKAnnotationView?
+
+    //1. IF YOU SPOT A RANDOM POKEMON, app's going to createSighting -> which sets geoFire.setLocation @ line 97
+    @IBAction func spotRandomPokemon(_ sender: Any) {
+        let mvCenterlocation = CLLocation(latitude: mapView.centerCoordinate.latitude, longitude: mapView.centerCoordinate.longitude)
+        let random = arc4random_uniform(151) + 1
         
-        if annotation.isKind(of: MKUserLocation.self) {
-            annotationView = MKAnnotationView(annotation: annotation, reuseIdentifier: "User")
-            annotationView?.image = UIImage(named: "ash")
-        }
-        return annotationView
+        createSighting(forLocation: mvCenterlocation, withPokemon: Int(random))
     }
+
     
+    //2. when location is set the callback .keyEntered wil automatically be entered
     func createSighting(forLocation location: CLLocation, withPokemon pokeId: Int) {
+        
+        //3.when the app first loads this is going to be called and cycle through for every single Pokemon on the map in a specific geographical location
         geoFire.setLocation(location, forKey: "\(pokeId)")
     }
     
-    func showSigntingsOnMap(location: CLLocation) {
+    func showSightingsOnMap(location: CLLocation) {
         //geofire documentation
         let circleQuery = geoFire!.query(at: location, withRadius: 5)
         
@@ -90,12 +92,47 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
             }
         })
     }
-    
-    @IBAction func spotRandomPokemon(_ sender: Any) {
-        let mvCenterlocation = CLLocation(latitude: mapView.centerCoordinate.latitude, longitude: mapView.centerCoordinate.longitude)
-        let random = arc4random_uniform(151) + 1
+
+    //4. called after showSighntingsOnMap
+    func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
+        var annotationView: MKAnnotationView?
+        let annotationIdentifier = "Pokemon"
         
-        createSighting(forLocation: mvCenterlocation, withPokemon: Int(random))
+        //if USER, use ASH
+        if annotation.isKind(of: MKUserLocation.self) {
+            annotationView = MKAnnotationView(annotation: annotation, reuseIdentifier: "User")
+            annotationView?.image = UIImage(named: "ash")
+            
+            //create identifier pokemon
+        } else if let dequeAnnotation = mapView.dequeueReusableAnnotationView(withIdentifier: annotationIdentifier) {
+            annotationView = dequeAnnotation
+            annotationView?.annotation = annotation
+            
+            //create default
+        } else {
+            let annotView = MKAnnotationView(annotation: annotation, reuseIdentifier: annotationIdentifier)
+            annotView.rightCalloutAccessoryView = UIButton(type: .detailDisclosure)
+            annotationView = annotView
+        }
+        
+        //in any of the cases, it's customized
+        if let annotationView = annotationView, let anno = annotation as? PokeAnnotation {
+            
+            //by givin git the image itself on the annotation itself - giving it a pokemon, then want to call the canShowCallout when user taps
+            annotationView.canShowCallout = true
+            annotationView.image = UIImage(named: "\(anno.pokemonNumber)")
+            
+            //set the btn that users gonna tap on
+            let btn = UIButton()
+            btn.frame = CGRect(x: 0, y: 0, width: 30, height: 30)
+            btn.setImage(UIImage(named: "map"), for: .normal)
+            annotationView.rightCalloutAccessoryView = btn
+            
+            
+        }
+        
+        //result shows on the map
+        return annotationView
     }
 
 }
