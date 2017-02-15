@@ -1,5 +1,5 @@
 //
-//  ViewController.swift
+//  RecordSoundsVC.swift
 //  pitchChanger
 //
 //  Created by Joseph Park on 2/15/17.
@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+class RecordSoundsVC: UIViewController {
     
     @IBOutlet weak var recordingLabel: UILabel!
     @IBOutlet weak var recordingButton: UIButton!
