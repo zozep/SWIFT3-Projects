@@ -73,10 +73,10 @@
             </objects>
             <point key="canvasLocation" x="378" y="42"/>
         </scene>
-        <!--View Controller-->
+        <!--Play SoundsVC-->
         <scene sceneID="a6g-UX-l8G">
             <objects>
-                <viewController id="Esd-go-CsQ" sceneMemberID="viewController">
+                <viewController id="Esd-go-CsQ" customClass="PlaySoundsVC" customModule="pitchChanger" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="oZI-lR-XEY"/>
                         <viewControllerLayoutGuide type="bottom" id="vcw-aW-835"/>

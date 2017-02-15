@@ -12,6 +12,7 @@
 		7CA74C971E54451800D485AD /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7CA74C951E54451800D485AD /* Main.storyboard */; };
 		7CA74C991E54451800D485AD /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7CA74C981E54451800D485AD /* Assets.xcassets */; };
 		7CA74C9C1E54451800D485AD /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7CA74C9A1E54451800D485AD /* LaunchScreen.storyboard */; };
+		7CA74CA41E54835300D485AD /* PlaySoundsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CA74CA31E54835300D485AD /* PlaySoundsVC.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -22,6 +23,7 @@
 		7CA74C981E54451800D485AD /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		7CA74C9B1E54451800D485AD /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		7CA74C9D1E54451800D485AD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		7CA74CA31E54835300D485AD /* PlaySoundsVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlaySoundsVC.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,6 +58,7 @@
 			children = (
 				7CA74C911E54451800D485AD /* AppDelegate.swift */,
 				7CA74C931E54451800D485AD /* RecordSoundsVC.swift */,
+				7CA74CA31E54835300D485AD /* PlaySoundsVC.swift */,
 				7CA74C951E54451800D485AD /* Main.storyboard */,
 				7CA74C981E54451800D485AD /* Assets.xcassets */,
 				7CA74C9A1E54451800D485AD /* LaunchScreen.storyboard */,
@@ -137,6 +140,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7CA74CA41E54835300D485AD /* PlaySoundsVC.swift in Sources */,
 				7CA74C941E54451800D485AD /* RecordSoundsVC.swift in Sources */,
 				7CA74C921E54451800D485AD /* AppDelegate.swift in Sources */,
 			);
