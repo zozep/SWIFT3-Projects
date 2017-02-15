@@ -46,6 +46,7 @@
                                 <state key="normal" image="Stop"/>
                                 <connections>
                                     <action selector="stopRecording:" destination="BYZ-38-t0r" eventType="touchUpInside" id="enx-Ck-hBK"/>
+                                    <segue destination="Esd-go-CsQ" kind="show" id="10E-Ua-h1g"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -70,7 +71,25 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="608.79999999999995" y="42.728635682158924"/>
+            <point key="canvasLocation" x="378" y="42"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="a6g-UX-l8G">
+            <objects>
+                <viewController id="Esd-go-CsQ" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="oZI-lR-XEY"/>
+                        <viewControllerLayoutGuide type="bottom" id="vcw-aW-835"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="VRS-WL-kJa">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="cif-Ol-or3" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1146" y="42"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="RxS-bo-eCp">
