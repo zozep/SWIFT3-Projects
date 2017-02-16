@@ -27,7 +27,7 @@ class PlaySoundsVC: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        setupAudio()
         // Do any additional setup after loading the view.
     }
     
@@ -55,7 +55,7 @@ class PlaySoundsVC: UIViewController {
     }
     
     @IBAction func stopButtonPressed(_ sender: AnyObject) {
-        print("Stop Audio Button Pressed")
+        stopAudio()
     }
     
     enum ButtonType: Int {
@@ -200,7 +200,7 @@ extension PlaySoundsVC: AVAudioPlayerDelegate {
     // MARK: Connect List of Audio Nodes
     
     func connectAudioNodes(_ nodes: AVAudioNode...) {
-        for x in 0..<nodes.count-1 {
+        for x in 0..<nodes.count - 1 {
             audioEngine.connect(nodes[x], to: nodes[x+1], format: audioFile.processingFormat)
         }
     }
